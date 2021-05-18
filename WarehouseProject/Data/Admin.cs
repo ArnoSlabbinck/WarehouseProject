@@ -1,19 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace WarehouseProject.Data
 {
 
-    class Admin : IIdentity
+    class Admin
     {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Role { get; set; }
-        public string Username { get; set; }
+        private string paswd;
+        public string Name { get; } = "Arno Slabbinck";
+        public string Email { get; } = "Arno.Slabbinck@hotmail.com";
+        public string Role { get; } = "Admin";
+        public string Username { get; } = "Arno";
 
-        public string Password { get; set; }
+        public string AuthenticationType { get { return "Admin authentication"; } }
+
+        public bool IsAuthenticated { get { return !string.IsNullOrEmpty(Name); } }
+        //
+
+        public string Password
+        {
+            get
+            {
+                using (var ctx = new WarehouseDataAccess.WarehouseDBContext())
+                {
+                    paswd = ctx.Supervisor.Find().Password;
+                }
+                return paswd;
+            }
+        }
+
     }
 }

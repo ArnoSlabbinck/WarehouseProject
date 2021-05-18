@@ -137,10 +137,8 @@ namespace WarehouseProject.Data
 
             
 
-            
-            throw new NotImplementedException();
         }
-        public string GenerateSalt()
+        private string GenerateSalt()
         {
             RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
             byte[] saltBytes = new byte[36];
@@ -150,7 +148,7 @@ namespace WarehouseProject.Data
             return salt;
 
         }
-        public string CalculateHashPassword(string Salt, string textPassword)
+        private string CalculateHashPassword(string Salt, string textPassword)
         {
             //Conver the salted password to a byte array
             byte[] saltedHashBytes = Encoding.UTF8.GetBytes(textPassword + Salt);

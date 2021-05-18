@@ -11,17 +11,21 @@ using WarehouseProject.Data;
 namespace WarehouseProject.ViewModels
 {
     //Link the authenticationService with the loginView
-    class LoginViewModel : INotifyPropertyChanged
+    class LoginViewModel : DataPropertyChanged
     {
         
        // After he is succesfulled login
         private readonly AuthenticationService authentication;
+        private readonly User user;
+        private readonly Admin admin;
         private readonly DelegateCommand _loginCommand;
         private readonly DelegateCommand _logoutCommand;
         private string _username;
         private string _password;
         private string _role;
         private string name;
+        private string status;
+
 
         #region Properties
 
@@ -39,6 +43,16 @@ namespace WarehouseProject.ViewModels
             get { return _role; }
             set { _role = value; NotifyPropertyChanged("Role"); }
         }
+        /// <summary>
+        /// Displays Error when authentication fails
+        /// </summary>
+        public string Status { 
+            get { return status; }
+            set { status = value; }
+        }
+
+        
+
         #endregion
 
         public LoginViewModel(AuthenticationService _authentication)
@@ -52,7 +66,7 @@ namespace WarehouseProject.ViewModels
         // 
 
         /// <summary>
-        /// check
+        /// check is the user or Admin is authenticated
         /// </summary>
         /// <returns></returns>
         private bool CanLogout()
@@ -66,15 +80,38 @@ namespace WarehouseProject.ViewModels
             throw new NotImplementedException();
         }
 
-        private bool CanLogin()
+        private bool CanLogin(object paramater)
         {
             // Check of the inputfields are not empty
-            throw new NotImplementedException();
+             
         }
-
-        private void Login()
+        /// <summary>
+        /// Checks the user credentials: Username and Password
+        /// and makes sure they are valid. When not, gives back an 
+        /// valid error
+        /// </summary>
+        /// <param name="parameter"></param>
+        private void Login(object parameter)
         {
-            throw new NotImplementedException();
+            // Check if the textboxes are not null => Commands
+
+            //First check if the user is not the admin 
+            // First Check the user is the administrator
+
+            try 
+            {
+                User user = authentication.Login(Username, Password);
+
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Status = "Login failed! Please provide some valid credentials.";
+            }
+            catch (Exception ex)
+            {
+                Status = string.Format("ERROR: {0}", ex.Message);
+            }
+
         }
 
 
@@ -86,14 +123,22 @@ namespace WarehouseProject.ViewModels
         #endregion
 
 
-        #region INotifyPropertyChanged Members
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NotifyPropertyChanged(string propertyName)
+       
+        // override object.Equals
+        public override bool Equals(object obj)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            // TODO: write your implementation of Equals() here
+            throw new NotImplementedException();
+            return base.Equals(obj);
         }
-        #endregion
+
     }
+
+
 }
