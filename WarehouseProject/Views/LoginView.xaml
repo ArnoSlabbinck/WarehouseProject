@@ -5,47 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarehouseProject.Views"
         mc:Ignorable="d"
-        Title="LoginView" d:DesignHeight="500" d:DesignWidth="800">
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#052931" Offset="1.0" />
-            </LinearGradientBrush>
-        </Grid.Background>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
-            <Label Content="Username:" FontWeight="DemiBold" Foreground="#4c6e75" FontSize="20" Margin="0,20,0,0"/>
-            <TextBlock Background="Transparent" Width="275" Height="40" Margin="0,0,0,10" Foreground="Black" />
-            <Border Height="10" Width="275" BorderThickness="3" Margin="-270,0,0,0" Background="#4c6e75"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
-            <Label Content="Password:" FontWeight="DemiBold" Foreground="#4c6e75" FontSize="20" Margin="0,20,0,0"/>
-            <TextBlock Background="Transparent" Width="275" Height="40" Margin="0,0,0,10" Foreground="Black" />
-            <Border Height="10" Width="275" BorderThickness="3" Margin="-270,0,0,0" Background="#4c6e75" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="2">
-            <Border CornerRadius="10" Width="150" Height="50" BorderThickness="2">
-                <Button x:Name="Connection" Content="Login" 
-                    FontWeight="DemiBold" Foreground="GhostWhite"
-                    Background="LightSkyBlue" Width="150" Height="50" FontSize="20"
-                    HorizontalContentAlignment="Center" ToolTip=""/>
-            </Border>
-            
-        </StackPanel>
-    </Grid>
-    
+        Title="LoginView" d:DesignHeight="500" d:DesignWidth="800" Background="#012e37">
+    <Border  CornerRadius="50" Margin="60">
+        <StackPanel Margin="20">
+            <Label Content="User Input" FontSize="25" Foreground="#fff"
+                   HorizontalAlignment="Center" FontWeight="Bold" />
+            <Separator></Separator>
+            <Label Content="Username" Foreground="#fff" FontSize="20" FontWeight="DemiBold"/>
+            <TextBlock Name="txtUsername" Text="{Binding Username, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged }" 
+                       Background="#1c37e7" Height="40" Width="400" Margin="0,0,220,0"/>
+            <Label Content="Password" Foreground="#fff" FontSize="20" FontWeight="DemiBold"/>
+            <TextBlock Name="txtPassword" Background="#1c37e7" Height="40" Width="400" Margin="0,0,220,0"/>
+            <Button x:Name="btnSubmit" Content="Submit"
+                    Margin="60 20" Background="Azure" 
+                    Foreground="#061262" FontSize="25" FontWeight="Bold" Command="" Height="40" Width="200"/>
+        </StackPanel>      
+    </Border>
+  
 </Window>

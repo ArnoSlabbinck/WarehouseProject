@@ -22,8 +22,8 @@ namespace WarehouseModels
         public DateTime OrderDate { get; set; }
         public DateTime RequiredDate { get; set; }
         public DateTime ShipDate { get; set; }
-        public Customers customers { get; set; }
-        public ICollection<OrderItems> orderItems { get; set; }
+        public Customers Customers { get; set; }
+        public ICollection<OrderItems> OrderItems { get; set; }
 
 
 

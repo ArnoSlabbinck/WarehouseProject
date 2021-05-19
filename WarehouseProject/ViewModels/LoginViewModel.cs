@@ -1,25 +1,23 @@
-﻿using Prism.Commands;
+﻿using Caliburn.Micro;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+using System.ComponentModel.DataAnnotations;
 using WarehouseProject.Data;
 
 namespace WarehouseProject.ViewModels
 {
-    //Link the authenticationService with the loginView
-    class LoginViewModel : DataPropertyChanged
+    /// <summary>
+    /// Link the authenticationService with the loginView
+    /// </summary>
+    public class LoginViewModel : Screen
     {
-        
-       // After he is succesfulled login
-        private readonly AuthenticationService authentication;
+
+        // After he is succesfulled login
+
+       
+        private readonly AuthenticationService authentication = new AuthenticationService();
         private readonly User user;
         private readonly Admin admin;
-        private readonly DelegateCommand _loginCommand;
-        private readonly DelegateCommand _logoutCommand;
         private string _username;
         private string _password;
         private string _role;
@@ -28,12 +26,21 @@ namespace WarehouseProject.ViewModels
 
 
         #region Properties
-
+        [Required(ErrorMessage = "Username can't be empty")]
+       
         public string Username {
-            get { return _username; }
-            set { _username = value; NotifyPropertyChanged("Username"); }
+            get 
+            {
+                return _username;     
+            }
+            set 
+            {
+                ValidateProperty(value, "Username");
+                _username = value; NotifyPropertyChanged("Username"); 
+            }
         }
-
+        [Required(ErrorMessage = "Password can't be empty")]
+        //If the  password doesn't match display message
         public string Password {
             get { return _password; }
             set { _password = value; NotifyPropertyChanged("Password"); }
@@ -54,13 +61,11 @@ namespace WarehouseProject.ViewModels
         
 
         #endregion
-
-        public LoginViewModel(AuthenticationService _authentication)
+        public LoginViewModel()
         {
-            authentication = _authentication;
-            _loginCommand = new DelegateCommand(Login, CanLogin);
-            _logoutCommand = new DelegateCommand(Logout, CanLogout);
+            authentication.Login("arno", "Ypsp2man!");
         }
+       
         // Make a second class admin
         // Check first of the user is the admin 
         // 
@@ -80,18 +85,17 @@ namespace WarehouseProject.ViewModels
             throw new NotImplementedException();
         }
 
-        private bool CanLogin(object paramater)
-        {
-            // Check of the inputfields are not empty
-             
-        }
+        public bool CanLogin(string username, string password)
+{
+    return !String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password);
+}
         /// <summary>
         /// Checks the user credentials: Username and Password
         /// and makes sure they are valid. When not, gives back an 
         /// valid error
         /// </summary>
         /// <param name="parameter"></param>
-        private void Login(object parameter)
+        private string Login(object parameter)
         {
             // Check if the textboxes are not null => Commands
 
@@ -111,31 +115,29 @@ namespace WarehouseProject.ViewModels
             {
                 Status = string.Format("ERROR: {0}", ex.Message);
             }
+            return "hallo";
 
         }
 
-
-        #region Commands
-        public DelegateCommand LoginCommand { get { return _loginCommand; } }
-
-        public DelegateCommand LogoutCommand { get { return _logoutCommand; } }
-
-        #endregion
-
-
-       
-        // override object.Equals
-        public override bool Equals(object obj)
+        private void ValidateProperty<T>(T value, string name)
         {
-
-            if (obj == null || GetType() != obj.GetType())
+            Validator.ValidateProperty(value, new ValidationContext(this, null, null)
             {
-                return false;
-            }
+                MemberName = name
+            });
+        }
 
-            // TODO: write your implementation of Equals() here
-            throw new NotImplementedException();
-            return base.Equals(obj);
+
+
+
+
+        // override object.Equals
+       private event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
     }

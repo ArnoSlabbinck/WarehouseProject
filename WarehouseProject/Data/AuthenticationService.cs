@@ -12,8 +12,7 @@ namespace WarehouseProject.Data
 {
     public class AuthenticationService : IAuthenticationService
     {
-
-        User ErrorUser = new User();
+        readonly User ErrorUser = new User();
 
 
         /// <summary>
@@ -31,45 +30,51 @@ namespace WarehouseProject.Data
             {
                 ctx.Database.Log = (message) => Debug.WriteLine(message);
                 Employee employee = ctx.Employees.Where(p => p.UserName == username).FirstOrDefault();
-                usernameInDb = employee.UserName;
-                //
-                if (usernameInDb != null)
+                if (employee == null)
                 {
-                    //Check the  password
-                    string Salt = employee.PassWordSalt;
-                    string pswd = CalculateHashPassword(Salt, password);
+                    ErrorUser.InvalidLogin = "Username wasn't found";
+                    return ErrorUser;
+                }
+                else
+                {
+                    usernameInDb = employee.UserName;
 
-                    if (pswd == employee.PassWord)
+                    if (usernameInDb != null)
                     {
-                        //Create a User from Employee
+                        //Check the  password
+                        string Salt = employee.PassWordSalt;
+                        string pswd = CalculateHashPassword(Salt, password);
 
-                        User user = new User();
-                        user.Email = employee.Email;
-                        user.Name = employee.FullName();
-                        user.Password = employee.PassWord;
-                        user.Role = employee.JobTitle;
-                        user.Username = employee.UserName;
-                        return user;
-                    }
-
-                    else
-                    {
-                        // Should raise error  => capture that error and display that message to User
-                        
-                        ErrorUser.InvalidLogin = "Wrong Password";
-                        // Find the Username => then 
-                        if (employee.FailedPasswordAttemptCount == 3)
+                        if (pswd == employee.PassWord)
                         {
-                            employee.IsLockedOut = true;
+                            //Create a User from Employee
+
+                            User user = new User();
+                            user.Email = employee.Email;
+                            user.Name = employee.FullName();
+                            user.Password = employee.PassWord;
+                            user.Role = employee.JobTitle;
+                            user.Username = employee.UserName;
+                            return user;
+                        }
+
+                        else
+                        {
+                            // Should raise error  => capture that error and display that message to User
+
+                            ErrorUser.InvalidLogin = "Wrong Password";
+                            // Find the Username => then 
+                            if (employee.FailedPasswordAttemptCount == 3)
+                            {
+                                employee.IsLockedOut = true;
+                                return ErrorUser;
+                            }
+                            employee.FailedPasswordAttemptCount++;
                             return ErrorUser;
                         }
-                        employee.FailedPasswordAttemptCount++;
-                        return ErrorUser;
                     }
+
                 }
-                ErrorUser.InvalidLogin = "Username wasn't found";
-                
-                
 
             }
 
