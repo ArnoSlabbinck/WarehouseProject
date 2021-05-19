@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WarehouseProject.Views"
+        xmlns:local="clr-namespace:WarehouseProject.Views" xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel}"
         mc:Ignorable="d"
         Title="LoginView" d:DesignHeight="500" d:DesignWidth="800" Background="#012e37">
     <Grid>
@@ -24,19 +24,17 @@
                    HorizontalAlignment="Center" FontWeight="Bold" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
-            <TextBlock Text="{Binding Path=Username, Mode=OneWay}" Margin="0,0,0,110"   Foreground="Black" FontSize="20" FontWeight="DemiBold"/>
-            <TextBox  x:Name="Username" Foreground="Black" Background="#fff" Height="40" Width="400" Margin="0,40,200,0"/>
+            <TextBox Text="{Binding Path=Username, ValidatesOnExceptions=True}" Foreground="Black" Background="#fff" Height="40" Width="400" Margin="0,40,200,0"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
-            <TextBlock Text="{Binding Path=Password, Mode=OneWay}" Margin="0,0,0,110"   Foreground="Black" FontSize="20" FontWeight="DemiBold"/>
-            <TextBox  x:Name="Password" Foreground="Black" Background="#fff" Height="40" Width="400" />
+            <TextBox Text="{Binding Path=Password, ValidatesOnExceptions=True}" Foreground="Black" Background="#fff" Height="40" Width="400" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <Button x:Name="Login" Content="Submit"
-                    
-                    Margin="60 20" Background="Azure" 
-                    Foreground="#061262" FontSize="25" FontWeight="Bold" Command="" Height="40" Width="200"/>            
+                    Margin="0,0,0,50" Background="Azure" 
+                    Foreground="#061262" FontSize="25" FontWeight="Bold" Click="BtnSubmit_Click" Height="40" Width="200"/>            
         </StackPanel>
+        <TextBlock Text="{Binding Path=Status}" Margin="0,0,0,110"   Foreground="OrangeRed" FontSize="20" FontWeight="DemiBold"/>
 
     </Grid>
 </Window>

@@ -55,7 +55,7 @@ namespace WarehouseProject.Data
         }
         public string AuthenticationType { get { return "Custom authentication"; } }
 
-        public bool IsAuthenticated { get { return !string.IsNullOrEmpty(name); } }
+        public bool IsAuthenticated { get; set; }
 
         public string InvalidLogin { get; set; }
         

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WarehouseProject.ViewModels;
 
 namespace WarehouseProject.Views
 {
@@ -24,8 +25,18 @@ namespace WarehouseProject.Views
             InitializeComponent();
         }
 
-        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        private void BtnSubmit_Click(object sender, RoutedEventArgs e)
         {
+            if (((LoginViewModel) DataContext).CheckCredentials())
+            {
+                MessageBox.Show("You have been succesfully logged in");
+                
+            }
+
+            else
+            {
+                MessageBox.Show("Invalid credentials. Try to enter the right credentials");
+            }
 
         }
     }

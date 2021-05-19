@@ -55,6 +55,7 @@ namespace WarehouseProject.Data
                             user.Password = employee.PassWord;
                             user.Role = employee.JobTitle;
                             user.Username = employee.UserName;
+                            user.IsAuthenticated = true;
                             return user;
                         }
 
@@ -67,9 +68,11 @@ namespace WarehouseProject.Data
                             if (employee.FailedPasswordAttemptCount == 3)
                             {
                                 employee.IsLockedOut = true;
+                                ErrorUser.IsAuthenticated = false;
                                 return ErrorUser;
                             }
                             employee.FailedPasswordAttemptCount++;
+                            ErrorUser.IsAuthenticated = false;
                             return ErrorUser;
                         }
                     }
@@ -77,6 +80,7 @@ namespace WarehouseProject.Data
                 }
 
             }
+            ErrorUser.IsAuthenticated = false;
 
             return ErrorUser;
 
