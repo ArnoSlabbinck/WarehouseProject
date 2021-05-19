@@ -9,7 +9,7 @@ namespace WarehouseProject.ViewModels
     /// <summary>
     /// Link the authenticationService with the loginView
     /// </summary>
-    public class LoginViewModel : Screen
+    public class LoginViewModel : PropertyChangedBase
     {
 
         // After he is succesfulled login
@@ -35,20 +35,23 @@ namespace WarehouseProject.ViewModels
             }
             set 
             {
-                ValidateProperty(value, "Username");
-                _username = value; NotifyPropertyChanged("Username"); 
+                _username = value;
+                NotifyOfPropertyChange(() => Username);
+
             }
         }
         [Required(ErrorMessage = "Password can't be empty")]
         //If the  password doesn't match display message
         public string Password {
             get { return _password; }
-            set { _password = value; NotifyPropertyChanged("Password"); }
+            set { 
+                _password = value;
+                NotifyOfPropertyChange(() => Password); }
         }
 
         public string Role {
             get { return _role; }
-            set { _role = value; NotifyPropertyChanged("Role"); }
+            set { _role = value;  }
         }
         /// <summary>
         /// Displays Error when authentication fails
@@ -63,12 +66,9 @@ namespace WarehouseProject.ViewModels
         #endregion
         public LoginViewModel()
         {
-            authentication.Login("arno", "Ypsp2man!");
+            
         }
-       
-        // Make a second class admin
-        // Check first of the user is the admin 
-        // 
+
 
         /// <summary>
         /// check is the user or Admin is authenticated
@@ -86,9 +86,9 @@ namespace WarehouseProject.ViewModels
         }
 
         public bool CanLogin(string username, string password)
-{
-    return !String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password);
-}
+        {
+            return !String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password);
+        }
         /// <summary>
         /// Checks the user credentials: Username and Password
         /// and makes sure they are valid. When not, gives back an 
@@ -119,26 +119,6 @@ namespace WarehouseProject.ViewModels
 
         }
 
-        private void ValidateProperty<T>(T value, string name)
-        {
-            Validator.ValidateProperty(value, new ValidationContext(this, null, null)
-            {
-                MemberName = name
-            });
-        }
-
-
-
-
-
-        // override object.Equals
-       private event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
 
     }
 

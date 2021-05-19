@@ -6,20 +6,37 @@
         xmlns:local="clr-namespace:WarehouseProject.Views"
         mc:Ignorable="d"
         Title="LoginView" d:DesignHeight="500" d:DesignWidth="800" Background="#012e37">
-    <Border  CornerRadius="50" Margin="60">
-        <StackPanel Margin="20">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="20" Orientation="Vertical" Grid.Column="1" Grid.Row="0"  Grid.ColumnSpan="2">
             <Label Content="User Input" FontSize="25" Foreground="#fff"
                    HorizontalAlignment="Center" FontWeight="Bold" />
-            <Separator></Separator>
-            <Label Content="Username" Foreground="#fff" FontSize="20" FontWeight="DemiBold"/>
-            <TextBlock Name="txtUsername" Text="{Binding Username, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged }" 
-                       Background="#1c37e7" Height="40" Width="400" Margin="0,0,220,0"/>
-            <Label Content="Password" Foreground="#fff" FontSize="20" FontWeight="DemiBold"/>
-            <TextBlock Name="txtPassword" Background="#1c37e7" Height="40" Width="400" Margin="0,0,220,0"/>
-            <Button x:Name="btnSubmit" Content="Submit"
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+            <TextBlock Text="{Binding Path=Username, Mode=OneWay}" Margin="0,0,0,110"   Foreground="Black" FontSize="20" FontWeight="DemiBold"/>
+            <TextBox  x:Name="Username" Foreground="Black" Background="#fff" Height="40" Width="400" Margin="0,40,200,0"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+            <TextBlock Text="{Binding Path=Password, Mode=OneWay}" Margin="0,0,0,110"   Foreground="Black" FontSize="20" FontWeight="DemiBold"/>
+            <TextBox  x:Name="Password" Foreground="Black" Background="#fff" Height="40" Width="400" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <Button x:Name="Login" Content="Submit"
+                    
                     Margin="60 20" Background="Azure" 
-                    Foreground="#061262" FontSize="25" FontWeight="Bold" Command="" Height="40" Width="200"/>
-        </StackPanel>      
-    </Border>
-  
+                    Foreground="#061262" FontSize="25" FontWeight="Bold" Command="" Height="40" Width="200"/>            
+        </StackPanel>
+
+    </Grid>
 </Window>
