@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace WarehouseProject.Data
 
         private string username;
 
+        [Required(ErrorMessage = "Password can't be empty")]
         public string Username
         {
             get { return username; }
@@ -41,6 +43,7 @@ namespace WarehouseProject.Data
 
         private string password;
 
+        [Required(ErrorMessage = "Password can't be empty")]
         public string Password
         {
             get { return password; }

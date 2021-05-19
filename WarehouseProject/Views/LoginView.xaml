@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarehouseProject.Views" xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel}"
         mc:Ignorable="d"
-        Title="LoginView" d:DesignHeight="500" d:DesignWidth="800" Background="#012e37">
+        Title="LoginView" d:DesignHeight="650" d:DesignWidth="800" Background="#012e37">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -20,11 +20,12 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Margin="20" Orientation="Vertical" Grid.Column="1" Grid.Row="0"  Grid.ColumnSpan="2">
-            <Label Content="User Input" FontSize="25" Foreground="#fff"
+            <Label Content="Administration" FontSize="25" Foreground="#fff"
                    HorizontalAlignment="Center" FontWeight="Bold" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
-            <TextBox Text="{Binding Path=Username, ValidatesOnExceptions=True}" Foreground="Black" Background="#fff" Height="40" Width="400" Margin="0,40,200,0"/>
+            <TextBox Text="{Binding Path=Username, ValidatesOnExceptions=True}"  Foreground="Black" Background="#fff" Height="40" Width="400" Margin="0,40,200,0"/>
+            
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
             <TextBox Text="{Binding Path=Password, ValidatesOnExceptions=True}" Foreground="Black" Background="#fff" Height="40" Width="400" />
@@ -34,7 +35,9 @@
                     Margin="0,0,0,50" Background="Azure" 
                     Foreground="#061262" FontSize="25" FontWeight="Bold" Click="BtnSubmit_Click" Height="40" Width="200"/>            
         </StackPanel>
-        <TextBlock Text="{Binding Path=Status}" Margin="0,0,0,110"   Foreground="OrangeRed" FontSize="20" FontWeight="DemiBold"/>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Margin="0,70,0,0">
+            <TextBlock Text="{Binding Path=Status}" Margin="0,0,0,10"   Foreground="OrangeRed" FontSize="20" FontWeight="DemiBold"/>    
+        </StackPanel>
 
     </Grid>
 </Window>

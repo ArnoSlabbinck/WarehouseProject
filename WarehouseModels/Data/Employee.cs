@@ -25,6 +25,7 @@ namespace WarehouseModels
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "An Email is required"), StringLength(100, ErrorMessage = "Value lies outside the 1 to 100 range")]
+        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Valid email required e.g. abc@xyz.com")]
         public string Email { get; set; }
         [Required]
         public string JobTitle { get; set; }

@@ -21,8 +21,11 @@ namespace WarehouseModels
         [Required, StringLength(50)]
         public string LastName { get; set; }
         [Required, StringLength(100)]
+        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Valid email required e.g. abc@xyz.com")]
         public string Email { get; set; }
         [StringLength(50)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
+            ErrorMessage = "Entered phone format is not valid.")]
         public string Phone { get; set; }
         [Required, StringLength(50)]
         public string Street { get; set; }

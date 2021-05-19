@@ -33,10 +33,7 @@ namespace WarehouseProject.Views
                 
             }
 
-            else
-            {
-                MessageBox.Show("Invalid credentials. Try to enter the right credentials");
-            }
+            
 
         }
     }

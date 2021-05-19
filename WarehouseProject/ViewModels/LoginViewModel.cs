@@ -4,7 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Reflection;
+using System.Windows.Controls;
 using WarehouseProject.Data;
+
 
 namespace WarehouseProject.ViewModels
 {
@@ -14,25 +18,32 @@ namespace WarehouseProject.ViewModels
     public class LoginViewModel : PropertyChangedBase, INotifyDataErrorInfo
     {
 
+
         // After he is succesfulled login
+        Dictionary<string, string> ErrorCollection = new Dictionary<string, string>();
 
        
         private readonly AuthenticationService authentication = new AuthenticationService();
-        private readonly User user;
-        private readonly Admin admin;
+        private readonly User user = new User();
+        private readonly Admin admin = new Admin();
         private string _username;
         private string _password;
         private string _role;
-        private string name;
         private string status;
 
 
         #region Properties
         [Required(ErrorMessage = "Username can't be empty")]
-       
+  
         public string Username {
             get 
             {
+                if (string.IsNullOrEmpty(_username))
+                {
+                    string username = "Username";
+                    ErrorCollection.Add(username, getAttibute(username)); ;
+
+                }
                 return _username;     
             }
             set 
@@ -40,15 +51,35 @@ namespace WarehouseProject.ViewModels
                 _username = value;
                 NotifyOfPropertyChange(() => Username);
 
+                
+
             }
         }
-        [Required(ErrorMessage = "Password can't be empty")]
+        
         //If the  password doesn't match display message
         public string Password {
-            get { return _password; }
-            set { 
+            get 
+            {
+                string result = null;
+                if (string.IsNullOrEmpty(_password))
+                {
+                    string password = "Password";
+                    ErrorCollection.Add(password, getAttibute(password));
+
+                }
+                else
+                {
+                    return _password;
+                }
+                return result;
+            }
+            set 
+            { 
                 _password = value;
-                NotifyOfPropertyChange(() => Password); }
+                NotifyOfPropertyChange(() => Password);
+
+            }
+                
         }
 
         public string Role {
@@ -84,8 +115,16 @@ namespace WarehouseProject.ViewModels
 
             //First check if the user is not the admin 
             // First Check the user is the administrator4
+            
+            //Check 
             try 
             {
+                string psswd = admin.CalculateHashPassword(password);
+                //First check if the user is the admin if that the case' then continue with admin
+                bool AdminOrNot = CheckOfUserAdminIs(username, psswd);
+                if (AdminOrNot == true)
+                    return true;
+              
                 User user = authentication.Login(username, password);
                 if (user.IsAuthenticated == false)
                 {
@@ -111,6 +150,15 @@ namespace WarehouseProject.ViewModels
 
 
         }
+
+        private bool CheckOfUserAdminIs(string username, string password)
+        {
+            string AdminPassword = admin.Password;
+            string AdminUsername = admin.Username;
+            return AdminUsername.Equals(username);
+
+        }
+
         public IEnumerable GetErrors(string propertyName)
         {
             if (string.IsNullOrEmpty(propertyName) || (!HasErrors))
@@ -118,6 +166,7 @@ namespace WarehouseProject.ViewModels
             return new List<string>() { "Invalid credentials." };
         }
 
+        
         public bool HasErrors { get; set; } = false;
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
@@ -134,7 +183,29 @@ namespace WarehouseProject.ViewModels
             {
                 return true;
             }
+            Status = "Login failed! Please provide some valid credentials.";
             return false;
+        }
+
+        /// <summary>
+        /// Gives back the attribute information of a given property
+        /// </summary>
+        /// <param name="t"></param>
+        public static string getAttibute(string t)
+        {
+            // Get instance of the attribute.
+            var attributes = typeof(User).GetProperty(t).GetCustomAttributes().Select(a => a.GetType());
+
+            if (attributes == null)
+            {
+                throw new NullReferenceException("The attribute was not found.");
+            }
+
+            else
+            {
+                return attributes.First().Name;
+            }
+
         }
 
 

@@ -135,7 +135,14 @@ namespace WarehouseProject.Data
                     return false; 
                 
                 }
-
+                /*
+                 * 
+                 * [RegularExpression("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])([a-zA-Z0-9@$!%*?&]{8,})$", 
+            ErrorMessage = "Password has next Requirements:" +
+            "At least 8 characters long," +
+            "One lowercase, one uppercase, one number and one special character" +
+            " No whitespaces")]
+                 */
                 
             }
 
