@@ -10,6 +10,12 @@ namespace WarehouseModels
 {
     public class Customers
     {
+        public Customers()
+        {
+            Orders = new List<Orders>();
+
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Display(Name = "Customer_Id")]

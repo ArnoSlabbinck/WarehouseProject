@@ -8,6 +8,13 @@ namespace WarehouseModels
 {
     public class Employee
     {
+        public Employee()
+        {
+            Orders = new List<Orders>();
+
+        }
+
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Display(Name = "Employee_Id")]
@@ -56,6 +63,16 @@ namespace WarehouseModels
         public Supervisor Supervisor { get; set; }
 
         public ICollection<Orders> Orders { get; set; }
+
+
+        public override string ToString()
+        {
+            return $"This is {FullName()}. He's salary is {Salary}" +
+                $"He is {Gender}. He's Last login was on {LastLoginDate}";
+        }
+
+
+      
 
     }
 }

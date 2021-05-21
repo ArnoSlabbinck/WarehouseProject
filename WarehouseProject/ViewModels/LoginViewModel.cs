@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using WarehouseProject.Data;
 
@@ -24,30 +25,41 @@ namespace WarehouseProject.ViewModels
 
        
         private readonly AuthenticationService authentication = new AuthenticationService();
-        private readonly User user = new User();
+        private readonly User user = new User(); 
         private readonly Admin admin = new Admin();
         private string _username;
+        private string _realPassword;
         private string _password;
         private string _role;
         private string status;
+     
 
 
         #region Properties
         [Required(ErrorMessage = "Username can't be empty")]
   
+        
         public string Username {
             get 
             {
-                if (string.IsNullOrEmpty(_username))
+
+                // When the button is clicked ==> Event then check of empty property
+                // If so then display the error message on the screen
+                if (string.IsNullOrEmpty(_username) )
                 {
                     string username = "Username";
-                    ErrorCollection.Add(username, getAttibute(username)); ;
+
+                    if(!ErrorCollection.ContainsKey(username) )
+                        ErrorCollection.Add(username, getAttibute(username));
+                    
+
 
                 }
                 return _username;     
             }
             set 
             {
+                
                 _username = value;
                 NotifyOfPropertyChange(() => Username);
 
@@ -61,10 +73,11 @@ namespace WarehouseProject.ViewModels
             get 
             {
                 string result = null;
-                if (string.IsNullOrEmpty(_password))
+                if (string.IsNullOrEmpty(_password) )
                 {
                     string password = "Password";
-                    ErrorCollection.Add(password, getAttibute(password));
+                    if (!ErrorCollection.ContainsKey(password))
+                        ErrorCollection.Add(password, getAttibute(password));
 
                 }
                 else
@@ -74,7 +87,7 @@ namespace WarehouseProject.ViewModels
                 return result;
             }
             set 
-            { 
+            {
                 _password = value;
                 NotifyOfPropertyChange(() => Password);
 
@@ -92,11 +105,13 @@ namespace WarehouseProject.ViewModels
         public string Status { 
             get { return status; }
             set { status = value;
+                ResetStatus();
+                //Reset Status Task<
                 NotifyOfPropertyChange(() => Status);
             }
         }
 
-        
+       
 
         #endregion
         public LoginViewModel()
@@ -109,16 +124,22 @@ namespace WarehouseProject.ViewModels
         /// valid error
         /// </summary>
         /// <param name="parameter"></param>
-        private bool Login(string username, string password)
+        private  bool Login(string username, string password)
         {
             // Check if the textboxes are not null => Commands
 
             //First check if the user is not the admin 
             // First Check the user is the administrator4
+
             
             //Check 
             try 
             {
+                
+                //Raise an event that the button is present 
+               
+
+
                 string psswd = admin.CalculateHashPassword(password);
                 //First check if the user is the admin if that the case' then continue with admin
                 bool AdminOrNot = CheckOfUserAdminIs(username, psswd);
@@ -151,6 +172,14 @@ namespace WarehouseProject.ViewModels
 
         }
 
+        private async void ResetStatus()
+        {
+            await Task.Delay(7000);
+            Status = null;
+            
+        }
+
+
         private bool CheckOfUserAdminIs(string username, string password)
         {
             string AdminPassword = admin.Password;
@@ -158,7 +187,7 @@ namespace WarehouseProject.ViewModels
             return AdminUsername.Equals(username);
 
         }
-
+       
         public IEnumerable GetErrors(string propertyName)
         {
             if (string.IsNullOrEmpty(propertyName) || (!HasErrors))
@@ -170,7 +199,7 @@ namespace WarehouseProject.ViewModels
         public bool HasErrors { get; set; } = false;
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-        public bool CheckCredentials()
+        public  bool CheckCredentials()
         {
             
             HasErrors = !Login(Username, Password);
@@ -184,6 +213,7 @@ namespace WarehouseProject.ViewModels
                 return true;
             }
             Status = "Login failed! Please provide some valid credentials.";
+
             return false;
         }
 
@@ -205,10 +235,9 @@ namespace WarehouseProject.ViewModels
             {
                 return attributes.First().Name;
             }
-
+            
         }
-
-
+        
 
 
     }

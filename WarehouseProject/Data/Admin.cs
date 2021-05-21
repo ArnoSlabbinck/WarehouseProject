@@ -3,44 +3,41 @@ using System;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using WarehouseModels;
 
 namespace WarehouseProject.Data
 {
 
     class Admin
     {
-        private string paswd;
-        public string Name { get; } = "Arno Slabbinck";
-        public string Email { get; } = "Arno.Slabbinck@hotmail.com";
-        public string Role { get; } = "Admin";
-        public string Username
+        private Supervisor supervisor;
+        public Admin() 
         {
-            get
+            using (var ctx = new WarehouseDataAccess.WarehouseDBContext())
             {
-                using (var ctx = new WarehouseDataAccess.WarehouseDBContext())
-                {
-                    paswd = ctx.Supervisor.First().Username;
-                }
-                return paswd;
+                supervisor = ctx.Supervisor.First();
+                Password = supervisor.Password;
+                Name = supervisor.ToString();
+                Username = supervisor.Username;
+                Email = "Arno.Slabbinck@hotmail.com";
+                Role = "Admin";
             }
+        
         }
+
+        public string Name { get; private set; } 
+        public string Email { get; private set; } = "Arno.Slabbinck@hotmail.com";
+        public string Role { get; private set; } = "Admin";
+        public string Username { get; private set; }
 
         public string AuthenticationType { get { return "Admin authentication"; } }
 
         public bool IsAuthenticated { get { return !string.IsNullOrEmpty(Name); } }
         //
 
-        public string Password
-        {
-            get
-            {
-                using (var ctx = new WarehouseDataAccess.WarehouseDBContext())
-                {
-                    paswd = ctx.Supervisor.First().Password;
-                }
-                return paswd;
-            }
-        }
+        public string Password { get; private set; }
+
+        
         public string CalculateHashPassword(string textPassword)
         {
             //Conver the salted password to a byte array

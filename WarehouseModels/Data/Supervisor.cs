@@ -26,5 +26,12 @@ namespace WarehouseModels
         public string Password { get; set; }
         public ICollection<Employee> Workers { get; set; }
 
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName}";
+        }
+
     }
+
+
 }
