@@ -16,6 +16,7 @@ namespace WarehouseProject.Data
 
         Dictionary<string, List<CustomAttributeData>> ErrorCollection = new Dictionary<string, List<CustomAttributeData>>();
         Employee employee = new Employee();
+
         List<string> errors = new List<string>();
         string[] employeeData = new string[9];
         newEmployeeParams employeeParams = new newEmployeeParams();

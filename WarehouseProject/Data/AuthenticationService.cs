@@ -110,7 +110,7 @@ namespace WarehouseProject.Data
             {
                 // if empty than false 
                 userExist = context.Employees.FirstOrDefault(p => p.FirstName == firstName
-                && p.LastName == lastName && p.Email == email) != null ? true : false;
+                && p.LastName == lastName) != null ? true : false;
 
                 if (userExist == false)
                 {
@@ -128,13 +128,14 @@ namespace WarehouseProject.Data
                         PassWordSalt = Salt,
                         JobTitle = newEmployee.JobTitle,
                         FailedPasswordAttemptCount = 0,
-                        IsActive = false,
+                        IsActive = true,
                         UserName = newEmployee.Username,
                         Salary = newEmployee.Salaries,
                         Gender = newEmployee.Gender,
                         birthDate = newEmployee.BirthDate,
                         Supervisor = supervisor
                     };
+                    context.Employees.Add(Employee);
                     context.SaveChanges();
                 }
 
@@ -155,7 +156,7 @@ namespace WarehouseProject.Data
                 
             }
 
-            return false;
+            return true;
              
             //Check firstName and Lastname and Email in datbase zit
             // Als dat zo is dan User already exist

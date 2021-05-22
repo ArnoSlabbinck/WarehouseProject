@@ -14,12 +14,14 @@ namespace WarehouseProject.ViewModels
     /// <summary>
     /// When the supervisor tries to register new employees 
     /// </summary>
-    public class RegistrationViewModel : PropertyChangedBase
+    public class RegistrationViewModel : INotifyPropertyChanged
     {
         DataValidationService dataValidation = new DataValidationService();
         AuthenticationService authentication = new AuthenticationService();
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
         // Bind the data from Password Username
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
 
         private string _lastname;
@@ -29,7 +31,7 @@ namespace WarehouseProject.ViewModels
             get { return _lastname; }
             set { 
                 _lastname = value;
-                NotifyOfPropertyChange(() => Lastname);
+                RaisePropertyChanged(this, "Lastname");
             }
         }
 
@@ -40,7 +42,7 @@ namespace WarehouseProject.ViewModels
             get { return _email; }
             set { 
                 _email = value;
-                NotifyOfPropertyChange(() => Email);
+                RaisePropertyChanged(this, "Email");
             }
         }
 
@@ -51,7 +53,7 @@ namespace WarehouseProject.ViewModels
             set
             {
                 _firstname = value;
-                NotifyOfPropertyChange(() => FirstN);
+                RaisePropertyChanged(this, "FirstN");
             }
         }
 
@@ -66,33 +68,45 @@ namespace WarehouseProject.ViewModels
         }
         public ObservableCollection<string> WorkTypes { get; private set; }
 
-        private DateTime _dateOfBith;
+        private  DateTime _dateOfBith;
 
         public DateTime DateOfBith
         {
             get { return _dateOfBith; }
             set {
                 _dateOfBith = value;
-                NotifyOfPropertyChange(() => DateOfBith);
+                RaisePropertyChanged(this, "DateOfBith");
             }
         }
 
 
         public ObservableCollection<int> Salaries { get; private set; }
+        public ObservableCollection<string> Genders { get; private set; }
 
 
-
-        private string _jobTitle;
+        private  string _jobTitle;
 
         public string JobTitle
         {
             get { return _jobTitle; }
             set { 
                 _jobTitle = value;
-                NotifyOfPropertyChange(() => JobTitle);
+               
             }
         }
 
+        private string salary;
+        public string Salary
+        {
+            get
+            {
+                return salary;
+            }
+            set
+            {
+                salary = value;
+            }
+        }
 
 
         private string _password;
@@ -106,11 +120,11 @@ namespace WarehouseProject.ViewModels
             get { return _password; }
             set { 
                 _password = value;
-                NotifyOfPropertyChange(() => Password);
+                RaisePropertyChanged(this, "Password");
 
             }
         }
-
+        
         private string _gender ;
 
         public string Gender
@@ -118,7 +132,7 @@ namespace WarehouseProject.ViewModels
             get { return _gender; }
             set { 
                 _gender = value;
-                NotifyOfPropertyChange(() => Gender);
+                
             }
         }
 
@@ -129,7 +143,7 @@ namespace WarehouseProject.ViewModels
             get { return _mobile; }
             set { 
                 _mobile = value;
-                NotifyOfPropertyChange(() => Mobile);
+                RaisePropertyChanged(this, "Mobile");
             }
         }
 
@@ -143,7 +157,7 @@ namespace WarehouseProject.ViewModels
             get { return _username; }
             set { 
                 _username = value;
-                NotifyOfPropertyChange(() => Username);
+                RaisePropertyChanged(this, "Username");
 
             }
         }
@@ -152,7 +166,7 @@ namespace WarehouseProject.ViewModels
         {
             return $"{FirstN}, {Lastname}, " +
                 $"{Username}, {Password}, " +
-                $"{Salaries}, {WorkTypes}, " +
+                $"{Salary}, {JobTitle}, " +
                 $"{Email}, {Gender}," +
                 $"{DateOfBith}";
         
@@ -173,6 +187,11 @@ namespace WarehouseProject.ViewModels
             {
                 "SalesPerson",
                 "WareHouseWorker"
+            };
+            Genders = new ObservableCollection<string>
+            {
+                "Male",
+                "Female"
             };
 
             Salaries = new ObservableCollection<int>();
@@ -205,6 +224,7 @@ namespace WarehouseProject.ViewModels
         {
             try
             {
+               
                 Console.WriteLine(getDataNewEmployee());
                 string errorMembers = dataValidation.CheckRegistration(getDataNewEmployee(), authentication);
                 if (!string.IsNullOrEmpty(errorMembers))
@@ -225,6 +245,14 @@ namespace WarehouseProject.ViewModels
                 return false;
             }
         
+        }
+
+        public void RaisePropertyChanged(object sender, string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(sender, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
 

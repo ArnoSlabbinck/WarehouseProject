@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarehouseProject.Views"
-        xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel}"
+        xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:RegistrationViewModel}"
         mc:Ignorable="d"
         Title="RegisterView" Height="450" Width="800">
     <Grid>
@@ -48,17 +48,16 @@
             <TextBlock Text="Date Of Birth" FontSize="20" Margin="0,0,0,0" Padding="20" Foreground="Black" />
             <DatePicker SelectedDate="{Binding Path=DateOfBith }" Margin="20,0,0,0" Height="40"></DatePicker>
             <TextBlock Text="Salary" Foreground="Black" FontSize="20" Padding="20" Margin="40,0,0,0"/>
-            <ComboBox ItemsSource="{Binding Salaries}"  Margin="60,0,0,0" Width="150" Height="30">
+            <ComboBox ItemsSource="{Binding Salaries}" SelectedItem="{Binding Salary}"  Margin="60,0,0,0" Width="150" Height="30">
             </ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0"  Grid.ColumnSpan="5">
             <TextBlock Text="Gender:" Foreground="Black" FontSize="20" Padding="20"/>
-            <ComboBox x:Name="Gender" ItemsSource="{Binding Path=Gender}" Margin="80,0,0,0" Width="80" Height="30">
-                <ComboBoxItem>Female</ComboBoxItem>
-                <ComboBoxItem>Male</ComboBoxItem>
+            <ComboBox x:Name="Gender" ItemsSource="{Binding Path=Genders}" SelectedItem="{Binding Gender}"  Margin="80,0,0,0" Width="80" Height="30">
+                
             </ComboBox>
             <TextBlock Text="Job Title" FontSize="20" Padding="20" Margin="40,0,0,0"/>
-            <ComboBox ItemsSource="{Binding WorkTypes}" Margin="50,0,0,0" Width="150" Height="30">
+            <ComboBox ItemsSource="{Binding Path=WorkTypes}" SelectedItem="{Binding JobTitle}" Margin="50,0,0,0" Width="150" Height="30">
 
             </ComboBox>
         </StackPanel>
