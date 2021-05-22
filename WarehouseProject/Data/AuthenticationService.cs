@@ -13,6 +13,10 @@ namespace WarehouseProject.Data
     public class AuthenticationService : IAuthenticationService
     {
         readonly User ErrorUser = new User();
+        private string lastName = string.Empty;
+        private string email = string.Empty;
+        private string firstName = string.Empty;
+        private string password = string.Empty;
 
 
         /// <summary>
@@ -96,8 +100,10 @@ namespace WarehouseProject.Data
         /// <param name="LastName"></param>
         /// <param name="Username"></param>
         /// <param name="Password"></param>
-        public bool Register(string firstName, string lastName, string username, string password, string email, string role)
+        public bool Register(newEmployeeParams newEmployee)
         {
+            
+            
             //Check first of the user doesn't exist already
             bool userExist = false;
             using (var context = new WarehouseDataAccess.WarehouseDBContext())
@@ -112,18 +118,21 @@ namespace WarehouseProject.Data
                     //First hash password
                     var supervisor = context.Supervisor.First();
                     string Salt = GenerateSalt();
-                    password = CalculateHashPassword(password, Salt);
+                    password = CalculateHashPassword(newEmployee.Password, Salt);
                     Employee Employee = new Employee
                     {
-                        FirstName = firstName,
-                        LastName = lastName,
-                        Email = email,
+                        FirstName = newEmployee.FirstName,
+                        LastName = newEmployee.LastName,
+                        Email = newEmployee.Email,
                         PassWord = password,
                         PassWordSalt = Salt,
-                        JobTitle = role,
+                        JobTitle = newEmployee.JobTitle,
                         FailedPasswordAttemptCount = 0,
                         IsActive = false,
-                        UserName = username,
+                        UserName = newEmployee.Username,
+                        Salary = newEmployee.Salaries,
+                        Gender = newEmployee.Gender,
+                        birthDate = newEmployee.BirthDate,
                         Supervisor = supervisor
                     };
                     context.SaveChanges();

@@ -16,7 +16,7 @@ namespace WarehouseProject.ViewModels
     /// <summary>
     /// Link the authenticationService with the loginView
     /// </summary>
-    public class LoginViewModel : PropertyChangedBase, INotifyDataErrorInfo
+    public class LoginViewModel : PropertyChangedBase, INotifyDataErrorInfo 
     {
 
 
@@ -184,7 +184,7 @@ namespace WarehouseProject.ViewModels
         {
             string AdminPassword = admin.Password;
             string AdminUsername = admin.Username;
-            return AdminUsername.Equals(username);
+            return AdminUsername.Equals(username) && AdminPassword.Equals(password);
 
         }
        
@@ -237,9 +237,11 @@ namespace WarehouseProject.ViewModels
             }
             
         }
-        
 
-
+        public bool CheckRegistration(string data, AuthenticationService authentication)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

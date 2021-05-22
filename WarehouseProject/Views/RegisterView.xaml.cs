@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WarehouseProject.ViewModels;
 
 namespace WarehouseProject.Views
 {
@@ -22,6 +23,23 @@ namespace WarehouseProject.Views
         public RegisterView()
         {
             InitializeComponent();
+            DataContext = new RegistrationViewModel();
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            if (((RegistrationViewModel)DataContext).Validation())
+            {
+
+                MessageBox.Show("The new Employee has been added");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong. Contact SystemAdministrator");
+            }
         }
     }
+
+
+   
 }

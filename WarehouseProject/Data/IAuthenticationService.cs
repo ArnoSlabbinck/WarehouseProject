@@ -11,6 +11,6 @@ namespace WarehouseProject.Data
         User Login(string username, string password);
         //You get the username and password and create the Current User
 
-        bool Register(string FirstName, string LastName, string Username, string Password, string Email, string Role);
+        bool Register(newEmployeeParams newEmployee);
     }
 }

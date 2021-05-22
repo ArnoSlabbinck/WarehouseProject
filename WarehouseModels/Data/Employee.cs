@@ -47,6 +47,8 @@ namespace WarehouseModels
         [Required(ErrorMessage = "An Password is required")]
         public string PassWord { get; set; }
         
+        public DateTime birthDate { get; set; }
+
         public string PassWordSalt { get; set; }
         [Range(0,3, ErrorMessage = "Password Attempts can't be higher than 3 tries") ]
         public int FailedPasswordAttemptCount { get; set; }
@@ -71,7 +73,7 @@ namespace WarehouseModels
                 $"He is {Gender}. He's Last login was on {LastLoginDate}";
         }
 
-
+        
       
 
     }

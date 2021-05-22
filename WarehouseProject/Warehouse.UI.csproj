@@ -127,7 +127,9 @@
     <Compile Include="Data\Admin.cs" />
     <Compile Include="Data\AuthenticationService.cs" />
     <Compile Include="Data\DataPropertyChanged.cs" />
+    <Compile Include="Data\DataValidationService.cs" />
     <Compile Include="Data\IAuthenticationService.cs" />
+    <Compile Include="Data\IDataValidation.cs" />
     <Compile Include="Data\IIdentity.cs" />
     <Compile Include="Data\User.cs" />
     <Compile Include="Shell.xaml.cs">
@@ -137,6 +139,9 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\ShowCustomersViewModel.cs" />
+    <Compile Include="Views\AccountView.xaml.cs">
+      <DependentUpon>AccountView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ErrorView.xaml.cs">
       <DependentUpon>ErrorView.xaml</DependentUpon>
     </Compile>
@@ -156,6 +161,10 @@
     <Compile Include="Data\CustomerDataService.cs" />
     <Compile Include="Data\ICustomerDataService.cs" />
     <Page Include="Shell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -205,6 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
+    <Folder Include="Components\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WarehouseDataAccess\Warehouse.DataAccess.csproj">

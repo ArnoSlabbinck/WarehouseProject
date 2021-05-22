@@ -32,6 +32,8 @@ namespace WarehouseProject.Views
             if (((LoginViewModel) DataContext).CheckCredentials())
             {
                 MessageBox.Show("You have been succesfully logged in");
+                RegisterView register = new RegisterView();
+                register.Show();
                 
             }
             watch.Stop();
