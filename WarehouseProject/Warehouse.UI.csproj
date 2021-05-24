@@ -124,6 +124,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Commands\LoginCommand.cs" />
+    <Compile Include="Commands\SaveCommand.cs" />
+    <Compile Include="Commands\ShowEmployeesCommand.cs" />
     <Compile Include="Data\Admin.cs" />
     <Compile Include="Data\AuthenticationService.cs" />
     <Compile Include="Data\DataPropertyChanged.cs" />
@@ -131,6 +134,8 @@
     <Compile Include="Data\IAuthenticationService.cs" />
     <Compile Include="Data\IDataValidation.cs" />
     <Compile Include="Data\IIdentity.cs" />
+    <Compile Include="Data\ILookupDataService.cs" />
+    <Compile Include="Data\LookUpDataService.cs" />
     <Compile Include="Data\User.cs" />
     <Compile Include="Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
@@ -139,11 +144,15 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\ShowCustomersViewModel.cs" />
+    <Compile Include="ViewModels\WorkersViewModel.cs" />
     <Compile Include="Views\AccountView.xaml.cs">
       <DependentUpon>AccountView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ErrorView.xaml.cs">
       <DependentUpon>ErrorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InvoiceGeneratorView.xaml.cs">
+      <DependentUpon>InvoiceGeneratorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -160,6 +169,9 @@
     </Compile>
     <Compile Include="Data\CustomerDataService.cs" />
     <Compile Include="Data\ICustomerDataService.cs" />
+    <Compile Include="Views\WorkerView.xaml.cs">
+      <DependentUpon>WorkerView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Shell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -172,6 +184,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\InvoiceGeneratorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -181,6 +197,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WorkerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -213,8 +233,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\" />
     <Folder Include="Components\" />
+    <Folder Include="Images\Customers\" />
+    <Folder Include="Images\Employees\" />
+    <Folder Include="Images\Products\" />
+    <Folder Include="Images\Suppliers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WarehouseDataAccess\Warehouse.DataAccess.csproj">

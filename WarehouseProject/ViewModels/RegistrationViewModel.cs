@@ -7,6 +7,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
+using WarehouseProject.Commands;
 using WarehouseProject.Data;
 
 namespace WarehouseProject.ViewModels
@@ -22,6 +25,13 @@ namespace WarehouseProject.ViewModels
         // Bind the data from Password Username
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public event EventHandler CanExecuteChanged;
+
+        public ShowEmployeesCommand ShowEmployees
+        {
+            get;
+            set;
+        }
 
 
         private string _lastname;
@@ -162,6 +172,11 @@ namespace WarehouseProject.ViewModels
             }
         }
 
+        public void ShowAllEmployees()
+        {
+            MessageBox.Show("You will see all Employees in the Database");
+        }
+
         public string getDataNewEmployee()
         {
             return $"{FirstN}, {Lastname}, " +
@@ -183,6 +198,8 @@ namespace WarehouseProject.ViewModels
          */
         public RegistrationViewModel()
         {
+            ShowEmployees = new ShowEmployeesCommand(this);
+
             WorkTypes = new ObservableCollection<string>
             {
                 "SalesPerson",
@@ -224,15 +241,17 @@ namespace WarehouseProject.ViewModels
         {
             try
             {
-               
+                
+               // First check if every field is not empty otherwise raise error
+
                 Console.WriteLine(getDataNewEmployee());
-                string errorMembers = dataValidation.CheckRegistration(getDataNewEmployee(), authentication);
-                if (!string.IsNullOrEmpty(errorMembers))
+                List<string> errorMembers = dataValidation.CheckRegistration(getDataNewEmployee(), authentication);
+                if (errorMembers.Count > 0)
                 {
                     return true;
                 }
                 else {
-                    ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(errorMembers));
+                   
                     return false;
                 }
                 
@@ -255,10 +274,6 @@ namespace WarehouseProject.ViewModels
             }
         }
 
-
-
-
-
-
+    
     }
 }

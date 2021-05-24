@@ -1,11 +1,12 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace WarehouseProject.Data
 {
     public interface IDataValidation : INotifyDataErrorInfo
     {
         //
-        string CheckRegistration(string data, AuthenticationService authentication);
+        List<string> CheckRegistration(string data, AuthenticationService authentication);
 
     }
 }

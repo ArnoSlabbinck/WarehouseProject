@@ -38,6 +38,11 @@ namespace WarehouseProject.Views
                 MessageBox.Show("Something went wrong. Contact SystemAdministrator");
             }
         }
+
+        private void Show_Employees_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 

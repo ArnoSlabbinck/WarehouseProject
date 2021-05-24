@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WarehouseProject.ViewModels
+namespace WarehouseProject.Data
 {
-    public class AccountViewModel
+    class LookUpDataService : ILookupDataService
     {
     }
 }

@@ -38,7 +38,7 @@ namespace WarehouseProject.Data
         /// <param name="dataOfNewEmployee"></param>
         /// <param name="auth"></param>
         /// <returns></returns>
-        public string CheckRegistration(string dataOfNewEmployee, AuthenticationService auth)
+        public List<string> CheckRegistration(string dataOfNewEmployee, AuthenticationService auth)
         {
             //Separate the data into keys 
             // Take the attributes from the employee properties and use it as errors 
@@ -47,12 +47,13 @@ namespace WarehouseProject.Data
             BindEmplMembers(employeeData);
             
             getAttributesPropertiesFromClass(employee);
-                        
+            List<string> errors = auth.Register(employeeParams);
+            
 
-            HasErrors = !auth.Register(employeeParams);
-            if (HasErrors)
+            HasErrors = !string.IsNullOrEmpty(errors[0]);
+            if (HasErrors == true)
             {
-                return "Username";
+                return errors;
             }
             else {
 
@@ -98,15 +99,15 @@ namespace WarehouseProject.Data
 
         private void BindEmplMembers(string[] emp)
         {
-            employeeParams.FirstName = emp[0];
-            employeeParams.LastName = emp[1];
-            employeeParams.Username = emp[2];
-            employeeParams.Password = emp[3];
+            employeeParams.FirstName = emp[0].Trim();
+            employeeParams.LastName = emp[1].Trim();
+            employeeParams.Username = emp[2].Trim();
+            employeeParams.Password = emp[3].Trim();
             employeeParams.Salaries = Convert.ToInt32(emp[4]);
-            employeeParams.JobTitle = emp[5];
-            employeeParams.Email = emp[6];
-            employeeParams.Gender = emp[7];
-            employeeParams.BirthDate = Convert.ToDateTime(emp[8]);
+            employeeParams.JobTitle = emp[5].Trim();
+            employeeParams.Email = emp[6].Trim();
+            employeeParams.Gender = emp[7].Trim();
+            employeeParams.BirthDate = Convert.ToDateTime(emp[8].Trim());
             
         }
     }

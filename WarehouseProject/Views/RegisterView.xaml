@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WarehouseProject.Views"
         xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:RegistrationViewModel}"
         mc:Ignorable="d"
-        Title="RegisterView" Height="450" Width="800">
+        Title="RegisterView" Height="450" Width="800" Background="#191c30">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -46,15 +46,14 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5">
             <TextBlock Text="Date Of Birth" FontSize="20" Margin="0,0,0,0" Padding="20" Foreground="Black" />
-            <DatePicker SelectedDate="{Binding Path=DateOfBith }" Margin="20,0,0,0" Height="40"></DatePicker>
+            <DatePicker SelectedDate="{Binding Path=DateOfBith }"  Margin="20,0,0,0" Height="40"></DatePicker>
             <TextBlock Text="Salary" Foreground="Black" FontSize="20" Padding="20" Margin="40,0,0,0"/>
             <ComboBox ItemsSource="{Binding Salaries}" SelectedItem="{Binding Salary}"  Margin="60,0,0,0" Width="150" Height="30">
             </ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0"  Grid.ColumnSpan="5">
             <TextBlock Text="Gender:" Foreground="Black" FontSize="20" Padding="20"/>
-            <ComboBox x:Name="Gender" ItemsSource="{Binding Path=Genders}" SelectedItem="{Binding Gender}"  Margin="80,0,0,0" Width="80" Height="30">
-                
+            <ComboBox ItemsSource="{Binding Path=Genders}" SelectedItem="{Binding Gender}"  Margin="80,0,0,0" Width="80" Height="30">
             </ComboBox>
             <TextBlock Text="Job Title" FontSize="20" Padding="20" Margin="40,0,0,0"/>
             <ComboBox ItemsSource="{Binding Path=WorkTypes}" SelectedItem="{Binding JobTitle}" Margin="50,0,0,0" Width="150" Height="30">
@@ -67,8 +66,9 @@
         </StackPanel>
         <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4">
             <TextBlock Text="Password" Padding="20" FontSize="20" Margin="0,0,0,0"/>
-            <TextBox Text="{Binding Path=Password }" Padding="10" BorderBrush="Black" Margin="0,-50,200,0"  Width="200" Height="40"/>
+            <TextBox Text="{Binding Path=Password }" Padding="10" BorderBrush="Black" Margin="0,-70,200,0"  Width="200" Height="40"/>
         </StackPanel>
-        <Button x:Name="Save" Click="Save_Click" Grid.Column="2" Grid.Row="7" Content="Save" Background="MediumPurple" Height="40" MaxWidth="80" ></Button>
+        <Button x:Name="Save" Click="Save_Click" Grid.Column="1" Grid.Row="7" Content="Save" Background="#cadfec" Height="40" MaxWidth="80" ></Button>
+        <Button x:Name="Show_Employees" Grid.Column="3" Grid.Row="7" Background="#cadfec" Content="Show Employees" Height="40" MaxWidth="125" Command="{Binding ShowEmployees}"/>
     </Grid>
 </Window>

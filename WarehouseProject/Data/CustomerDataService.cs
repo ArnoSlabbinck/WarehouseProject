@@ -18,5 +18,22 @@ namespace WarehouseProject.Data
             
 
         }
+
+        public IEnumerable<Customers> GetCustomersByCity()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Customers> GetCustomersByCountry()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Customers> GetCustomersByName()
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
 }
