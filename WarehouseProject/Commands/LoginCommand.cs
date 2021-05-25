@@ -4,21 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using WarehouseProject.ViewModels;
+
 
 namespace WarehouseProject.Commands
 {
-    class LoginCommand : ICommand
+    public class LoginCommand : ICommand
     {
+        public LoginViewModel login;
         public event EventHandler CanExecuteChanged;
-
+        public LoginCommand(LoginViewModel _loginViewModel)
+        {
+            login = _loginViewModel;
+        }
         public bool CanExecute(object parameter)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            await login.CheckCredentials();
+            
         }
     }
 }

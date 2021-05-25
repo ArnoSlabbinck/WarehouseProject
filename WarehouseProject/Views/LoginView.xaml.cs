@@ -24,31 +24,6 @@ namespace WarehouseProject.Views
         {
             InitializeComponent();
         }
-
-        private void BtnSubmit_Click(object sender, RoutedEventArgs e)
-        {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
-
-            if (((LoginViewModel) DataContext).CheckCredentials())
-            {
-                MessageBox.Show("You have been succesfully logged in");
-                RegisterView register = new RegisterView();
-                register.Show();
-                
-            }
-            watch.Stop();
-            var elapsedMs = watch.ElapsedMilliseconds;
-
-            Console.WriteLine($"Total execution time: {elapsedMs}");
-            
-
-        }
-
-        private  void ForgotPassword_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("The Supervisor has been Contacted. Fill in your name and email to verify ");
-            // Send mail to the supervisor
-        
-        }
+  
     }
 }

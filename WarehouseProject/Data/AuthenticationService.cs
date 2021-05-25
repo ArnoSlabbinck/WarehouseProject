@@ -38,7 +38,7 @@ namespace WarehouseProject.Data
                 Employee employee = ctx.Employees.Where(p => p.UserName == username).FirstOrDefault();
                 if (employee == null)
                 {
-                    ErrorUser.InvalidLogin = "Username wasn't found";
+                    ErrorUser.InvalidLogin = false;
                     return ErrorUser;
                 }
                 else
@@ -69,7 +69,7 @@ namespace WarehouseProject.Data
                         {
                             // Should raise error  => capture that error and display that message to User
 
-                            ErrorUser.InvalidLogin = "Wrong Password";
+                            ErrorUser.InvalidLogin = false;
                             // Find the Username => then 
                             if (employee.FailedPasswordAttemptCount == 3)
                             {

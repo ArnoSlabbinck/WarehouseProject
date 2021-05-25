@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using WarehouseProject.Commands;
 using WarehouseProject.Data;
 
 
@@ -16,7 +17,7 @@ namespace WarehouseProject.ViewModels
     /// <summary>
     /// Link the authenticationService with the loginView
     /// </summary>
-    public class LoginViewModel : PropertyChangedBase, INotifyDataErrorInfo 
+    public class LoginViewModel : PropertyChangedBase, INotifyDataErrorInfo, IHandle<string> 
     {
 
 
@@ -32,12 +33,20 @@ namespace WarehouseProject.ViewModels
         private string _password;
         private string _role;
         private string status;
-     
 
+
+        private IEventAggregator events;
+
+        public LoginCommand LoginButton
+        {
+            get;
+            set;
+        }
+            
 
         #region Properties
         [Required(ErrorMessage = "Username can't be empty")]
-  
+        
         
         public string Username {
             get 
@@ -114,8 +123,11 @@ namespace WarehouseProject.ViewModels
        
 
         #endregion
-        public LoginViewModel()
+        public LoginViewModel(IEventAggregator _events)
         {
+            LoginButton = new LoginCommand(this);
+            events = _events;
+            
             
         }
         /// <summary>
@@ -124,7 +136,7 @@ namespace WarehouseProject.ViewModels
         /// valid error
         /// </summary>
         /// <param name="parameter"></param>
-        private  bool Login(string username, string password)
+        private  Object Login(string username, string password)
         {
             // Check if the textboxes are not null => Commands
 
@@ -143,28 +155,36 @@ namespace WarehouseProject.ViewModels
                 string psswd = admin.CalculateHashPassword(password);
                 //First check if the user is the admin if that the case' then continue with admin
                 bool AdminOrNot = CheckOfUserAdminIs(username, psswd);
+
                 if (AdminOrNot == true)
-                    return true;
+                {
+                    Console.WriteLine($"Welcome {admin.Name}");
+                    return admin;
+
+                }
+                    
+                    
               
                 User user = authentication.Login(username, password);
                 if (user.IsAuthenticated == false)
                 {
-                    return false;
+                    return null;
                 }
                 else
                 {
-                    return true;
+                    Console.WriteLine("You are logged in");
+                    return user;
                 }
             }
             catch (UnauthorizedAccessException)
             {
                 Status = "Login failed! Please provide some valid credentials.";
-                return false;
+                return null;
             }
             catch (Exception ex)
             {
                 Status = string.Format("ERROR: {0}", ex.Message);
-                return false;
+                return null;
 
             }
             
@@ -199,10 +219,10 @@ namespace WarehouseProject.ViewModels
         public bool HasErrors { get; set; } = false;
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-        public  bool CheckCredentials()
+        public async Task<bool> CheckCredentials()
         {
             
-            HasErrors = !Login(Username, Password);
+            HasErrors = await Task.Run(() => Login(Username, Password) !=  null ? false : true);
             if (HasErrors)
             {
                 ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs("Username"));
@@ -239,6 +259,11 @@ namespace WarehouseProject.ViewModels
         }
 
         public bool CheckRegistration(string data, AuthenticationService authentication)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Handle(string message)
         {
             throw new NotImplementedException();
         }

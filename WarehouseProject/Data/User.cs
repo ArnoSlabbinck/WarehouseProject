@@ -60,7 +60,7 @@ namespace WarehouseProject.Data
 
         public bool IsAuthenticated { get; set; }
 
-        public string InvalidLogin { get; set; }
+        public bool InvalidLogin { get; set; } = false;
         
     }
 }

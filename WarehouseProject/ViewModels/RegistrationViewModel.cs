@@ -33,6 +33,11 @@ namespace WarehouseProject.ViewModels
             set;
         }
 
+        public SaveCommand SaveEmployee
+        {
+            get;
+            set;
+        }
 
         private string _lastname;
 
@@ -84,6 +89,7 @@ namespace WarehouseProject.ViewModels
         {
             get { return _dateOfBith; }
             set {
+                
                 _dateOfBith = value;
                 RaisePropertyChanged(this, "DateOfBith");
             }
@@ -199,6 +205,7 @@ namespace WarehouseProject.ViewModels
         public RegistrationViewModel()
         {
             ShowEmployees = new ShowEmployeesCommand(this);
+            SaveEmployee = new SaveCommand(this);
 
             WorkTypes = new ObservableCollection<string>
             {
@@ -237,10 +244,11 @@ namespace WarehouseProject.ViewModels
         }
 
 
-        public bool Validation()
+        public void Validation()
         {
             try
             {
+
                 
                // First check if every field is not empty otherwise raise error
 
@@ -248,11 +256,16 @@ namespace WarehouseProject.ViewModels
                 List<string> errorMembers = dataValidation.CheckRegistration(getDataNewEmployee(), authentication);
                 if (errorMembers.Count > 0)
                 {
-                    return true;
+                    foreach (var error in errorMembers)
+                    {
+                        MessageBox.Show(error);
+                    }
+                    
                 }
                 else {
+                    MessageBox.Show("A new Employee is added");
                    
-                    return false;
+;
                 }
                 
                 
@@ -260,8 +273,8 @@ namespace WarehouseProject.ViewModels
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);       
-                return false;
+                
+                MessageBox.Show(ex.Message);
             }
         
         }

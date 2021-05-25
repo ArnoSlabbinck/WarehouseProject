@@ -18,7 +18,7 @@ namespace WarehouseProject.Views
     /// <summary>
     /// Interaction logic for ShellView.xaml
     /// </summary>
-    public partial class ShellView : Page
+    public partial class ShellView : UserControl
     {
         public ShellView()
         {

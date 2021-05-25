@@ -4,21 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using WarehouseProject.ViewModels;
 
 namespace WarehouseProject.Commands
 {
-    class SaveCommand : ICommand
+    public class SaveCommand : ICommand
     {
+        RegistrationViewModel registration;
         public event EventHandler CanExecuteChanged;
-
+        public SaveCommand(RegistrationViewModel _registration)
+        {
+            registration = _registration;
+        }
         public bool CanExecute(object parameter)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+
+            registration.Validation();
         }
     }
 }

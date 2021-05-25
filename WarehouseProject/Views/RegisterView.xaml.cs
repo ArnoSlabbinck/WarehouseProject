@@ -23,26 +23,9 @@ namespace WarehouseProject.Views
         public RegisterView()
         {
             InitializeComponent();
-            DataContext = new RegistrationViewModel();
+           
         }
 
-        private void Save_Click(object sender, RoutedEventArgs e)
-        {
-            if (((RegistrationViewModel)DataContext).Validation())
-            {
-
-                MessageBox.Show("The new Employee has been added");
-            }
-            else
-            {
-                MessageBox.Show("Something went wrong. Contact SystemAdministrator");
-            }
-        }
-
-        private void Show_Employees_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 
 

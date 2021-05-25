@@ -30,7 +30,15 @@ namespace WarehouseProject.ViewModels
         {
             return $"{firstName} {LastName}";
         }
-        
+
+
+        private string email;
+
+        public string Email
+        {
+            get { return email; }
+            set { email = value; }
+        }
 
 
 
