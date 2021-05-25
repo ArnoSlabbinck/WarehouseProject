@@ -71,6 +71,10 @@
     <Compile Include="Migrations\202105191336265_FirstTest.designer.cs">
       <DependentUpon>202105191336265_FirstTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105251639229_Registran_update.cs" />
+    <Compile Include="Migrations\202105251639229_Registran_update.designer.cs">
+      <DependentUpon>202105251639229_Registran_update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WarehouseDBContext.cs" />
@@ -100,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105191336265_FirstTest.resx">
       <DependentUpon>202105191336265_FirstTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105251639229_Registran_update.resx">
+      <DependentUpon>202105251639229_Registran_update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

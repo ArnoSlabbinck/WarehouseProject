@@ -10,9 +10,9 @@ namespace WarehouseProject.Commands
 {
     public class SaveCommand : ICommand
     {
-        RegistrationViewModel registration;
+        RegisterViewModel registration;
         public event EventHandler CanExecuteChanged;
-        public SaveCommand(RegistrationViewModel _registration)
+        public SaveCommand(RegisterViewModel _registration)
         {
             registration = _registration;
         }

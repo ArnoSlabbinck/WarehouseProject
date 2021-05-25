@@ -139,10 +139,11 @@
     <Compile Include="Data\ILookupDataService.cs" />
     <Compile Include="Data\LookUpDataService.cs" />
     <Compile Include="Data\User.cs" />
-    <Compile Include="ShellViewModel.cs" />
+    <Compile Include="EventModels\MyMessageEventcs.cs" />
+    <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\RegistrationViewModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\ShowCustomersViewModel.cs" />
     <Compile Include="ViewModels\WorkersViewModel.cs" />
     <Compile Include="Views\AccountView.xaml.cs">

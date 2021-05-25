@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Caliburn.Micro;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,9 +14,11 @@ namespace WarehouseProject.Commands
     {
         public LoginViewModel login;
         public event EventHandler CanExecuteChanged;
-        public LoginCommand(LoginViewModel _loginViewModel)
+        private IEventAggregator events;
+        public LoginCommand(LoginViewModel _loginViewModel, IEventAggregator _events)
         {
             login = _loginViewModel;
+            events = _events;
         }
         public bool CanExecute(object parameter)
         {
@@ -24,8 +27,12 @@ namespace WarehouseProject.Commands
 
         public async void Execute(object parameter)
         {
-            await login.CheckCredentials();
-            
+            bool loggedIn = await login.CheckCredentials();
+            events.BeginPublishOnUIThread(new RegisterViewModel(events));
+            WindowManager window = new WindowManager();
+            if(loggedIn == true)
+                window.ShowDialog(new RegisterViewModel(events));
+
         }
     }
 }

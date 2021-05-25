@@ -11,17 +11,20 @@ using System.Windows;
 using System.Windows.Input;
 using WarehouseProject.Commands;
 using WarehouseProject.Data;
+using WarehouseProject.EventModels;
+using WarehouseProject.Views;
 
 namespace WarehouseProject.ViewModels
 {
     /// <summary>
     /// When the supervisor tries to register new employees 
     /// </summary>
-    public class RegistrationViewModel : INotifyPropertyChanged
+    public class RegisterViewModel : INotifyPropertyChanged, IHandle<MyMessageEventcs>
     {
         DataValidationService dataValidation = new DataValidationService();
         AuthenticationService authentication = new AuthenticationService();
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+        private IEventAggregator events;
         // Bind the data from Password Username
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -202,11 +205,16 @@ namespace WarehouseProject.ViewModels
         * 
         * Check Validation: => 
          */
-        public RegistrationViewModel()
+        public RegisterViewModel(IEventAggregator eventAggregator)
         {
             ShowEmployees = new ShowEmployeesCommand(this);
             SaveEmployee = new SaveCommand(this);
+            events = eventAggregator;
 
+            events.Subscribe(this);
+            
+
+            
             WorkTypes = new ObservableCollection<string>
             {
                 "SalesPerson",
@@ -287,6 +295,17 @@ namespace WarehouseProject.ViewModels
             }
         }
 
-    
+        public void Handle(LoginViewModel message)
+        {
+            Console.WriteLine("Welcome Arno");
+        }
+
+
+        public void Handle(MyMessageEventcs message)
+        {
+            //Cast the obj as User
+            User user = (User)message.newObj;
+            Console.WriteLine($"{ user.Name}");
+        }
     }
 }

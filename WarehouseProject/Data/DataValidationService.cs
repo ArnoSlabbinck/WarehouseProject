@@ -47,6 +47,8 @@ namespace WarehouseProject.Data
             BindEmplMembers(employeeData);
             
             getAttributesPropertiesFromClass(employee);
+
+            Console.WriteLine($"{employeeParams.FirstName} {employeeParams.BirthDate}");
             List<string> errors = auth.Register(employeeParams);
             
 

@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using WarehouseProject.Commands;
 using WarehouseProject.Data;
-
+using WarehouseProject.EventModels;
+using WarehouseProject.Views;
 
 namespace WarehouseProject.ViewModels
 {
@@ -125,9 +126,8 @@ namespace WarehouseProject.ViewModels
         #endregion
         public LoginViewModel(IEventAggregator _events)
         {
-            LoginButton = new LoginCommand(this);
-            events = _events;
-            
+            LoginButton = new LoginCommand(this, _events);
+            events = _events; 
             
         }
         /// <summary>
@@ -158,6 +158,7 @@ namespace WarehouseProject.ViewModels
 
                 if (AdminOrNot == true)
                 {
+
                     Console.WriteLine($"Welcome {admin.Name}");
                     return admin;
 
@@ -173,6 +174,7 @@ namespace WarehouseProject.ViewModels
                 else
                 {
                     Console.WriteLine("You are logged in");
+                    
                     return user;
                 }
             }
@@ -230,7 +232,10 @@ namespace WarehouseProject.ViewModels
             }
             else
             {
+
+                
                 return true;
+
             }
             Status = "Login failed! Please provide some valid credentials.";
 
@@ -267,6 +272,15 @@ namespace WarehouseProject.ViewModels
         {
             throw new NotImplementedException();
         }
+
+
+        public void PublishMessage()
+        {
+            events.PublishOnUIThread(new MyMessageEventcs(user));
+
+        }
+    
+    
     }
 
 

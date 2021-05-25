@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarehouseProject.Views"
-        xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:RegistrationViewModel}"
+        xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:RegisterViewModel}"
         mc:Ignorable="d"
         Title="RegisterView" Height="450" Width="800" Background="#191c30">
     <Grid>
@@ -46,7 +46,8 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5">
             <TextBlock Text="Date Of Birth" FontSize="20" Margin="0,0,0,0" Padding="20" Foreground="Black" />
-            <DatePicker SelectedDateFormat="Long" SelectedDate="{Binding Path=DateOfBith, Mode=TwoWay}"  DisplayDateStart="5/24/21"   Margin="20,0,0,0" Height="40"></DatePicker>
+            <DatePicker  SelectedDate="{Binding Path=DateOfBith, Mode=TwoWay}"
+                         DisplayDate="{Binding DateTime.Now}"   Margin="20,0,0,0" Height="40"></DatePicker>
             <TextBlock Text="Salary" Foreground="Black" FontSize="20" Padding="20" Margin="40,0,0,0"/>
             <ComboBox ItemsSource="{Binding Salaries}" SelectedItem="{Binding Salary}"  Margin="60,0,0,0" Width="150" Height="30">
             </ComboBox>

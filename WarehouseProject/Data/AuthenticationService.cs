@@ -123,6 +123,7 @@ namespace WarehouseProject.Data
                         var supervisor = context.Supervisor.First();
                         string Salt = GenerateSalt();
                         password = CalculateHashPassword(newEmployee.Password, Salt);
+                        Console.WriteLine($"{newEmployee.FirstName} {newEmployee.Gender} {newEmployee.Salaries} {newEmployee.Password}");
                         Employee Employee = new Employee
                         {
                             FirstName = newEmployee.FirstName,

@@ -10,7 +10,6 @@ namespace WarehouseProject.Data
     {
         User Login(string username, string password);
         //You get the username and password and create the Current User
-
         List<string> Register(newEmployeeParams newEmployee);
     }
 }

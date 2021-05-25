@@ -25,6 +25,7 @@ namespace WarehouseProject
             
 
             _container.Instance(_container);
+            //Create a single instance of the windowManager should in every other viewmodel
             _container.Singleton<IWindowManager, WindowManager>();
             _container.Singleton<IEventAggregator, EventAggregator>();
 
