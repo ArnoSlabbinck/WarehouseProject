@@ -127,6 +127,9 @@
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="Commands\ShowEmployeesCommand.cs" />
+    <Compile Include="Components\BindablePassWord.xaml.cs">
+      <DependentUpon>BindablePassWord.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data\Admin.cs" />
     <Compile Include="Data\AuthenticationService.cs" />
     <Compile Include="Data\DataPropertyChanged.cs" />
@@ -173,6 +176,10 @@
     <Compile Include="Views\WorkerView.xaml.cs">
       <DependentUpon>WorkerView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Components\BindablePassWord.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -230,7 +237,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Components\" />
     <Folder Include="Images\Customers\" />
     <Folder Include="Images\Employees\" />
     <Folder Include="Images\Products\" />

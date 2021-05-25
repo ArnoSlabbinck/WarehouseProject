@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WarehouseProject.Views" xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel}"
+        xmlns:local="clr-namespace:WarehouseProject.Views" xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" xmlns:components="clr-namespace:WarehouseProject.Components" d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel}"
         mc:Ignorable="d"
         Title="LoginView" Height="650" Width="800" Background="#191c30">
     <Grid>
@@ -29,8 +29,8 @@
             
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
-            <TextBox Text="{Binding Path=Password, ValidatesOnExceptions=True, Mode=TwoWay}"  FontSize="25" Foreground="Black" Background="#fff" Height="40" Width="400" Margin="0,0,0,80" />
-            <Button BorderBrush="Transparent" x:Name="ForgotPassword" Content="Forgot Password? Contact Supervisor"  Background="Transparent" Foreground="Black" Width="380" FontWeight="Bold" Height="50" FontSize="20" Margin="-400,50,0,0"/>
+            <components:BindablePassWord Password="{Binding Password}"  Padding="10" BorderBrush="Black" Margin="0,-70,200,0"   Width="500" Height="60"/>
+            <Button BorderBrush="Transparent" x:Name="ForgotPassword" Content="Forgot Password? Contact Supervisor"  Background="Transparent" Foreground="Black" Width="380" FontWeight="Bold" Height="50" FontSize="20" Margin="-1000,50,0,0"/>
         </StackPanel>
         <Button Content="Login" Command="{Binding LoginButton}" Width="150" Height="40" Grid.Row="4" Grid.Column="1"/>
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Margin="0,70,0,0">

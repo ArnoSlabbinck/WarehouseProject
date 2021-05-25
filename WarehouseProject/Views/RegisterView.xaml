@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarehouseProject.Views"
-        xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:RegisterViewModel}"
+        xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" xmlns:components="clr-namespace:WarehouseProject.Components" d:DataContext="{d:DesignInstance Type=viewmodels:RegisterViewModel}"
         mc:Ignorable="d"
         Title="RegisterView" Height="450" Width="800" Background="#191c30">
     <Grid>
@@ -67,7 +67,7 @@
         </StackPanel>
         <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4">
             <TextBlock Text="Password" Padding="20" FontSize="20" Margin="0,0,0,0"/>
-            <TextBox Text="{Binding Path=Password }" Padding="10" BorderBrush="Black" Margin="0,-70,200,0"  Width="200" Height="40"/>
+            <components:BindablePassWord Password="{Binding Password}"  Padding="10" BorderBrush="Black" Margin="0,-70,200,0"  Width="200" Height="40"/>
         </StackPanel>
         <Button x:Name="Save" Command="{Binding SaveEmployee}"  Grid.Column="1" Grid.Row="7" Content="Save" Background="#cadfec" Height="40" MaxWidth="80" ></Button>
         <Button x:Name="Show_Employees" Grid.Column="3" Grid.Row="7" Background="#cadfec" Content="Show Employees" Height="40" MaxWidth="125" Command="{Binding ShowEmployees}"/>
