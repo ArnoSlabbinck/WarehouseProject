@@ -130,18 +130,18 @@
     <Compile Include="Components\BindablePassWord.xaml.cs">
       <DependentUpon>BindablePassWord.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Data\Admin.cs" />
-    <Compile Include="Data\AuthenticationService.cs" />
-    <Compile Include="Data\DataPropertyChanged.cs" />
-    <Compile Include="Data\DataValidationService.cs" />
-    <Compile Include="Data\DialogWindowService.cs" />
-    <Compile Include="Data\IAuthenticationService.cs" />
-    <Compile Include="Data\IDataValidation.cs" />
-    <Compile Include="Data\IDialogWindowService.cs" />
-    <Compile Include="Data\IIdentity.cs" />
-    <Compile Include="Data\ILookupDataService.cs" />
-    <Compile Include="Data\LookUpDataService.cs" />
-    <Compile Include="Data\User.cs" />
+    <Compile Include="Logic\Classes\Admin.cs" />
+    <Compile Include="Logic\Services\AuthenticationService.cs" />
+    <Compile Include="Logic\Classes\DataPropertyChanged.cs" />
+    <Compile Include="Logic\Services\DataValidationService.cs" />
+    <Compile Include="Logic\Services\DialogWindowService.cs" />
+    <Compile Include="Logic\Interfaces\IAuthenticationService.cs" />
+    <Compile Include="Logic\Interfaces\IDataValidation.cs" />
+    <Compile Include="Logic\Interfaces\IDialogWindowService.cs" />
+    <Compile Include="Logic\Interfaces\IIdentity.cs" />
+    <Compile Include="Logic\Interfaces\ILookupDataService.cs" />
+    <Compile Include="Logic\Services\LookUpDataService.cs" />
+    <Compile Include="Logic\Classes\User.cs" />
     <Compile Include="EventModels\MyMessageEventcs.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
@@ -168,13 +168,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\CustomerDataService.cs" />
-    <Compile Include="Data\ICustomerDataService.cs" />
+    <Compile Include="Logic\Services\CustomerDataService.cs" />
+    <Compile Include="Logic\Interfaces\ICustomerDataService.cs" />
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\WorkerView.xaml.cs">
-      <DependentUpon>WorkerView.xaml</DependentUpon>
+    <Compile Include="Views\WorkersView.xaml.cs">
+      <DependentUpon>WorkersView.xaml</DependentUpon>
     </Compile>
     <Page Include="Components\BindablePassWord.xaml">
       <SubType>Designer</SubType>
@@ -204,7 +204,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\WorkerView.xaml">
+    <Page Include="Views\WorkersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

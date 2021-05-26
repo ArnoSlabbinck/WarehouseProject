@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace WarehouseProject.Views
 {
     /// <summary>
-    /// Interaction logic for WorkerView.xaml
+    /// Interaction logic for WorkersView.xaml
     /// </summary>
-    public partial class WorkerView : Window
+    public partial class WorkersView : Window
     {
-        public WorkerView()
+        public WorkersView()
         {
             InitializeComponent();
         }
