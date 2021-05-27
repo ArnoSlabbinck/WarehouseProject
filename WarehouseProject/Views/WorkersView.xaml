@@ -4,49 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarehouseProject.Views" xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:WorkersViewModel}"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="WorkersView" Height="450" Width="800">
-    <Window.Resources>
-        <DataTemplate x:Key="myTemplate">
-            <StackPanel>
-                <Label Background="Purple" Foreground="White" BorderBrush="Red" BorderThickness="4">
-                    <Label.Content>
-                        <WrapPanel HorizontalAlignment="Stretch">
-                            <TextBlock>Employee Name:</TextBlock>
-                            <TextBlock Text="{Binding Path=Fullname}" />
-                        </WrapPanel>
-                    </Label.Content>
-                </Label>
-                <Label  BorderBrush="Black" HorizontalAlignment="Stretch" Background="Yellow" BorderThickness="3" Foreground="Blue">
-                    <Label.Content>
-                        <StackPanel>
-                            <WrapPanel>
-                                <TextBlock> Employee Nr.:</TextBlock>
-                                <TextBlock Text="{Binding Id,Mode=OneTime}"/>
-                            </WrapPanel>
-                            <WrapPanel>
-                                <TextBlock>JobTitle :</TextBlock>
-                                <TextBlock Text="{Binding JobTitle,Mode=OneTime}"/>
-                            </WrapPanel>
-                            <WrapPanel>
-                                <TextBlock> Email:</TextBlock>
-                                <TextBlock Text="{Binding Path=Email,Mode=OneTime}"/>
-                            </WrapPanel>
-                            <WrapPanel>
-                                <TextBlock> Salary:</TextBlock>
-                                <TextBlock Text="{Binding Salary,Mode=OneTime}"/>
-                            </WrapPanel>
-                            <WrapPanel>
-                                <TextBlock> Age:</TextBlock>
-                                <TextBlock Text="{Binding Age}"/>
-                            </WrapPanel>
-                        </StackPanel>
-                    </Label.Content>
-                </Label>
-            </StackPanel>
-        </DataTemplate>
-    </Window.Resources>
+   
     <Grid>
-        <ListBox ItemTemplate="{StaticResource myTemplate}" Name="empList" />
+        <ListBox Name="Worker" Margin="-1,0,0.6,0" >
+        </ListBox>
+        
+
     </Grid>
 </Window>

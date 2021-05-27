@@ -22,6 +22,9 @@ namespace WarehouseProject.Views
         public WorkersView()
         {
             InitializeComponent();
+            
+            
+
         }
     }
 }
