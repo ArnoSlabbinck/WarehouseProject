@@ -6,20 +6,38 @@
         xmlns:local="clr-namespace:WarehouseProject.Views" xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:WorkersViewModel}"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="WorkersView" Height="450" Width="800">
+        Title="WorkersView" Height="450" Width="800" materialDesign:ThemeAssist.Theme="Dark"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Window.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <ScrollViewer materialDesign:ScrollBarAssist.ButtonsVisibility="Visible" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
-                      Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="6">
-            <ItemsControl x:Name="Worker" Grid.Row="1"  Grid.RowSpan="5" >
+            <TextBlock Grid.Row="0" Grid.Column="2" Text="All Employees" 
+                   materialDesign:TextFieldAssist.DecorationVisibility="Visible"
+                   materialDesign:TextFieldAssist.TrailingIcon="Person"/>
+
+
+            <ItemsControl x:Name="Worker" Grid.Row="1" Grid.RowSpan="5" >
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -27,20 +45,26 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="10" Padding="10">
+                        <Border Margin="10" Padding="10">
                             <StackPanel Orientation="Vertical">
-                                <materialDesign:ColorZone Mode="Dark" VerticalAlignment="Stretch">
-                                    <TextBlock materialDesign:TextBlockAssist.AutoToolTip="True" Text="{Binding Id}"/>
-                                </materialDesign:ColorZone>
-                                <TextBlock materialDesign:TextBlockAssist.AutoToolTip="True" Text="{Binding Fullname}"/>
-                                <TextBlock materialDesign:TextBlockAssist.AutoToolTip="True" Text="{Binding JobTitle}"/>
-
-
+                                <materialDesign:Card Padding="32" Margin="16">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Style="{DynamicResource MaterialDesignTitleTextBlock}" Text="{Binding Fullname}"/>
+                                        <TextBlock Grid.Row="1" Text="{Binding Fullname}"/>
+                                        <TextBlock Grid.Row="2" Text="{Binding JobTitle}"/>
+                                    </Grid>
+                                </materialDesign:Card>
                             </StackPanel>
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
+
             </ItemsControl>
-        </ScrollViewer>
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </Window>
