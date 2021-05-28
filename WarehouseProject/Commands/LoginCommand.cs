@@ -27,10 +27,11 @@ namespace WarehouseProject.Commands
 
         public async void Execute(object parameter)
         {
+            
             bool loggedIn = await login.CheckCredentials();
-            events.BeginPublishOnUIThread(new RegisterViewModel(events));
             WindowManager window = new WindowManager();
-            if(loggedIn == true)
+            if (loggedIn == true)
+                login.PublishMessageAdmin();
                 window.ShowDialog(new RegisterViewModel(events));
 
         }

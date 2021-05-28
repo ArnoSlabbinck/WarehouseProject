@@ -148,10 +148,7 @@ namespace WarehouseProject.ViewModels
             try 
             {
                 
-                //Raise an event that the button is present 
-               
-
-
+                //Raise an event that the button is 
                 string psswd = admin.CalculateHashPassword(password);
                 //First check if the user is the admin if that the case' then continue with admin
                 bool AdminOrNot = CheckOfUserAdminIs(username, psswd);
@@ -233,7 +230,7 @@ namespace WarehouseProject.ViewModels
             else
             {
 
-                
+
                 return true;
 
             }
@@ -274,11 +271,12 @@ namespace WarehouseProject.ViewModels
         }
 
 
-        public void PublishMessage()
+        public void PublishMessageAdmin()
         {
-            events.PublishOnUIThread(new MyMessageEventcs(user));
+            events.PublishOnUIThread(new MyMessageEventcs(admin));
 
         }
+
     
     
     }

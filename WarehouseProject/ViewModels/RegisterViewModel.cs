@@ -295,16 +295,12 @@ namespace WarehouseProject.ViewModels
             }
         }
 
-        public void Handle(LoginViewModel message)
-        {
-            Console.WriteLine("Welcome Arno");
-        }
-
+  
 
         public void Handle(MyMessageEventcs message)
         {
             //Cast the obj as User
-            User user = (User)message.newObj;
+             Admin user = (Admin)message.newObj;
             Console.WriteLine($"{ user.Name}");
         }
     }

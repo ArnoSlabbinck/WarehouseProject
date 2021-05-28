@@ -16,7 +16,8 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+        
+        <ScrollViewer materialDesign:ScrollBarAssist.ButtonsVisibility="Visible" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
                       Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="6">
             <ItemsControl x:Name="Worker" Grid.Row="1"  Grid.RowSpan="5" >
                 <ItemsControl.ItemsPanel>
@@ -28,9 +29,12 @@
                     <DataTemplate>
                         <Border BorderBrush="Black" BorderThickness="1" Margin="10" Padding="10">
                             <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding Id}"/>
-                                <TextBlock Text="{Binding Fullname}"/>
-                                <TextBlock Text="{Binding JobTitle}"/>
+                                <materialDesign:ColorZone Mode="Dark" VerticalAlignment="Stretch">
+                                    <TextBlock materialDesign:TextBlockAssist.AutoToolTip="True" Text="{Binding Id}"/>
+                                </materialDesign:ColorZone>
+                                <TextBlock materialDesign:TextBlockAssist.AutoToolTip="True" Text="{Binding Fullname}"/>
+                                <TextBlock materialDesign:TextBlockAssist.AutoToolTip="True" Text="{Binding JobTitle}"/>
+
 
                             </StackPanel>
                         </Border>
