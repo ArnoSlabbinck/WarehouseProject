@@ -9,17 +9,13 @@ namespace WarehouseProject.Data
 {
     public abstract class DataPropertyChanged : INotifyPropertyChanged
     {
-
-
-        #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void NotifyPropertyChanged(string propertyName)
+        public void RaisePropertyChanged(object sender, string propertyName)
         {
             if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            {
+                PropertyChanged(sender, new PropertyChangedEventArgs(propertyName));
+            }
         }
-        #endregion
-
     }
 }

@@ -7,14 +7,15 @@ using WarehouseModels;
 
 namespace WarehouseProject.Data
 {
-    class LookUpDataService : ILookupDataService
+    class LookUpDataService 
     {
 
-        private List<Employee> employees;
+        private List<Employee> employees = new List<Employee>();
 
 
-        public List<Employee> GiveAllEmployees(object obj)
+        public List<Employee> GiveAllEmployees()
         {
+            
             
             // Get the data from the DATABASE 
             using (WarehouseDataAccess.WarehouseDBContext ctx = new WarehouseDataAccess.WarehouseDBContext())

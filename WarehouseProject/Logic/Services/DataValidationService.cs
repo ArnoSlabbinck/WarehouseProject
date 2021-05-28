@@ -116,6 +116,11 @@ namespace WarehouseProject.Data
 
     public class newEmployeeParams
     {
+        private int id = 0;
+        public int Id {
+            get { return id; } 
+            set { id = value; }
+        }
         public string FirstName  { get; set; }
         public string LastName { get; set; }
         public string Username { get; set; }
@@ -123,9 +128,20 @@ namespace WarehouseProject.Data
         public int Salaries { get; set; }
         public String JobTitle { get; set; }
         public string Email { get; set; }
-
+        public string Fullname { get
+            {
+                return $"{FirstName} {LastName}";
+            } 
+        }
         public string Gender { get; set; }
 
         public DateTime BirthDate { get; set; }
+
+        public int Age { get; set; }
+        public override string ToString()
+        {
+            return $"{FirstName}, {LastName}, {Gender}";
+        }
+
     }
 }

@@ -9,32 +9,43 @@ using WarehouseProject.Views;
 using System.Windows.Data;
 using System.Windows.Media;
 using Caliburn.Micro;
+using System.Collections.Generic;
 
 namespace WarehouseProject.ViewModels
 {
-    public class WorkersViewModel : INotifyPropertyChanged
+    public class WorkersViewModel : DataPropertyChanged
     {
         private LookUpDataService dataEmployee = new LookUpDataService();
-        private newEmployeeParams employee = new newEmployeeParams();
-        private ObservableCollection<Employee> employees;
-        private WorkersView workersView = new WorkersView();
-     
-        public string Fullname(newEmployeeParams newEmployee)
+        
+        public BindableCollection<newEmployeeParams> Worker{get; private set;}
+
+        private List<newEmployeeParams> newEmployees; 
+
+        public List<newEmployeeParams> NewEmployees
         {
-            return $"{newEmployee.FirstName} {newEmployee.LastName}";
+            get { return newEmployees; }
+            set { newEmployees = value; }
         }
+     
+      
+        private newEmployeeParams employeeParams;
 
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        public newEmployeeParams EmployeeParams
+        {
+            get { return employeeParams; }
+            set { employeeParams = value; }
+        }
 
         private int id = 0;
 
         public int Id
         {
             get { return id; }
-            set { id = value; }
+            set { 
+                
+                id = value;
+                RaisePropertyChanged(this, id.ToString());
+            }
         }
         // Dat moet geinstalliseerd worden bij de start 
 
@@ -44,25 +55,40 @@ namespace WarehouseProject.ViewModels
         public int Age
         {
             get { return age; }
-            set { age = value; }
+            set { 
+                age = value;
+                RaisePropertyChanged(this, age.ToString());
+            }
+
         }
-        public BindableCollection<newEmployeeParams> Worker
-        {
-            get; private set;
-        }
+        
         public WorkersViewModel()
         {
-            
-
+            GetAllEmployees();
+            Worker = new BindableCollection<newEmployeeParams>(newEmployees);
 
         }
 
         private void GetAllEmployees()
         {
+            int id = 1;
+            newEmployees = new List<newEmployeeParams>();
             // Every time a new employee is displayed
-            // Add the idd
-            throw new NotImplementedException();
-            
+            foreach(var newEmployee in dataEmployee.GiveAllEmployees())
+            {
+                employeeParams = new newEmployeeParams();
+                employeeParams.Id = id;
+                employeeParams.FirstName = newEmployee.FirstName;
+                employeeParams.LastName = newEmployee.LastName;
+                employeeParams.JobTitle = newEmployee.JobTitle;
+                employeeParams.Email = newEmployee.Email;
+                employeeParams.Gender = newEmployee.Gender;
+                employeeParams.Age = CalculateAge(employeeParams.BirthDate);
+                NewEmployees.Add(employeeParams);
+                id++;
+            }
+
+            Console.WriteLine(NewEmployees.Count);
         }
 
         /// <summary>
@@ -72,10 +98,11 @@ namespace WarehouseProject.ViewModels
         /// <returns></returns>
         private int CalculateAge(DateTime birthDateTime)
         {
-            int age = 0;
-            
+            var today = DateTime.Today;
+            Console.WriteLine(birthDateTime);
+
             bool CanShowAge = int.TryParse(
-                (DateTime.Now.Year - birthDateTime.Year)
+                (today.Year - birthDateTime.Year)
                 .ToString(), out age);
             if (CanShowAge == true)
                 return age;
@@ -100,9 +127,7 @@ namespace WarehouseProject.ViewModels
 
             var template = new DataTemplate();
             template.VisualTree = textBlockFactory;
-            
 
-            
 
         }
 

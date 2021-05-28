@@ -149,6 +149,7 @@
     <Compile Include="Logic\Services\LookUpDataService.cs" />
     <Compile Include="Logic\Classes\User.cs" />
     <Compile Include="EventModels\MyMessageEventcs.cs" />
+    <Compile Include="ViewModels\InvoiceGeneratorViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
