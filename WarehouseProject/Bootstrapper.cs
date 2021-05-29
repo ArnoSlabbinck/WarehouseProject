@@ -43,7 +43,7 @@ namespace WarehouseProject
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
            
-            DisplayRootViewFor<WorkersViewModel>();
+            DisplayRootViewFor<MainWindowViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)

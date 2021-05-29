@@ -1,0 +1,158 @@
+﻿<Window x:Class="WarehouseProject.Views.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WarehouseProject.Views"
+        xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        materialDesign:ThemeAssist.Theme="Dark" 
+        
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="MainWindowView" Height="450" Width="800"
+        x:Name="MainWindow"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="HeaderColor">#010838</SolidColorBrush>
+            <SolidColorBrush x:Key="LeftPanelColor">#020e61</SolidColorBrush>
+            <SolidColorBrush x:Key="RightPanelColor">#d1c4e9</SolidColorBrush>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+
+            <Grid x:Name="Header"    
+           Background="{StaticResource HeaderColor}"    
+           Grid.ColumnSpan="5">
+            <StackPanel x:Name="HeaderStackPanel">
+                <materialDesign:DialogHost CloseOnClickAway="True"  Identifier="DialogHost" HorizontalAlignment="Left" Margin="0,0,-0.4,0" Width="794">
+                    <materialDesign:DialogHost.DialogContent>
+                        <Grid Margin="20" Width="200" Height="200">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <WrapPanel Grid.Row="0"   Orientation="Horizontal">
+                                <TextBlock Text="Are you leaving the application"/>
+                                <Button Content="Yess" Command="{Binding Shutdown}" CommandParameter="{Binding ElementName=MainWindow}"/>
+                            </WrapPanel>
+                        </Grid>
+                        
+                    </materialDesign:DialogHost.DialogContent>
+                    <Button x:Name="ButtonExit"    
+                       Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"    
+                       BorderBrush="{x:Null}"
+                       Background="{x:Null}"    
+                       HorizontalAlignment="Right"    
+                       Foreground="White"    
+                       Height="35"    
+                       Width="35" 
+                       Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"     >
+                    <materialDesign:PackIcon Kind="Power"/>
+                </Button>
+                </materialDesign:DialogHost>
+                <Image />
+                <TextBlock Text="hallo"
+                          FontSize="16"    
+                          FontFamily="WS Simple Gallifreyan"    
+                          Foreground="#fff"     
+                          HorizontalAlignment="Center" />
+                
+            </StackPanel>
+        </Grid>
+
+        <DockPanel Grid.Row="0" Grid.Column="0" 
+                    Grid.RowSpan="5" Background="{StaticResource LeftPanelColor}"   >
+            <StackPanel Orientation="Vertical" >
+                <Grid x:Name="GridLeftPanel">
+                    <TextBlock x:Name="WareHouseStatus"    
+                          FontSize="16"    
+                          FontFamily="WS Simple Gallifreyan"    
+                          Foreground="#fff"     
+                          HorizontalAlignment="Center"    
+                          Text="Warehouse Status"    
+                          VerticalAlignment="Center" >
+                    </TextBlock>
+                </Grid>
+                <Button x:Name="ButtonWarehouseDashBoard"     
+                   Margin="10" Background="#0d1547">
+                    <Grid x:Name="WareHoudeDashBoard"    
+                          
+                     Height="20"    
+                     Width="150">
+                        <materialDesign:PackIcon Kind="ViewDashboard"/>
+                        <TextBlock x:Name="TextBlockDASHBOARD"    
+                            Margin="23,0,0,0"     
+                                 
+                              Text="DASHBOARD" />
+                    </Grid>
+                </Button>
+                <Button Margin="10" Background="#0d1547">
+                    <Grid x:Name="Employees"    
+                     Height="20"    
+                     Width="150">
+                        <materialDesign:PackIcon Kind="Worker"/>
+                        <TextBlock      
+                              Margin="23,0,0,0"     
+                              Text="EMPLOYEES" />
+                    </Grid>
+                </Button>
+                <Button Margin="10" Background="#0d1547">
+                    <Grid x:Name="CUSTOMERS"    
+                     Height="20"    
+                     Width="150">
+                        <materialDesign:PackIcon Kind="CustomerService"/>
+                        <TextBlock x:Name="TextBlockCustomers"     
+                              Margin="23,0,0,0"     
+                              Text="CUSTOMERS" />
+                    </Grid>
+                </Button>
+                <Button Margin="10" Background="#0d1547">
+                    <Grid x:Name="ORDERS"    
+                     Height="20"    
+                     Width="150">
+                        <materialDesign:PackIcon Kind="Cart"/>
+                        <TextBlock x:Name="TextBlockOrders"     
+                              Margin="23,0,0,0"     
+                              Text="ORDERS" />
+                    </Grid>
+                </Button>
+                <Button Margin="10" Background="#0d1547">
+                    <Grid x:Name="ACCOUNT"    
+                     Height="20"    
+                     Width="150">
+                        <materialDesign:PackIcon Kind="Account"/>
+                        <TextBlock x:Name="TextBlockAccount"     
+                              Margin="23,0,0,0"     
+                              Text="ACCOUNT" />
+                    </Grid>
+                </Button>
+            </StackPanel>
+
+        </DockPanel>
+        
+    </Grid>
+    
+    
+</Window>

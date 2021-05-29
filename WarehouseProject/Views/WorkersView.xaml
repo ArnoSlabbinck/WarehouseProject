@@ -12,7 +12,7 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Background="{DynamicResource MaterialDesignPaper}"
+        Background="#191c30"
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Window.Resources>
             <ResourceDictionary>
@@ -34,7 +34,8 @@
 
             <TextBlock Grid.Row="0" Grid.Column="2" Text="All Employees" 
                    materialDesign:TextFieldAssist.DecorationVisibility="Visible"
-                   materialDesign:TextFieldAssist.TrailingIcon="Person"/>
+                   materialDesign:TextFieldAssist.TrailingIcon="Person"
+                   HorizontalAlignment="Center" FontSize="30"/>
 
 
             <ItemsControl x:Name="Worker" Grid.Row="1" Grid.RowSpan="5" >
@@ -53,10 +54,31 @@
                                             <RowDefinition Height="auto" />
                                             <RowDefinition Height="auto" />
                                             <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
-                                        <TextBlock Grid.Row="0" Style="{DynamicResource MaterialDesignTitleTextBlock}" Text="{Binding Fullname}"/>
-                                        <TextBlock Grid.Row="1" Text="{Binding Fullname}"/>
+                                        <TextBlock materialDesign:TextFieldAssist.CharacterCounterVisibility="Visible"
+                                                   FontSize="20" 
+                                            Grid.Row="0" Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                                   Text="{Binding Fullname}"/>
+                                        <Separator
+                                        Grid.Row="2"
+                                        Style="{StaticResource MaterialDesignDarkSeparator}"
+                                        Margin="8 0 8 0"/>
+                                        <TextBlock Grid.Row="1" Text="{Binding Email}"/>
                                         <TextBlock Grid.Row="2" Text="{Binding JobTitle}"/>
+                                        <TextBlock Grid.Row="3" Text="{Binding Gender}"/>
+                                        <materialDesign:DialogHost CloseOnClickAway="True" Grid.Row="4">
+                                            <materialDesign:DialogHost.DialogContent>
+                                                <Grid Margin="20">
+                                                    <TextBlock Text="You Can update or Delete information" />
+                                                </Grid>
+                                            </materialDesign:DialogHost.DialogContent>
+
+                                            <Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Content="Show Employee"
+               HorizontalAlignment="Left" />
+                                        </materialDesign:DialogHost>
                                     </Grid>
                                 </materialDesign:Card>
                             </StackPanel>
