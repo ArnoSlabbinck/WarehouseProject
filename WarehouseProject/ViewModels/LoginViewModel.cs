@@ -29,6 +29,7 @@ namespace WarehouseProject.ViewModels
         private readonly AuthenticationService authentication = new AuthenticationService();
         private readonly User user = new User(); 
         private readonly Admin admin = new Admin();
+        private readonly WindowManager windowManager = new WindowManager();
         private string _username;
         private string _realPassword;
         private string _password;
@@ -126,8 +127,10 @@ namespace WarehouseProject.ViewModels
         #endregion
         public LoginViewModel(IEventAggregator _events)
         {
-            LoginButton = new LoginCommand(this, _events);
-            events = _events; 
+
+            events = _events;
+            LoginButton = new LoginCommand(this, events, windowManager);
+            
             
         }
         /// <summary>
@@ -273,7 +276,7 @@ namespace WarehouseProject.ViewModels
 
         public void PublishMessageAdmin()
         {
-            events.PublishOnUIThread(new MyMessageEventcs(admin));
+            events.BeginPublishOnUIThread(new MyMessageEventcs(admin));
 
         }
 

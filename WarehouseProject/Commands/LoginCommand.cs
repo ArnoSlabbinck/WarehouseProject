@@ -7,18 +7,20 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using WarehouseProject.ViewModels;
 
-
+ 
 namespace WarehouseProject.Commands
 {
     public class LoginCommand : ICommand
     {
         public LoginViewModel login;
         public event EventHandler CanExecuteChanged;
+        private WindowManager windowManager;
         private IEventAggregator events;
-        public LoginCommand(LoginViewModel _loginViewModel, IEventAggregator _events)
+        public LoginCommand(LoginViewModel _loginViewModel, IEventAggregator _events, WindowManager window)
         {
             login = _loginViewModel;
             events = _events;
+            windowManager = window;
         }
         public bool CanExecute(object parameter)
         {
@@ -27,12 +29,15 @@ namespace WarehouseProject.Commands
 
         public async void Execute(object parameter)
         {
-            
+                        
             bool loggedIn = await login.CheckCredentials();
-            WindowManager window = new WindowManager();
             if (loggedIn == true)
+            {
                 login.PublishMessageAdmin();
-                window.ShowDialog(new RegisterViewModel(events));
+                windowManager.ShowDialog(new MainWindowViewModel(events));
+
+            }
+                
 
         }
     }

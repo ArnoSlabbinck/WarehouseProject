@@ -6,7 +6,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarehouseProject.Views" xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" xmlns:components="clr-namespace:WarehouseProject.Components" d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel}"
         mc:Ignorable="d"
-        Title="LoginView" Height="650" Width="800" Background="#191c30">
+        Title="LoginView" Height="650" Width="800" Background="#191c30"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -30,8 +36,8 @@
                 Text="{Binding Path=Username, ValidatesOnExceptions=True}"  
                 Margin="0,100,20,0"
                 materialDesign:HintAssist.Hint="Username"
-                materialDesign:HintAssist.Foreground="Black"
-                materialDesign:TextFieldAssist.UnderlineBrush="Green"/>
+                materialDesign:HintAssist.Foreground="#fff"
+                />
             
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">

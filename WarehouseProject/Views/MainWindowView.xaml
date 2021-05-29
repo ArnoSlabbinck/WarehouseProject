@@ -73,7 +73,7 @@
                 </Button>
                 </materialDesign:DialogHost>
                 <Image />
-                <TextBlock Text="hallo"
+                <TextBlock Text="{Binding Path=Fullname}"
                           FontSize="16"    
                           FontFamily="WS Simple Gallifreyan"    
                           Foreground="#fff"     

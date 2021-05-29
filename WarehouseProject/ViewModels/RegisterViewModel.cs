@@ -19,7 +19,7 @@ namespace WarehouseProject.ViewModels
     /// <summary>
     /// When the supervisor tries to register new employees 
     /// </summary>
-    public class RegisterViewModel : INotifyPropertyChanged, IHandle<MyMessageEventcs>
+    public class RegisterViewModel : INotifyPropertyChanged
     {
         DataValidationService dataValidation = new DataValidationService();
         AuthenticationService authentication = new AuthenticationService();
@@ -297,11 +297,6 @@ namespace WarehouseProject.ViewModels
 
   
 
-        public void Handle(MyMessageEventcs message)
-        {
-            //Cast the obj as User
-             Admin user = (Admin)message.newObj;
-            Console.WriteLine($"{ user.Name}");
-        }
+    
     }
 }
