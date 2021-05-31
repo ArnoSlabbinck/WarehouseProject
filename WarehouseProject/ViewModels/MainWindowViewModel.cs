@@ -14,7 +14,7 @@ using WarehouseProject.Views;
 
 namespace WarehouseProject.ViewModels
 {
-    public class MainWindowViewModel : BaseViewModel ,IHandle<string>, IHandle<UserLogin>
+    public class MainWindowViewModel : BaseViewModel ,IHandle<string>, IHandle<UserLoginEvent>
 
     {
         private RegisterViewModel register;
@@ -78,7 +78,7 @@ namespace WarehouseProject.ViewModels
         
         }
 
-        public void Handle(UserLogin message)
+        public void Handle(UserLoginEvent message)
         {
             Admin user = (Admin)message.newObj;
             fullname = user.Name;

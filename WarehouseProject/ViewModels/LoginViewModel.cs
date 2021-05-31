@@ -277,7 +277,7 @@ namespace WarehouseProject.ViewModels
 
         public void PublishMessageAdmin()
         {
-            events.BeginPublishOnUIThread(new UserLogin(admin));
+            events.BeginPublishOnUIThread(new UserLoginEvent(admin));
 
         }
 

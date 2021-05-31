@@ -151,7 +151,7 @@
     <Compile Include="Logic\Interfaces\IEmployeeService.cs" />
     <Compile Include="Logic\Services\LookUpDataService.cs" />
     <Compile Include="Logic\Classes\User.cs" />
-    <Compile Include="EventModels\UserLogin.cs" />
+    <Compile Include="EventModels\UserLoginEvent.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\HelloViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
