@@ -17,7 +17,7 @@ namespace WarehouseProject.ViewModels
     public class MainWindowViewModel : BaseViewModel ,IHandle<string>, IHandle<UserLoginEvent>
 
     {
-        private RegisterViewModel register;
+        private EmployeeViewModel register;
         private AccountViewModel account;
         private IEventAggregator ea;
 
@@ -45,7 +45,7 @@ namespace WarehouseProject.ViewModels
         }
 
 
-        public RegisterViewModel Register
+        public EmployeeViewModel Register
         {
             get;
             set;
@@ -64,7 +64,7 @@ namespace WarehouseProject.ViewModels
         }
 
         public MainWindowViewModel(IEventAggregator eventaggretor,
-            RegisterViewModel registerView,
+            EmployeeViewModel registerView,
             AccountViewModel accountView)
         {
             ea = eventaggretor;

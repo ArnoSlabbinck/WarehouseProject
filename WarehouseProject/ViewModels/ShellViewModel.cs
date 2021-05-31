@@ -12,7 +12,7 @@ namespace WarehouseProject
     {
         private IEventAggregator _events;
         private IWindowManager manager;
-        public ShellViewModel(IEventAggregator events, IWindowManager windowManager, LoginViewModel loginVM, RegisterViewModel _registration)
+        public ShellViewModel(IEventAggregator events, IWindowManager windowManager, LoginViewModel loginVM, EmployeeViewModel _registration)
         {
             manager = windowManager;
             _events = events;
@@ -24,6 +24,6 @@ namespace WarehouseProject
         }
         public LoginViewModel Login { get; }
 
-        public RegisterViewModel registration { get; }
+        public EmployeeViewModel registration { get; }
     }
 }

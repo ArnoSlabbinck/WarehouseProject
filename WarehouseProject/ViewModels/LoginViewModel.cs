@@ -126,7 +126,7 @@ namespace WarehouseProject.ViewModels
        
 
         #endregion
-        public LoginViewModel(IEventAggregator _events, MainWindowViewModel mainWindow, RegisterViewModel register, AccountViewModel account )
+        public LoginViewModel(IEventAggregator _events, MainWindowViewModel mainWindow, EmployeeViewModel register, AccountViewModel account )
         {
             this.mainWindow = mainWindow;
             events = _events;

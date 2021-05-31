@@ -11,9 +11,9 @@ namespace WarehouseProject.Commands
 {
     public class ShowEmployeesCommand : ICommand
     {
-        readonly RegisterViewModel registrationView;
+        readonly EmployeeViewModel registrationView;
 
-        public ShowEmployeesCommand(RegisterViewModel registration)
+        public ShowEmployeesCommand(EmployeeViewModel registration)
         {
             registrationView = registration;
             // Als er een event is => Geclickt op 

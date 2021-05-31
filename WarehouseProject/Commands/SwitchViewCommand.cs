@@ -13,9 +13,9 @@ namespace WarehouseProject.Commands
     {
         public event EventHandler CanExecuteChanged;
         private MainWindowViewModel main;
-        private RegisterViewModel register;
+        private EmployeeViewModel register;
         private AccountViewModel account;
-        public SwitchViewCommand(MainWindowViewModel mainWindow,RegisterViewModel registerView, AccountViewModel accountView)
+        public SwitchViewCommand(MainWindowViewModel mainWindow,EmployeeViewModel registerView, AccountViewModel accountView)
         {
             main = mainWindow;
             register = registerView;
@@ -37,7 +37,7 @@ namespace WarehouseProject.Commands
                     break;
                 case "Employees":
                     Console.WriteLine("Employees");
-                    main.SelectedViewModel = new HelloViewModel();
+                    main.SelectedViewModel = register;
                     break;
                 case "Dashboard":
                     Console.WriteLine("Dashboard");

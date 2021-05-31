@@ -19,7 +19,7 @@ namespace WarehouseProject.ViewModels
     /// <summary>
     /// When the supervisor tries to register new employees 
     /// </summary>
-    public class RegisterViewModel : BaseViewModel
+    public class EmployeeViewModel : BaseViewModel
     {
         DataValidationService dataValidation = new DataValidationService();
         AuthenticationService authentication = new AuthenticationService();
@@ -205,7 +205,7 @@ namespace WarehouseProject.ViewModels
         * 
         * Check Validation: => 
          */
-        public RegisterViewModel()
+        public EmployeeViewModel()
         {
             ShowEmployees = new ShowEmployeesCommand(this);
             SaveEmployee = new SaveCommand(this);

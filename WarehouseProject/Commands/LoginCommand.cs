@@ -13,7 +13,7 @@ namespace WarehouseProject.Commands
     public class LoginCommand : ICommand
     {
         public LoginViewModel login;
-        private RegisterViewModel register;
+        private EmployeeViewModel register;
         public event EventHandler CanExecuteChanged;
         private MainWindowViewModel mainw;
         private AccountViewModel account;
@@ -21,7 +21,7 @@ namespace WarehouseProject.Commands
         private IEventAggregator events;
         public LoginCommand(LoginViewModel _loginViewModel, IEventAggregator _events,
             WindowManager windowManager,
-            RegisterViewModel registerView,
+            EmployeeViewModel registerView,
             MainWindowViewModel mainWindow,
             AccountViewModel accountView)
         {

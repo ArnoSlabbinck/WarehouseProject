@@ -10,17 +10,18 @@
         materialDesign:ThemeAssist.Theme="Dark" 
         
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="MainWindowView" Height="450" Width="800"
+        Title="MainWindowView" Height="650" Width="1200"
         x:Name="MainWindow"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
+        
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Window.Resources>
-        <DataTemplate x:Name="EmployeeViewModel" DataType="{x:Type viewmodels:HelloViewModel}">
-            <views:HelloView DataContext="{Binding SelectedViewModel}"/>
+        <DataTemplate x:Name="EmployeeViewModel" DataType="{x:Type viewmodels:EmployeeViewModel}">
+            <views:EmployeeView />
         </DataTemplate>
 
     </Window.Resources>
@@ -42,15 +43,15 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
 
-            <Grid x:Name="Header"    
+
+        <Grid x:Name="Header"    
             Background="#010838"   
            Grid.ColumnSpan="5">
-            <StackPanel x:Name="HeaderStackPanel">
-                <materialDesign:DialogHost CloseOnClickAway="True"  Identifier="DialogHost" HorizontalAlignment="Left" Margin="0,0,-0.4,0" Width="794">
+            <StackPanel x:Name="HeaderStackPanel" >
+                <materialDesign:DialogHost CloseOnClickAway="True"  Identifier="DialogHost" HorizontalAlignment="Left" Width="1184">
                     <materialDesign:DialogHost.DialogContent>
-                        <Grid Margin="20" Width="200" Height="200">
+                        <Grid Margin="20" Width="600" Height="400">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition/>
@@ -61,19 +62,20 @@
                                 <Button Content="Yess" Command="{Binding Shutdown}" CommandParameter="{Binding ElementName=MainWindow}"/>
                             </WrapPanel>
                         </Grid>
-                        
+
                     </materialDesign:DialogHost.DialogContent>
                     <Button x:Name="ButtonExit"    
                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"    
                        BorderBrush="{x:Null}"
                        Background="{x:Null}"    
-                       HorizontalAlignment="Right"    
+                       HorizontalAlignment="Right"
                        Foreground="White"    
-                       Height="35"    
+                       Height="35"
+
                        Width="35" 
                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"     >
-                    <materialDesign:PackIcon Kind="Power"/>
-                </Button>
+                        <materialDesign:PackIcon Kind="Power"/>
+                    </Button>
                 </materialDesign:DialogHost>
                 <Image />
                 <TextBlock Text="{Binding Path=Fullname}"
@@ -81,7 +83,7 @@
                           FontFamily="WS Simple Gallifreyan"    
                           Foreground="#fff"     
                           HorizontalAlignment="Center" />
-                
+
             </StackPanel>
         </Grid>
 
@@ -156,9 +158,9 @@
         </DockPanel>
 
         <ContentControl Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="4" Content="{Binding SelectedViewModel}">
-            
+
         </ContentControl>
     </Grid>
-    
-    
+
+
 </Window>
