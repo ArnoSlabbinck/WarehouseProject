@@ -36,7 +36,6 @@ namespace WarehouseProject.Commands
                     Console.WriteLine("Customer");
                     break;
                 case "Employees":
-                    Console.WriteLine("Employees");
                     main.SelectedViewModel = register;
                     break;
                 case "Dashboard":

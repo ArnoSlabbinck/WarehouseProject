@@ -130,6 +130,7 @@ namespace WarehouseProject.ViewModels
         {
             this.mainWindow = mainWindow;
             events = _events;
+            events.Subscribe(this);
             LoginButton = new LoginCommand(this, events, windowManager, register, mainWindow, account);
             
             

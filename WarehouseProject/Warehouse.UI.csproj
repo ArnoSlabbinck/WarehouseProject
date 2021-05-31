@@ -187,9 +187,6 @@
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RegisterView.xaml.cs">
-      <DependentUpon>RegisterView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -235,10 +232,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindowView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\RegisterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

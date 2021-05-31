@@ -81,7 +81,8 @@ namespace WarehouseProject.ViewModels
         public void Handle(UserLoginEvent message)
         {
             Admin user = (Admin)message.newObj;
-            fullname = user.Name;
+            Console.WriteLine(user.Name);
+            Fullname = user.Name;
            
         }
 
