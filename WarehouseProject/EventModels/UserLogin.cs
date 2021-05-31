@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WarehouseProject.EventModels
 {
-    public class MyMessageEventcs
+    public class UserLogin
     {
-        public MyMessageEventcs(Object obj)
+        public UserLogin(Object obj)
         {
             newObj = obj;
         }

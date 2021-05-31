@@ -10,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WarehouseProject.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindowView.xaml
+    /// Interaction logic for HelloView.xaml
     /// </summary>
-    public partial class MainWindowView : Window
+    public partial class HelloView : UserControl
     {
-        public MainWindowView()
+        public HelloView()
         {
             InitializeComponent();
         }
-
-       
     }
 }

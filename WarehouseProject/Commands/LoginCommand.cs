@@ -13,14 +13,24 @@ namespace WarehouseProject.Commands
     public class LoginCommand : ICommand
     {
         public LoginViewModel login;
+        private RegisterViewModel register;
         public event EventHandler CanExecuteChanged;
+        private MainWindowViewModel mainw;
+        private AccountViewModel account;
         private WindowManager windowManager;
         private IEventAggregator events;
-        public LoginCommand(LoginViewModel _loginViewModel, IEventAggregator _events, WindowManager window)
+        public LoginCommand(LoginViewModel _loginViewModel, IEventAggregator _events,
+            WindowManager windowManager,
+            RegisterViewModel registerView,
+            MainWindowViewModel mainWindow,
+            AccountViewModel accountView)
         {
             login = _loginViewModel;
+            this.windowManager = windowManager;
             events = _events;
-            windowManager = window;
+            register = registerView;
+            mainw = mainWindow;
+            account = accountView;
         }
         public bool CanExecute(object parameter)
         {
@@ -34,7 +44,7 @@ namespace WarehouseProject.Commands
             if (loggedIn == true)
             {
                 login.PublishMessageAdmin();
-                windowManager.ShowDialog(new MainWindowViewModel(events));
+                windowManager.ShowDialog(new MainWindowViewModel(events, register, account));
 
             }
                 

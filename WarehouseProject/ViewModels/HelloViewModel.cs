@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WarehouseProject.ViewModels
 {
-    public class AccountViewModel : BaseViewModel
+    public class HelloViewModel : BaseViewModel
     {
     }
 }

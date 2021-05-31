@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WarehouseProject.ViewModels
 {
-    public class InvoiceGeneratorViewModel
+    public class InvoiceGeneratorViewModel : BaseViewModel
     {
         /*
          * Alle data van dat ingevuld wordt moet naar de een bestand worden geschreven

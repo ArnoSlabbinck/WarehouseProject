@@ -17,5 +17,10 @@ namespace WarehouseProject.Data
                 PropertyChanged(sender, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

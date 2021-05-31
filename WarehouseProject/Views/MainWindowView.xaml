@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarehouseProject.Views"
+        xmlns:views="clr-namespace:WarehouseProject.Views"
         xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         materialDesign:ThemeAssist.Theme="Dark" 
@@ -18,12 +19,14 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Window.Resources>
-        <ResourceDictionary>
-            <SolidColorBrush x:Key="HeaderColor">#010838</SolidColorBrush>
-            <SolidColorBrush x:Key="LeftPanelColor">#020e61</SolidColorBrush>
-            <SolidColorBrush x:Key="RightPanelColor">#d1c4e9</SolidColorBrush>
-        </ResourceDictionary>
+        <DataTemplate x:Name="EmployeeViewModel" DataType="{x:Type viewmodels:HelloViewModel}">
+            <views:HelloView DataContext="{Binding SelectedViewModel}"/>
+        </DataTemplate>
+
     </Window.Resources>
+
+
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -42,7 +45,7 @@
         
 
             <Grid x:Name="Header"    
-           Background="{StaticResource HeaderColor}"    
+            Background="#010838"   
            Grid.ColumnSpan="5">
             <StackPanel x:Name="HeaderStackPanel">
                 <materialDesign:DialogHost CloseOnClickAway="True"  Identifier="DialogHost" HorizontalAlignment="Left" Margin="0,0,-0.4,0" Width="794">
@@ -83,7 +86,7 @@
         </Grid>
 
         <DockPanel Grid.Row="0" Grid.Column="0" 
-                    Grid.RowSpan="5" Background="{StaticResource LeftPanelColor}"   >
+                    Grid.RowSpan="5" Background="#020e61"   >
             <StackPanel Orientation="Vertical" >
                 <Grid x:Name="GridLeftPanel">
                     <TextBlock x:Name="WareHouseStatus"    
@@ -96,7 +99,7 @@
                     </TextBlock>
                 </Grid>
                 <Button x:Name="ButtonWarehouseDashBoard"     
-                   Margin="10" Background="#0d1547">
+                   Margin="10" Background="#0d1547" Command="{Binding Path=switchView}" CommandParameter="Dashboard">
                     <Grid x:Name="WareHoudeDashBoard"    
                           
                      Height="20"    
@@ -108,7 +111,7 @@
                               Text="DASHBOARD" />
                     </Grid>
                 </Button>
-                <Button Margin="10" Background="#0d1547">
+                <Button Margin="10" Background="#0d1547" Command="{Binding Path=switchView}" CommandParameter="Employees">
                     <Grid x:Name="Employees"    
                      Height="20"    
                      Width="150">
@@ -118,7 +121,7 @@
                               Text="EMPLOYEES" />
                     </Grid>
                 </Button>
-                <Button Margin="10" Background="#0d1547">
+                <Button Margin="10" Background="#0d1547" Command="{Binding Path=switchView}" CommandParameter="Customers">
                     <Grid x:Name="CUSTOMERS"    
                      Height="20"    
                      Width="150">
@@ -128,7 +131,7 @@
                               Text="CUSTOMERS" />
                     </Grid>
                 </Button>
-                <Button Margin="10" Background="#0d1547">
+                <Button Margin="10" Background="#0d1547" Command="{Binding Path=switchView}" CommandParameter="Orders">
                     <Grid x:Name="ORDERS"    
                      Height="20"    
                      Width="150">
@@ -138,7 +141,7 @@
                               Text="ORDERS" />
                     </Grid>
                 </Button>
-                <Button Margin="10" Background="#0d1547">
+                <Button Margin="10" Background="#0d1547" Command="{Binding Path=switchView}" CommandParameter="Account">
                     <Grid x:Name="ACCOUNT"    
                      Height="20"    
                      Width="150">
@@ -151,7 +154,10 @@
             </StackPanel>
 
         </DockPanel>
-        
+
+        <ContentControl Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="4" Content="{Binding SelectedViewModel}">
+            
+        </ContentControl>
     </Grid>
     
     

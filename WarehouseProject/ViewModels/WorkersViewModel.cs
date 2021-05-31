@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace WarehouseProject.ViewModels
 {
-    public class WorkersViewModel : DataPropertyChanged
+    public class WorkersViewModel : BaseViewModel
     {
         private LookUpDataService dataEmployee = new LookUpDataService();
         

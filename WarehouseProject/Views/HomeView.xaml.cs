@@ -15,15 +15,13 @@ using System.Windows.Shapes;
 namespace WarehouseProject.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindowView.xaml
+    /// Interaction logic for HomeView.xaml
     /// </summary>
-    public partial class MainWindowView : Window
+    public partial class HomeView : Window
     {
-        public MainWindowView()
+        public HomeView()
         {
             InitializeComponent();
         }
-
-       
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace WarehouseProject.ViewModels
 {
-    class ShowCustomersViewModel : INotifyPropertyChanged
+    class ShowCustomersViewModel : BaseViewModel
     {
         private ICustomerDataService _customerDataService;
         // When you want to add or remove customers this will notify that change from the databinding

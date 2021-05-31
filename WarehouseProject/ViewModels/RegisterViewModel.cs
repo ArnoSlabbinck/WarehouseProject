@@ -19,7 +19,7 @@ namespace WarehouseProject.ViewModels
     /// <summary>
     /// When the supervisor tries to register new employees 
     /// </summary>
-    public class RegisterViewModel : INotifyPropertyChanged
+    public class RegisterViewModel : BaseViewModel
     {
         DataValidationService dataValidation = new DataValidationService();
         AuthenticationService authentication = new AuthenticationService();
@@ -205,13 +205,13 @@ namespace WarehouseProject.ViewModels
         * 
         * Check Validation: => 
          */
-        public RegisterViewModel(IEventAggregator eventAggregator)
+        public RegisterViewModel()
         {
             ShowEmployees = new ShowEmployeesCommand(this);
             SaveEmployee = new SaveCommand(this);
-            events = eventAggregator;
+            //events = eventAggregator;
 
-            events.Subscribe(this);
+            //events.Subscribe(this);
             
 
             
