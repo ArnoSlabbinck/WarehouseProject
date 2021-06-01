@@ -39,11 +39,12 @@ namespace WarehouseProject.Commands
 
         public async void Execute(object parameter)
         {
-                        
+            
             bool loggedIn = await login.CheckCredentials();
             if (loggedIn == true)
             {
-                login.PublishMessageAdmin();
+                var username = parameter as string;
+                login.PublishMessageAdmin(username);
                 windowManager.ShowDialog(new MainWindowViewModel(events, register, account));
 
             }

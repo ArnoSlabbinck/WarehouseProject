@@ -15,12 +15,11 @@ using WarehouseProject.Views;
 namespace WarehouseProject.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel ,IHandle<string>, IHandle<UserLoginEvent>
-
     {
         private EmployeeViewModel register;
         private AccountViewModel account;
         private IEventAggregator ea;
-
+        private string name;
         private BaseViewModel selectedViewModel;
         public BaseViewModel SelectedViewModel 
         {
@@ -40,7 +39,7 @@ namespace WarehouseProject.ViewModels
             get { return fullname; }
             set { 
                 fullname = value;
-                RaisePropertyChanged(this, fullname);
+                OnPropertyChanged(nameof(fullname));
             }
         }
 
@@ -72,17 +71,26 @@ namespace WarehouseProject.ViewModels
             account = accountView;
             Shutdown = new ShutdownCommand();
             switchView = new SwitchViewCommand(this, register, account);
-            
+
             //Get the user 
             ea.Subscribe(this);
-        
+                
         }
 
         public void Handle(UserLoginEvent message)
         {
-            Admin user = (Admin)message.newObj;
-            Console.WriteLine(user.Name);
-            Fullname = user.Name;
+            try
+            {
+                Admin user = (Admin)message.newObj;
+                Fullname = user.Name;
+
+            } catch (InvalidCastException e)
+            {
+                User user = (User)message.newObj;
+                Fullname = user.Name;
+            }
+            
+            //I can't asign the. How do I 
            
         }
 
@@ -91,6 +99,11 @@ namespace WarehouseProject.ViewModels
             Console.WriteLine(message);
         }
 
+        public void SetFullname(string name)
+        {
+            fullname = name;
+            
+        }
        
     }
 

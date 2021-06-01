@@ -4,9 +4,97 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WarehouseProject.Views"
+             xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AccountViewModel}"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             materialDesign:ThemeAssist.Theme="Dark" 
+             TextElement.Foreground="Black"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="15"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="#191c30"
+             FontFamily="{DynamicResource MaterialDesignFont}"
              mc:Ignorable="d" 
+              xmlns:input="using:Telerik.UI.Xaml.Controls.Input"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="1">
+            <TextBlock Text="User Details" FontSize="30" Foreground="White" FontFamily="Fonts/#Dosis" FontWeight="Medium" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.RowSpan="4" >
+            <Border Background="WhiteSmoke" Margin="10 20"
+                CornerRadius="5" Width="180" Height="250">
+                <StackPanel >
+                    <Border Height="120" Width="150" CornerRadius="0,0,50,50" Margin="10">
+                        <Border.Background>
+                            <ImageBrush  />
+                        </Border.Background>
+                    </Border>
+                    <TextBlock Foreground="Black"   Margin="20 0" materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
+                               materialDesign:TextFieldAssist.LeadingIcon="Person" 
+                               Text="{Binding Path=Fullname}" Height="50" 
+                                Width="150"/>
+                    <TextBlock Foreground="Black"   Margin="20 0" materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
+                               materialDesign:TextFieldAssist.LeadingIcon="Person" 
+                               Text="{Binding Path=Role}" Height="50" />
+
+
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="4" >
+            <Border Background="WhiteSmoke" Margin="10 20"
+                CornerRadius="5" Height="300">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Contact Informations" Padding="10 20"   Foreground="Black"/>
+                    <Rectangle HorizontalAlignment="Stretch" Fill="Black" Height="2" Width="200" Margin="10,0,400,0"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Email"  Margin="10,10,0,0"/>
+                        <TextBlock Text="{Binding Path=Email}" Margin="300,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Username"  Margin="10,10,0,0"/>
+                        <TextBlock Text="{Binding Path=Username}" Margin="270,0,0,0"/>
+                    </StackPanel>
+                    <Rectangle HorizontalAlignment="Stretch" Fill="Black" Height="2"  Margin="10,20,440,0"/>
+                    <TextBlock Text="Additional information" Margin="10,10,0,0"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Country" Margin="10,10,0,0"/>
+                        <TextBlock Text="{Binding Path=Country}" Margin="290,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Gender" Margin="10,10,0,0"/>
+                        <TextBlock Text="{Binding Path=Gender}" Margin="300,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Date Of Birth" Margin="10,10,0,0"/>
+                        <TextBlock Text="{Binding Path=Age}" Margin="300,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Status" Margin="10,10,0,0"/>
+                        <TextBlock Text="{Binding Path=Status}" Margin="300,0,0,0"/>
+                    </StackPanel> 
+
+                </StackPanel>
+                
+            </Border>
+        </StackPanel>
     </Grid>
+    
 </UserControl>

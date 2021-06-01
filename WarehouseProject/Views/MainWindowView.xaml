@@ -23,6 +23,9 @@
         <DataTemplate x:Name="EmployeeViewModel" DataType="{x:Type viewmodels:EmployeeViewModel}">
             <views:EmployeeView />
         </DataTemplate>
+        <DataTemplate x:Name="AccountViewModel" DataType="{x:Type viewmodels:AccountViewModel}">
+            <views:AccountView />
+        </DataTemplate>
 
     </Window.Resources>
 
@@ -156,6 +159,8 @@
             </StackPanel>
 
         </DockPanel>
+
+       
 
         <ContentControl Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="4" Content="{Binding SelectedViewModel}">
 

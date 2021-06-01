@@ -178,7 +178,7 @@ namespace WarehouseProject.ViewModels
                     Console.WriteLine("You are logged in");
                     
                     return user;
-                }
+                }  
             }
             catch (UnauthorizedAccessException)
             {
@@ -276,10 +276,12 @@ namespace WarehouseProject.ViewModels
         }
 
 
-        public void PublishMessageAdmin()
+        public void PublishMessageAdmin(string username)
         {
-            events.BeginPublishOnUIThread(new UserLoginEvent(admin));
-
+            if(username == admin.Username)
+                Task.Run(() => events.PublishOnUIThreadAsync(new UserLoginEvent(admin)));
+            else
+                Task.Run(() => events.PublishOnUIThreadAsync(new UserLoginEvent(user)));
         }
 
     

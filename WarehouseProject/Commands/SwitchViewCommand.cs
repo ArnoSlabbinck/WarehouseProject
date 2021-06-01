@@ -46,6 +46,7 @@ namespace WarehouseProject.Commands
                     break;
                 case "Account":
                     Console.WriteLine("Account");
+                    main.SelectedViewModel = account;
                     break;
             }
             parameter = null;
