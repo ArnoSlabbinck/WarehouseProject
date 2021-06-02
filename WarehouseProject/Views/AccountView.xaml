@@ -42,7 +42,7 @@
                 <StackPanel >
                     <Border Height="120" Width="150" CornerRadius="0,0,50,50" Margin="10">
                         <Border.Background>
-                            <ImageBrush  />
+                            <ImageBrush  ImageSource="{Binding Path= Image}" />
                         </Border.Background>
                     </Border>
                     <TextBlock Foreground="Black"   Margin="20 0" materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
@@ -80,7 +80,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Gender" Margin="10,10,0,0"/>
-                        <TextBlock Text="{Binding Path=Gender}" Margin="300,0,0,0"/>
+                        <TextBlock Text="{Binding Path=Gender}" Margin="290,0,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Date Of Birth" Margin="10,10,0,0"/>

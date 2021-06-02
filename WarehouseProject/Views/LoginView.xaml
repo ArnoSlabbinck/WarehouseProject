@@ -28,8 +28,8 @@
         </Grid.RowDefinitions>
         
         <StackPanel Margin="20" Orientation="Vertical" Grid.Column="1" Grid.Row="1"  Grid.ColumnSpan="2">
-            <Label Content="Sign In" FontSize="25" Foreground="#fff"
-                   HorizontalAlignment="Center" FontWeight="Bold" />
+            <TextBlock Text="Sign In" FontSize="25" Foreground="#fff"
+                   HorizontalAlignment="Center" FontWeight="Bold" Style="{DynamicResource  MaterialDesignSubtitle1TextBlock}" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
             <TextBox x:Name="Login" 

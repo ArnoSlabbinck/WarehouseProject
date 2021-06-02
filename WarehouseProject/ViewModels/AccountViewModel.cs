@@ -1,9 +1,11 @@
 ﻿using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 using WarehouseProject.Data;
 using WarehouseProject.EventModels;
 
@@ -84,6 +86,30 @@ namespace WarehouseProject.ViewModels
             }
         }
 
+        private int age;
+
+        public int Age
+        {
+            get { return age; }
+            set 
+            {
+                age = value;
+                OnPropertyChanged(nameof(age));
+            }
+        }
+
+        private BitmapImage image;
+
+        public BitmapImage Image
+        {
+            get { return image; }
+            set 
+            { 
+                image = value;
+                OnPropertyChanged(nameof(image));
+            }
+        }
+
 
         private string status;
 
@@ -111,12 +137,15 @@ namespace WarehouseProject.ViewModels
             {
                 Admin user = (Admin)message.newObj;
                 Fullname = user.Name;
+                var name = user.Name.Split(' ')[0];
                 Email = user.Email;
                 Role = user.Role;
                 Username = user.Username;
                 Country = "Belgium";
                 Gender = "Male";
+                Age = 26;
                 Status = user.IsAuthenticated.ToString();
+                FindImage(name);
 
 
             }
@@ -136,7 +165,51 @@ namespace WarehouseProject.ViewModels
 
         }
 
+        public void FindImage(string name)
+        {
+            Uri resourceUri = new Uri(FindRelativePathImage(name), UriKind.Absolute);
+            Image = new BitmapImage(resourceUri);
+        }
 
-        
+        /// <summary>
+        /// Find the relative path from current directory to target directory file path
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public string  FindRelativePathImage(string name)
+        {
+            string directory1 = string.Empty;
+            DirectoryInfo[] directories = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.GetDirectories();
+
+            foreach (var directory in directories)
+            {
+                if(directory.FullName.Contains("Images") == true)
+                {
+                    foreach (var dirs in directory.GetDirectories())
+                    {
+                        if (dirs.FullName.Contains("Employees") == true)
+                        {
+                            directory1 = dirs.FullName;                        
+                        }
+                    }
+
+                }
+                
+            }
+
+
+            var files = Directory.GetFiles(directory1, "*.*", SearchOption.AllDirectories);
+
+            foreach (var file in files)
+            {
+                if (Path.GetFileNameWithoutExtension(file) == name)
+                {
+                    return Path.GetFullPath(file);
+
+                }
+            }
+            return null;
+
+        }
     }
 }
