@@ -13,7 +13,7 @@
              TextElement.FontSize="13"
              TextOptions.TextFormattingMode="Ideal" 
              TextOptions.TextRenderingMode="Auto"        
-             Background="#010838" 
+             Background="#c6cbeb" 
              xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
@@ -38,6 +38,21 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+            <materialDesign:DialogHost  BorderBrush="{DynamicResource MaterialDesignDivider}" IsOpen="{Binding IsDialogOpen}">
+                <materialDesign:DialogHost.DialogContent>
+                    <Grid Height="150" Width="300" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="15">
+                            <TextBlock Foreground="Gray" Width="200" Margin="15 5" TextWrapping="Wrap" Text="{Binding Path=Errors}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
+                            <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatAccentBgButton}">
+                                Okay
+                            </Button>
+                        </StackPanel>
+
+                    </Grid>
+                </materialDesign:DialogHost.DialogContent>
+            </materialDesign:DialogHost>
             <TextBlock Text="CUSTOMERS" FontSize="25" Grid.Column="2"/>
             <StackPanel Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="4"  >
                 <Border Background="WhiteSmoke" 
@@ -85,15 +100,19 @@
 
                         </StackPanel>
 
-                        
 
 
 
-                        <Button Content="Add Customer" Width="150" HorizontalAlignment="Left" Margin="8" Command="{Binding Path=AddCustomerCommand}" >
+
+                        <Button Content="Add Customer" Width="150" HorizontalAlignment="Left" Margin="8" Command="{Binding Path= addCustomerCommand }" >
                             <Button.CommandParameter>
                                 <MultiBinding Converter="{StaticResource CustomerConverter}" UpdateSourceTrigger="PropertyChanged">
                                     <Binding ElementName="Fullname" Path="Text" />
                                     <Binding ElementName="Email" Path="Text" />
+                                    <Binding ElementName="Country" Path="Text" />
+                                    <Binding ElementName="City" Path="Text" />
+                                    <Binding ElementName="Street" Path="Text" />
+                                    <Binding ElementName="Phone" Path="Text" />
                                 </MultiBinding>
                             </Button.CommandParameter>
                         </Button>

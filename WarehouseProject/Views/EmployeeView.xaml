@@ -6,14 +6,14 @@
              xmlns:local="clr-namespace:WarehouseProject.Views"
              xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" xmlns:components="clr-namespace:WarehouseProject.Components" d:DataContext="{d:DesignInstance Type=viewmodels:EmployeeViewModel}"
              mc:Ignorable="d" 
-              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        TextElement.FontWeight="Regular"
-        TextElement.FontSize="13"
+              TextElement.Foreground="{DynamicResource MaterialDesignDarkBackground}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
         
-        TextOptions.TextFormattingMode="Ideal"
-        TextOptions.TextRenderingMode="Auto"
-        FontFamily="{DynamicResource MaterialDesignFont}"
-             d:DesignHeight="450" d:DesignWidth="800" Background="#010838">
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             d:DesignHeight="450" d:DesignWidth="800" Background="#b9cad5">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

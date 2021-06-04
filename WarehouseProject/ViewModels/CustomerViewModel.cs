@@ -9,12 +9,38 @@ using WarehouseProject.Data;
 using System.ComponentModel;
 using Caliburn.Micro;
 using WarehouseProject.Commands;
+using System.Windows;
 
 namespace WarehouseProject.ViewModels
 {
     public class CustomerViewModel : BaseViewModel
     {
-        private string[] customerParams; 
+        private string[] customerParams;
+
+        private string errors;
+
+        public string  Errors
+        {
+            get { return errors; }
+            set 
+            { 
+                errors = value;
+                OnPropertyChanged(nameof(Errors));
+            }
+        }
+
+
+        private bool _IsDialogOpen;
+        public bool IsDialogOpen
+        {
+            get { return _IsDialogOpen; }
+            set {
+                _IsDialogOpen = value;
+                OnPropertyChanged(nameof(IsDialogOpen));
+                    
+                }
+        }
+
 
         private string fullname;
 
@@ -92,8 +118,8 @@ namespace WarehouseProject.ViewModels
         }
 
 
-        private AddCustomerCommand addCustomerCommand { get; set; }
-        private CustomerConverter CustomerConverter { get; set; }
+        public AddCustomerCommand addCustomerCommand { get; set; }
+        public  CustomerConverter CustomerConverter { get; set; }
 
         private ICustomerDataService _customerDataService;
         // When you want to add or remove customers this will notify that change from the databinding
@@ -123,7 +149,7 @@ namespace WarehouseProject.ViewModels
             }
         }
 
-        public string[] Add()
+        public  void Add()
         {
             customerParams = new string[10];
             customerParams[0] = Fullname;
@@ -133,8 +159,15 @@ namespace WarehouseProject.ViewModels
             customerParams[4] = City;
             customerParams[5] = Street;
 
-            return customerParams;
-
+            Task<bool> succesAddedCustomer =  _customerDataService.Add(customerParams);
+            
+            if (Task.Equals(succesAddedCustomer, true))
+            {
+                Errors = "Customer has been added";
+            }
+            else {
+                Errors = "Something went wrong.Check if you have entered everything right";
+            }
         }
 
         /// <summary>
@@ -160,6 +193,12 @@ namespace WarehouseProject.ViewModels
             set { _selectedCustomer = value; }
         }
 
-        
+        public void OnShowDialog()
+        {
+            Console.WriteLine("h");
+            
+            IsDialogOpen = true;
+        }
+
     }
 }

@@ -29,6 +29,9 @@
         <DataTemplate x:Name="CustomerViewModel" DataType="{x:Type viewmodels:CustomerViewModel}">
             <views:CustomerView />
         </DataTemplate>
+        <DataTemplate x:Name="DashboardViewModel" DataType="{x:Type viewmodels:DashboardViewModel}">
+            <views:DashboardView />
+        </DataTemplate>
 
     </Window.Resources>
 
@@ -175,11 +178,12 @@
 
         </DockPanel>
 
-       
 
+        
         <ContentControl Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="4" Content="{Binding SelectedViewModel}">
 
         </ContentControl>
+        
     </Grid>
 
 
