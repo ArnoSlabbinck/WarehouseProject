@@ -43,6 +43,16 @@ namespace WarehouseProject.ViewModels
             }
         }
 
+        private string function;
+
+        public string Function
+        {
+            get { return function; }
+            set {
+                function = value;
+                OnPropertyChanged(nameof(Function));
+            }
+        }
 
         public EmployeeViewModel Register
         {
@@ -83,11 +93,13 @@ namespace WarehouseProject.ViewModels
             {
                 Admin user = (Admin)message.newObj;
                 Fullname = user.Name;
+                Function = user.Role;
 
             } catch (InvalidCastException e)
             {
                 User user = (User)message.newObj;
                 Fullname = user.Name;
+                Function = user.Role;
             }
             
             //I can't asign the. How do I 

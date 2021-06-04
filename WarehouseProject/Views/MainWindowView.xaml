@@ -26,6 +26,9 @@
         <DataTemplate x:Name="AccountViewModel" DataType="{x:Type viewmodels:AccountViewModel}">
             <views:AccountView />
         </DataTemplate>
+        <DataTemplate x:Name="CustomerViewModel" DataType="{x:Type viewmodels:CustomerViewModel}">
+            <views:CustomerView />
+        </DataTemplate>
 
     </Window.Resources>
 
@@ -81,11 +84,13 @@
                     </Button>
                 </materialDesign:DialogHost>
                 <Image />
+                <Label Content="Logged in as "  Margin="300,0,0,0" />
+                <TextBlock Text="{Binding Path=Function}" />
                 <TextBlock Text="{Binding Path=Fullname}"
                           FontSize="16"    
                           FontFamily="WS Simple Gallifreyan"    
                           Foreground="#fff"     
-                          HorizontalAlignment="Center" />
+                          Margin="600,-40,0,0"/>
 
             </StackPanel>
         </Grid>
@@ -154,6 +159,16 @@
                         <TextBlock x:Name="TextBlockAccount"     
                               Margin="23,0,0,0"     
                               Text="ACCOUNT" />
+                    </Grid>
+                </Button>
+                <Button Margin="10" Background="#0d1547" Command="{Binding Path=switchView}" CommandParameter="Products">
+                    <Grid x:Name="Products"    
+                     Height="20"    
+                     Width="150">
+                        <materialDesign:PackIcon Kind="Shop"/>
+                        <TextBlock      
+                              Margin="23,0,0,0"     
+                              Text="¨PRODUCTS" />
                     </Grid>
                 </Button>
             </StackPanel>

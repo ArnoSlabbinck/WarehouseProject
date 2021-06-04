@@ -46,5 +46,11 @@ namespace WarehouseModels
 
         public ICollection<Orders> Orders { get; set; }
 
+        public string Fullname 
+        {
+            get { return $"{FirstName} {LastName}"; }
+
+        }
+    
     }
 }

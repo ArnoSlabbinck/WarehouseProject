@@ -12,7 +12,7 @@
              TextElement.FontSize="15"
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
-             Background="#191c30"
+             Background="#010838"
              FontFamily="{DynamicResource MaterialDesignFont}"
              mc:Ignorable="d" 
               xmlns:input="using:Telerik.UI.Xaml.Controls.Input"

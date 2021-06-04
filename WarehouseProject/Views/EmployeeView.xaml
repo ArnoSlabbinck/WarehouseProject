@@ -6,7 +6,14 @@
              xmlns:local="clr-namespace:WarehouseProject.Views"
              xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" xmlns:components="clr-namespace:WarehouseProject.Components" d:DataContext="{d:DesignInstance Type=viewmodels:EmployeeViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="#191c30">
+              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+             d:DesignHeight="450" d:DesignWidth="800" Background="#010838">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -29,31 +36,31 @@
             <TextBlock Text="Employee Bio" Foreground="Black" FontSize="20" FontWeight="DemiBold" Background="Aquamarine" Width="550" Padding="10" Height="40"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" >
-            <TextBlock Text="First Name :" FontSize="20" Padding="20" Foreground="Black"/>
+            <TextBlock Text="First Name :" FontSize="20" Padding="20" />
             <TextBox Text="{Binding Path= FirstN}"   BorderBrush="Black" Margin="0,0,0,0"  Width="200" Height="40"/>
 
-            <TextBlock Text="Last Name: " Margin="0,0,0,0" FontSize="20" Padding="20" Foreground="Black"  />
+            <TextBlock Text="Last Name: " Margin="0,0,0,0" FontSize="20" Padding="20"   />
 
             <TextBox Text="{Binding Path=Lastname }"  BorderBrush="Black" Margin="0,0,0,0"  Width="200" Height="40"/>
 
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" >
-            <TextBlock Text="Email :" FontSize="20" Margin="0,0,0,0" Padding="20" Foreground="Black"/>
+            <TextBlock Text="Email :" FontSize="20" Margin="0,0,0,0" Padding="20" />
             <TextBox Text="{Binding Path=Email }"  BorderBrush="Black" Padding="10" Margin="0,-0,0,0"  Width="200" Height="40"/>
-            <TextBlock Text="Mobile(+32): " Margin="0,0,0,0" FontSize="20" Padding="20" Foreground="Black"  />
+            <TextBlock Text="Mobile(+32): " Margin="0,0,0,0" FontSize="20" Padding="20"   />
             <TextBox Text="{Binding Path=Mobile}" Padding="10" BorderBrush="Black" Margin="0,0,0,0"  Width="200" Height="40"/>
 
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5">
-            <TextBlock Text="Date Of Birth" FontSize="20" Margin="0,0,0,0" Padding="20" Foreground="Black" />
+            <TextBlock Text="Date Of Birth" FontSize="20" Margin="0,0,0,0" Padding="20"  />
             <DatePicker  SelectedDate="{Binding Path=DateOfBith, Mode=TwoWay}"
                          DisplayDate="{Binding DateTime.Now}"   Margin="20,0,0,0" Height="40"></DatePicker>
-            <TextBlock Text="Salary" Foreground="Black" FontSize="20" Padding="20" Margin="40,0,0,0"/>
+            <TextBlock Text="Salary"  FontSize="20" Padding="20" Margin="40,0,0,0"/>
             <ComboBox ItemsSource="{Binding Salaries}" SelectedItem="{Binding Salary}"  Margin="60,0,0,0" Width="150" Height="30">
             </ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0"  Grid.ColumnSpan="5">
-            <TextBlock Text="Gender:" Foreground="Black" FontSize="20" Padding="20"/>
+            <TextBlock Text="Gender:"  FontSize="20" Padding="20"/>
             <ComboBox  ItemsSource="{Binding Path=Genders}" SelectedItem="{Binding Gender}"  Margin="80,0,0,0" Width="80" Height="30">
             </ComboBox>
             <TextBlock Text="Job Title" FontSize="20" Padding="20" Margin="40,0,0,0"/>

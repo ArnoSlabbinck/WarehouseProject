@@ -12,7 +12,7 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Background="#191c30"
+        Background="#010838"
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Window.Resources>
             <ResourceDictionary>

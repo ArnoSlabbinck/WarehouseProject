@@ -7,22 +7,26 @@ using WarehouseModels;
 using System.Collections.ObjectModel;
 using WarehouseProject.Data;
 using System.ComponentModel;
+using Caliburn.Micro;
 
 namespace WarehouseProject.ViewModels
 {
-    class ShowCustomersViewModel : BaseViewModel
+    class CustomerViewModel : BaseViewModel
     {
         private ICustomerDataService _customerDataService;
         // When you want to add or remove customers this will notify that change from the databinding
         private Customers _selectedCustomer;
-        public event PropertyChangedEventHandler PropertyChanged; 
-        public ShowCustomersViewModel(ICustomerDataService CustomerDataService)
+        
+        public CustomerViewModel(ICustomerDataService CustomerDataService)
         {
-            Customers = new ObservableCollection<Customers>();
+            Customers = new BindableCollection<Customers>();
             _customerDataService = CustomerDataService;
+            Load();
         
         }
-
+        /// <summary>
+        /// Load all the customers from database
+        /// </summary>
         public void Load()
         {
             var customers = _customerDataService.GetAllCustomers();
@@ -32,7 +36,7 @@ namespace WarehouseProject.ViewModels
                 Customers.Add(customer);
             }
         }
-        public ObservableCollection<Customers> Customers { get; set; }
+        public BindableCollection<Customers> Customers { get; set; }
 
         //if user selects a customer => Display customer data  
         public Customers SelectedCustomer
@@ -41,10 +45,6 @@ namespace WarehouseProject.ViewModels
             set { _selectedCustomer = value; }
         }
 
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-        }
+        
     }
 }
