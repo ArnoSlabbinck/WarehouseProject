@@ -145,6 +145,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Commands\AddCustomerCommand.cs" />
     <Compile Include="Commands\EmployeeCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
@@ -168,8 +169,6 @@
     <Compile Include="Logic\Classes\User.cs" />
     <Compile Include="EventModels\UserLoginEvent.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\HelloViewModel.cs" />
-    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\InvoiceGeneratorViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
@@ -189,12 +188,6 @@
     </Compile>
     <Compile Include="Views\ErrorView.xaml.cs">
       <DependentUpon>ErrorView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\HelloView.xaml.cs">
-      <DependentUpon>HelloView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\HomeView.xaml.cs">
-      <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InvoiceGeneratorView.xaml.cs">
       <DependentUpon>InvoiceGeneratorView.xaml</DependentUpon>
@@ -234,14 +227,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ErrorView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\HelloView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\HomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

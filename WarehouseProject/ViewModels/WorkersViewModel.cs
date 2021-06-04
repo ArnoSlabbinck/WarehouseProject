@@ -112,24 +112,7 @@ namespace WarehouseProject.ViewModels
             
             
         }
-        /// <summary>
-        /// Makes a new Datatemplate to display a new employee
-        /// </summary>
-        private void GenerateANewDataTemplate(newEmployeeParams newEmployeeParams)
-        {
-            
-            //Makes a new DataTemplate object every time a new employee is asked
-            var textBlockFactory = new FrameworkElementFactory(typeof(TextBlock));
-            textBlockFactory.SetValue(TextBlock.TextProperty, new Binding(".")); // Here
-            textBlockFactory.SetValue(TextBlock.BackgroundProperty, Brushes.Red);
-            textBlockFactory.SetValue(TextBlock.ForegroundProperty, Brushes.Wheat);
-            textBlockFactory.SetValue(TextBlock.FontSizeProperty, 18.0);
-
-            var template = new DataTemplate();
-            template.VisualTree = textBlockFactory;
-
-
-        }
+       
 
 
     }

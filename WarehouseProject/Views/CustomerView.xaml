@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WarehouseProject.Views"
-              xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:CustomerViewModel}"
+             xmlns:commands="clr-namespace:WarehouseProject.Commands"
+             xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:CustomerViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -15,129 +16,140 @@
              Background="#010838" 
              xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
-    <Grid  Background="Transparent"  >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <TextBlock Text="CUSTOMERS" FontSize="25" Grid.Column="2"/>    
-        <StackPanel Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="4"  >
-            <Border Background="WhiteSmoke" 
+
+    <UserControl.Resources>
+        <commands:CustomerConverter  x:Key="CustomerConverter" />
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid  Background="Transparent"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="CUSTOMERS" FontSize="25" Grid.Column="2"/>
+            <StackPanel Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="4"  >
+                <Border Background="WhiteSmoke" 
                 CornerRadius="5" Height="200" Width="780"  Margin="10">
-                <StackPanel Orientation="Vertical" >
-                    <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
-                        <TextBlock Text="Fullname" Foreground="Black" Margin="10,0,250,0"  />
-                        <TextBlock Text="Email" Foreground="Black" Margin="10,0,250,0"/>
-                        <TextBlock Text="Phone" Foreground="Black" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
-                        <TextBox Foreground="Black"    materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
+                    <StackPanel Orientation="Vertical" >
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                            <TextBlock Text="Fullname" Foreground="Black" Margin="10,0,250,0"  />
+                            <TextBlock Text="Email" Foreground="Black" Margin="10,0,250,0"/>
+                            <TextBlock Text="Phone" Foreground="Black" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                            <TextBox x:Name="Fullname" Foreground="Black"    materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
                                materialDesign:TextFieldAssist.LeadingIcon="Ocarina" 
                                Text="{Binding Path=Fullname}" Height="30" Margin="10,0,205,0"
                                Width="100"/>
-                        <TextBox Foreground="Black"    materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
+                            <TextBox x:Name="Email" Foreground="Black"    materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
                                materialDesign:TextFieldAssist.LeadingIcon="Mail" 
                                Text="{Binding Path=Email}" Height="30" Margin="10,0,180,0" Width="100"/>
-                        <TextBox Foreground="Black"    materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
+                            <TextBox x:Name="Phone" Foreground="Black"    materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
                                materialDesign:TextFieldAssist.LeadingIcon="Phone" 
                                Text="{Binding Path=Phone}" Height="30"  Width="100"/>
 
 
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
-                        <TextBlock Text="Country" Foreground="Black" Margin="10,0,250,0"/>
-                        <TextBlock Text="City" Foreground="Black" Margin="10,0,270,0" />
-                        <TextBlock Text="Street" Foreground="Black" />
-                    </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                            <TextBlock Text="Country" Foreground="Black" Margin="10,0,250,0"/>
+                            <TextBlock Text="City" Foreground="Black" Margin="10,0,270,0" />
+                            <TextBlock Text="Street" Foreground="Black" />
+                        </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
-                        <TextBox Foreground="Black"  materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                            <TextBox x:Name="Country" Foreground="Black"  materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
                                materialDesign:TextFieldAssist.LeadingIcon="Location" 
                                Text="{Binding Path=Country}" Height="30" Margin="10,0,205,0" Width="100"/>
 
 
-                        <TextBox Foreground="Black"   materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
+                            <TextBox x:Name="City" Foreground="Black"   materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
                                materialDesign:TextFieldAssist.LeadingIcon="LegoLocation" 
                                Text="{Binding Path=City}" Height="30" Margin="10,0,180,0" Width="100"/>
 
 
-                        <TextBox Foreground="Black"   materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
+                            <TextBox x:Name="Street" Foreground="Black"   materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
                                materialDesign:TextFieldAssist.LeadingIcon="GoogleStreetView" 
-                               Text="{Binding Path=Email}" Height="30" Width="100" />
+                               Text="{Binding Path=Street}" Height="30" Width="100" />
 
+                        </StackPanel>
+
+                        
+
+
+
+                        <Button Content="Add Customer" Width="150" HorizontalAlignment="Left" Margin="8" Command="{Binding Path=AddCustomerCommand}" >
+                            <Button.CommandParameter>
+                                <MultiBinding Converter="{StaticResource CustomerConverter}" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding ElementName="Fullname" Path="Text" />
+                                    <Binding ElementName="Email" Path="Text" />
+                                </MultiBinding>
+                            </Button.CommandParameter>
+                        </Button>
                     </StackPanel>
 
+                </Border>
+            </StackPanel>
 
-
-
-
-                    <Button Content="Add Customer" Width="150" HorizontalAlignment="Left" Margin="8" Command="{Binding Path=AddCustomer}">
-                        
-                    </Button>
-                </StackPanel>
-               
-            </Border>
-        </StackPanel>
-
-        <DataGrid x:Name="Customers"  Focusable="False"
+            <DataGrid x:Name="Customers"  Focusable="False"
                         CanUserSortColumns="True" materialDesign:DataGridAssist.CellPadding="40 40 40 40 " AlternatingRowBackground="Gray"
-                        materialDesign:DataGridAssist.ColumnHeaderPadding="8" Grid.Row="5" Grid.RowSpan="3"  Grid.ColumnSpan="4" 
-                        SelectedItem="{Binding Path = Selectedtmpstorage}" HeadersVisibility="Column" CanUserAddRows="False" 
-                          Margin="10,0" Grid.Column="0" RenderTransformOrigin="0.5,0.5" ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                        materialDesign:DataGridAssist.ColumnHeaderPadding="8" Grid.Row="5" Grid.RowSpan="3" Grid.Column="0"  Grid.ColumnSpan="4" 
+                         HeadersVisibility="Column" CanUserAddRows="False" 
+                          Margin="10,0" RenderTransformOrigin="0.5,0.5" ScrollViewer.HorizontalScrollBarVisibility="Auto" 
                           ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <DataGrid.ContextMenu>
-                <ContextMenu >
-                    <MenuItem Command="{Binding deleteDataCmd}" Header="Delete"/>
-                </ContextMenu>
-            </DataGrid.ContextMenu>
-            <DataGrid.Columns>
-                <materialDesign:DataGridTextColumn x:Name="tempid" Binding="{Binding Path = Id}"
+                <DataGrid.ContextMenu>
+                    <ContextMenu >
+                        <MenuItem Command="{Binding deleteDataCmd}" Header="Delete"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                <DataGrid.Columns>
+                    <materialDesign:DataGridTextColumn x:Name="tempid" Binding="{Binding Path = Id}"
                                                         Header="Id"  Width="50"
                                                         />
-                <materialDesign:DataGridTextColumn x:Name="tempname" Binding="{Binding Path = Name}"
+                    <materialDesign:DataGridTextColumn x:Name="tempname" Binding="{Binding Path = Fullname}"
                                                         Header="Name" 
                                                         />
-                <materialDesign:DataGridTextColumn x:Name="tempservings" Binding="{Binding Path = Email}"
+                    <materialDesign:DataGridTextColumn x:Name="tempservings" Binding="{Binding Path = Email}"
                                                         Header="Email"
                                                         />
-                <materialDesign:DataGridTextColumn x:Name="tempPHONE" Binding="{Binding Path = Phone}"
+                    <materialDesign:DataGridTextColumn x:Name="tempPHONE" Binding="{Binding Path = Phone}"
                                                         Header="Phone" 
                                                         />
-                <materialDesign:DataGridTextColumn x:Name="temptotal" Binding="{Binding Path = Country}"
+                    <materialDesign:DataGridTextColumn x:Name="temptotal" Binding="{Binding Path = Country}"
                                                         Header="Country" 
                                                         >
-                
-                    <materialDesign:DataGridTextColumn.HeaderStyle>
-                        <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                            <Setter Property="HorizontalAlignment" Value="Right" />
-                        </Style>
-                    </materialDesign:DataGridTextColumn.HeaderStyle>
-                    <materialDesign:DataGridTextColumn.ElementStyle>
-                        <Style TargetType="{x:Type TextBlock}">
-                            <Setter Property="HorizontalAlignment" Value="Right" />
-                        </Style>
-                    </materialDesign:DataGridTextColumn.ElementStyle>
-                </materialDesign:DataGridTextColumn>
-                <materialDesign:DataGridTextColumn x:Name="tempCity" Binding="{Binding Path = City}"
+
+                        <materialDesign:DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                                <Setter Property="HorizontalAlignment" Value="Right" />
+                            </Style>
+                        </materialDesign:DataGridTextColumn.HeaderStyle>
+                        <materialDesign:DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="HorizontalAlignment" Value="Right" />
+                            </Style>
+                        </materialDesign:DataGridTextColumn.ElementStyle>
+                    </materialDesign:DataGridTextColumn>
+                    <materialDesign:DataGridTextColumn x:Name="tempCity" Binding="{Binding Path = City}"
                                                         Header="City" 
                                                         />
-                <materialDesign:DataGridTextColumn x:Name="tempStreet" Binding="{Binding Path = Street}"
+                    <materialDesign:DataGridTextColumn x:Name="tempStreet" Binding="{Binding Path = Street}"
                                                         Header="Street" 
                                                         />
-            </DataGrid.Columns>
-          </DataGrid>
-        
-    </Grid>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+    </ScrollViewer>
 </UserControl>

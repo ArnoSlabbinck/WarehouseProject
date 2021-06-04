@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using WarehouseModels;
 
 namespace WarehouseProject.Data
@@ -13,7 +14,10 @@ namespace WarehouseProject.Data
 
         IEnumerable<Customers> GetCustomersByCountry();
 
+        Task<bool> Add(string[] customerParas);
 
+        void Delete();
+        void Update();
     }
 
     
