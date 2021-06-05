@@ -51,6 +51,10 @@ namespace WarehouseModels
             get { return $"{FirstName} {LastName}"; }
 
         }
+
+        public void DeleteItem()
+        { 
+        }
     
     }
 }

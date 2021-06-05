@@ -121,11 +121,12 @@
                 </Border>
             </StackPanel>
 
-            <DataGrid x:Name="Customers"  Focusable="False"
-                        CanUserSortColumns="True" materialDesign:DataGridAssist.CellPadding="40 40 40 40 " AlternatingRowBackground="Gray"
+            <DataGrid x:Name="Customers"  Focusable="False"  ItemsSource="{Binding Customers}"
+                        CanUserSortColumns="True" materialDesign:DataGridAssist.CellPadding="40 40 40 40 " 
                         materialDesign:DataGridAssist.ColumnHeaderPadding="8" Grid.Row="5" Grid.RowSpan="3" Grid.Column="0"  Grid.ColumnSpan="4" 
-                         HeadersVisibility="Column" CanUserAddRows="False" 
-                          Margin="10,0" RenderTransformOrigin="0.5,0.5" ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                         HeadersVisibility="Column" CanUserAddRows="False" BorderThickness="0,0,0,0"
+                          GridLinesVisibility="None" 
+                          Margin="10,0" RenderTransformOrigin="0.5,0.5"  
                           ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <DataGrid.ContextMenu>
                     <ContextMenu >
@@ -145,7 +146,9 @@
                     <materialDesign:DataGridTextColumn x:Name="tempPHONE" Binding="{Binding Path = Phone}"
                                                         Header="Phone" 
                                                         />
-                    <materialDesign:DataGridTextColumn x:Name="temptotal" Binding="{Binding Path = Country}"
+                    <materialDesign:DataGridTextColumn x:Name="temptotal" Binding="{Binding Path = Country}" Foreground="Black"
+                                                       
+                                                       
                                                         Header="Country" 
                                                         >
 
@@ -166,6 +169,30 @@
                     <materialDesign:DataGridTextColumn x:Name="tempStreet" Binding="{Binding Path = Street}"
                                                         Header="Street" 
                                                         />
+                    <DataGridTemplateColumn Header="Edit" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate >
+                                <Button
+                            x:Name="btnEdit"
+                            Width="75"
+                            Height="Auto"
+                            Margin="10"
+                            Content="Edit" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Delete">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                            x:Name="btnDelete"
+                            Width="75"
+                            Height="Auto"
+                            Margin="10"
+                            Content="Delete" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
 

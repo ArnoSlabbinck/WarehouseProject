@@ -146,6 +146,8 @@
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Commands\AddCustomerCommand.cs" />
+    <Compile Include="Commands\DeleteCustomerCommand.cs" />
+    <Compile Include="Commands\EditCustomerCommand.cs" />
     <Compile Include="Commands\EmployeeCommand.cs" />
     <Compile Include="Commands\ContactCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />

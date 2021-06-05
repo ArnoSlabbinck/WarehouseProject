@@ -19,6 +19,7 @@ namespace WarehouseProject.ViewModels
 
         public BindableCollection<Customers> Customers { get; set; }
 
+        #region properties
         //if user selects a customer => Display customer data  
         public Customers SelectedCustomer
         {
@@ -125,22 +126,29 @@ namespace WarehouseProject.ViewModels
                 OnPropertyChanged(nameof(Country));
             }
         }
-
+        
 
         public AddCustomerCommand addCustomerCommand { get; set; }
+         
+        public EditCustomerCommand EditCustomerCommand { get; set; }
+
+        public DeleteCustomerCommand deleteCustomerCommand { get; set; }
         public  CustomerConverter CustomerConverter { get; set; }
 
         private CustomerDataService _customerDataService;
         // When you want to add or remove customers this will notify that change from the databinding
         private Customers _selectedCustomer;
-        
+        #endregion
         public CustomerViewModel(CustomerDataService CustomerDataService)
         {
             
             _customerDataService = CustomerDataService;
             Customers = new BindableCollection<Customers>();
             addCustomerCommand = new AddCustomerCommand(this);
+            deleteCustomerCommand = new DeleteCustomerCommand(this);
+            EditCustomerCommand = new EditCustomerCommand(this);
             CustomerConverter = new CustomerConverter();
+            
             Load();
 
         }
@@ -206,4 +214,6 @@ namespace WarehouseProject.ViewModels
         }
 
     }
+
+
 }
