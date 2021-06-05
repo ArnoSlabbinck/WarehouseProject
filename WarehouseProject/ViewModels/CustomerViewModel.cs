@@ -17,6 +17,15 @@ namespace WarehouseProject.ViewModels
     {
         private string[] customerParams;
 
+        public BindableCollection<Customers> Customers { get; set; }
+
+        //if user selects a customer => Display customer data  
+        public Customers SelectedCustomer
+        {
+            get { return _selectedCustomer; }
+            set { _selectedCustomer = value; }
+        }
+
         private string errors;
 
         public string  Errors
@@ -121,11 +130,11 @@ namespace WarehouseProject.ViewModels
         public AddCustomerCommand addCustomerCommand { get; set; }
         public  CustomerConverter CustomerConverter { get; set; }
 
-        private ICustomerDataService _customerDataService;
+        private CustomerDataService _customerDataService;
         // When you want to add or remove customers this will notify that change from the databinding
         private Customers _selectedCustomer;
         
-        public CustomerViewModel(ICustomerDataService CustomerDataService)
+        public CustomerViewModel(CustomerDataService CustomerDataService)
         {
             
             _customerDataService = CustomerDataService;
@@ -149,7 +158,7 @@ namespace WarehouseProject.ViewModels
             }
         }
 
-        public  void Add()
+        public async  void Add()
         {
             customerParams = new string[10];
             customerParams[0] = Fullname;
@@ -159,9 +168,10 @@ namespace WarehouseProject.ViewModels
             customerParams[4] = City;
             customerParams[5] = Street;
 
-            Task<bool> succesAddedCustomer =  _customerDataService.Add(customerParams);
             
-            if (Task.Equals(succesAddedCustomer, true))
+            bool succesAddedCustomer = await _customerDataService.Add(customerParams);
+            
+            if (succesAddedCustomer == true)
             {
                 Errors = "Customer has been added";
             }
@@ -184,18 +194,13 @@ namespace WarehouseProject.ViewModels
         { 
         
         }
-        public BindableCollection<Customers> Customers { get; set; }
-
-        //if user selects a customer => Display customer data  
-        public Customers SelectedCustomer
-        {
-            get { return _selectedCustomer; }
-            set { _selectedCustomer = value; }
-        }
-
+      
+        /// <summary>
+        /// Displays the popup message for an error or when a customer has been added
+        /// </summary>
         public void OnShowDialog()
         {
-            Console.WriteLine("h");
+            
             
             IsDialogOpen = true;
         }

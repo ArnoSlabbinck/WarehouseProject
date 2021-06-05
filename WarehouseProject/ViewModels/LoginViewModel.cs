@@ -18,7 +18,7 @@ namespace WarehouseProject.ViewModels
     /// <summary>
     /// Link the authenticationService with the loginView
     /// </summary>
-    public class LoginViewModel : PropertyChangedBase, INotifyDataErrorInfo, IHandle<string> 
+    public class LoginViewModel : BaseViewModel 
     {
 
 
@@ -46,6 +46,11 @@ namespace WarehouseProject.ViewModels
             set;
         }
             
+        public ContactCommand ErrorCommand
+        {
+            get;
+            set;
+        }
 
         #region Properties
         [Required(ErrorMessage = "Username can't be empty")]
@@ -73,9 +78,9 @@ namespace WarehouseProject.ViewModels
             {
                 
                 _username = value;
-                NotifyOfPropertyChange(() => Username);
+                OnPropertyChanged(nameof(Username));
 
-                
+
 
             }
         }
@@ -101,7 +106,7 @@ namespace WarehouseProject.ViewModels
             set 
             {
                 _password = value;
-                NotifyOfPropertyChange(() => Password);
+                OnPropertyChanged(nameof(Password));
 
             }
                 
@@ -119,20 +124,20 @@ namespace WarehouseProject.ViewModels
             set { status = value;
                 ResetStatus();
                 //Reset Status Task<
-                NotifyOfPropertyChange(() => Status);
+                OnPropertyChanged(nameof(Status));
             }
         }
 
        
 
         #endregion
-        public LoginViewModel(IEventAggregator _events, MainWindowViewModel mainWindow, EmployeeViewModel register, AccountViewModel account )
+        public LoginViewModel(IEventAggregator _events, MainWindowViewModel mainWindow, EmployeeViewModel register, AccountViewModel account, ContactViewModel error )
         {
             this.mainWindow = mainWindow;
             events = _events;
             events.Subscribe(this);
             LoginButton = new LoginCommand(this, events, windowManager, register, mainWindow, account);
-            
+            ErrorCommand = new ContactCommand(error);
             
         }
         /// <summary>
@@ -270,10 +275,6 @@ namespace WarehouseProject.ViewModels
             throw new NotImplementedException();
         }
 
-        public void Handle(string message)
-        {
-            throw new NotImplementedException();
-        }
 
 
         public void PublishMessageAdmin(string username)

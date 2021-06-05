@@ -141,7 +141,7 @@ namespace WarehouseProject.Data
                             Supervisor = supervisor
                         };
                         context.Employees.Add(Employee);
-                        context.SaveChanges();
+                        context.SaveChangesAsync();
                     }
 
                     else

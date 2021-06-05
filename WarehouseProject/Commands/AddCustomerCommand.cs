@@ -49,11 +49,11 @@ namespace WarehouseProject.Commands
                 }
             }
 
-            if (errorMessages.Any())
+            if (errorMessages[0] == null)
             {
                 customerViewModel.Add();
                 customerViewModel.OnShowDialog();
-
+                ResetCustomerFields();
             }
             else
             {
@@ -65,8 +65,26 @@ namespace WarehouseProject.Commands
                 }
                 customerViewModel.Errors = errors;
                 customerViewModel.OnShowDialog();
+                ResetCustomerFields();
             }
         }
+
+        /// <summary>
+        /// Makes every field to add a new customer back to null
+        /// </summary>
+        private void ResetCustomerFields()
+        {
+            customerViewModel.City = null;
+            customerViewModel.Country = null;
+            customerViewModel.Email = null;
+            customerViewModel.Fullname = null;
+            customerViewModel.Street = null;
+            customerViewModel.Phone = null;
+        
+        
+        }
+
+
 
         
     }

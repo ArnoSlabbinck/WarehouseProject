@@ -13,6 +13,10 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.Resources>
+        
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -47,7 +51,14 @@
                                          Padding="10" BorderBrush="Black" 
                                          Margin="0,-70,200,0"   Width="500" 
                                          Height="60" />
-            <Button BorderBrush="Transparent" x:Name="ForgotPassword" Content="Forgot Password? Contact Supervisor"  Background="Transparent" Foreground="Black" Width="380" FontWeight="Bold" Height="50" FontSize="20" Margin="-1000,50,0,0"/>
+            <Button BorderBrush="Transparent" x:Name="ForgotPassword" Content="Forgot Password? Contact Supervisor"  Background="Transparent"
+                    Foreground="Black" 
+                    Width="380" 
+                    FontWeight="Bold" 
+                    Height="50" 
+                    FontSize="20"
+                    Margin="-1000,50,0,0"
+                    Command="{Binding ErrorCommand}"/>
         </StackPanel>
         <Button Content="Login" Command="{Binding LoginButton}" CommandParameter="{Binding Text, ElementName=Login}"  Width="150" Height="40" Grid.Row="4" Grid.Column="1"/>
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Margin="0,70,0,0">
