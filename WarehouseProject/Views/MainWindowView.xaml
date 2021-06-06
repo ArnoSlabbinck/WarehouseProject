@@ -37,7 +37,7 @@
 
 
 
-    <Grid>
+    <Grid Background="#272537">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -55,9 +55,15 @@
 
 
         <Grid x:Name="Header"    
-            Background="#010838"   
+            Background="#272537"   
            Grid.ColumnSpan="5">
-            <StackPanel x:Name="HeaderStackPanel" >
+            <TextBox Width="250"
+                         Height="40"
+                         Margin="0,0,400,0"
+                         Style="{StaticResource ModernTextBox}"/>
+
+
+            <StackPanel x:Name="HeaderStackPanel"  >
                 <materialDesign:DialogHost CloseOnClickAway="True"  Identifier="DialogHost" HorizontalAlignment="Left" Width="1184">
                     <materialDesign:DialogHost.DialogContent>
                         <Grid Margin="20" Width="600" Height="400">
@@ -85,21 +91,25 @@
                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"     >
                         <materialDesign:PackIcon Kind="Power"/>
                     </Button>
+
                 </materialDesign:DialogHost>
-                <Image />
-                <Label Content="Logged in as "  Margin="300,0,0,0" />
+
                 <TextBlock Text="{Binding Path=Function}" />
                 <TextBlock Text="{Binding Path=Fullname}"
-                          FontSize="16"    
+                          FontSize="25" FontWeight="DemiBold"    
                           FontFamily="WS Simple Gallifreyan"    
                           Foreground="#fff"     
-                          Margin="600,-40,0,0"/>
+                          Margin="600,-0,0,0"/>
 
+                <TextBlock Text="{Binding Path=Today}"
+                           FontSize="16" Margin="1100,0,0,0"   
+                          FontFamily="WS Simple Gallifreyan"    
+                          Foreground="#fff"/>
             </StackPanel>
         </Grid>
 
         <DockPanel Grid.Row="0" Grid.Column="0" 
-                    Grid.RowSpan="5" Background="#020e61"   >
+                    Grid.RowSpan="5" Background="#272537"   >
             <StackPanel Orientation="Vertical" >
                 <Grid x:Name="GridLeftPanel">
                     <TextBlock x:Name="WareHouseStatus"    
@@ -112,7 +122,7 @@
                     </TextBlock>
                 </Grid>
                 <Button x:Name="ButtonWarehouseDashBoard"     
-                   Margin="10" Background="#0d1547" Command="{Binding Path=switchView}" CommandParameter="Dashboard">
+                   Margin="10" Background="#272537" Command="{Binding Path=switchView}" CommandParameter="Dashboard">
                     <Grid x:Name="WareHoudeDashBoard"    
                           
                      Height="20"    
@@ -124,7 +134,7 @@
                               Text="DASHBOARD" />
                     </Grid>
                 </Button>
-                <Button Margin="10" Background="#0d1547" Command="{Binding Path=switchView}" CommandParameter="Employees">
+                <Button Margin="10" Background="#272537" Command="{Binding Path=switchView}" CommandParameter="Employees">
                     <Grid x:Name="Employees"    
                      Height="20"    
                      Width="150">
@@ -134,7 +144,7 @@
                               Text="EMPLOYEES" />
                     </Grid>
                 </Button>
-                <Button Margin="10" Background="#0d1547" Command="{Binding Path=switchView}" CommandParameter="Customers">
+                <Button Margin="10" Background="#272537" Command="{Binding Path=switchView}" CommandParameter="Customers">
                     <Grid x:Name="CUSTOMERS"    
                      Height="20"    
                      Width="150">
@@ -144,7 +154,7 @@
                               Text="CUSTOMERS" />
                     </Grid>
                 </Button>
-                <Button Margin="10" Background="#0d1547" Command="{Binding Path=switchView}" CommandParameter="Orders">
+                <Button Margin="10" Background="#272537" Command="{Binding Path=switchView}" CommandParameter="Orders">
                     <Grid x:Name="ORDERS"    
                      Height="20"    
                      Width="150">
@@ -154,7 +164,7 @@
                               Text="ORDERS" />
                     </Grid>
                 </Button>
-                <Button Margin="10" Background="#0d1547" Command="{Binding Path=switchView}" CommandParameter="Account">
+                <Button Margin="10" Background="#272537" Command="{Binding Path=switchView}" CommandParameter="Account">
                     <Grid x:Name="ACCOUNT"    
                      Height="20"    
                      Width="150">
@@ -164,7 +174,7 @@
                               Text="ACCOUNT" />
                     </Grid>
                 </Button>
-                <Button Margin="10" Background="#0d1547" Command="{Binding Path=switchView}" CommandParameter="Products">
+                <Button Margin="10" Background="#272537" Command="{Binding Path=switchView}" CommandParameter="Products">
                     <Grid x:Name="Products"    
                      Height="20"    
                      Width="150">
@@ -179,11 +189,9 @@
         </DockPanel>
 
 
-        
-        <ContentControl Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="4" Content="{Binding SelectedViewModel}">
 
-        </ContentControl>
-        
+        <ContentControl Grid.ColumnSpan="5" Grid.RowSpan="5" Content="{Binding SelectedViewModel}" Margin="239,122,-0.4,2"/>
+
     </Grid>
 
 

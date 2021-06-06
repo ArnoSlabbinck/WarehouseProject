@@ -8,7 +8,7 @@ using WarehouseProject.EventModels;
 
 namespace WarehouseProject.ViewModels
 {
-    public class DashboardViewModel : IHandle<UserLoginEvent>
+    public class DashboardViewModel : BaseViewModel, IHandle<UserLoginEvent>
     {
         private IEventAggregator aggregator;
         public DashboardViewModel(IEventAggregator eventAggregator)
@@ -19,7 +19,7 @@ namespace WarehouseProject.ViewModels
             
         public void Handle(UserLoginEvent message)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("jall");
         }
     }
 }

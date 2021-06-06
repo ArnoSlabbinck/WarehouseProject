@@ -10,8 +10,9 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}"
-             
+              xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" d:DataContext="{d:DesignInstance Type=viewmodels:DashboardViewModel}"
              mc:Ignorable="d" 
+             Background="#272537"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -27,6 +28,27 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Rectangle Height="140" Margin="20" Fill="Azure" RadiusY="10" RadiusX="10" Grid.RowSpan="2" Grid.Row="0" Grid.ColumnSpan="1" >
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Grid Height="200" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="2">
+            <Grid Width="35" Height="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 0">
+                <Grid.Effect>
+                    <DropShadowEffect BlurRadius="20" Color="#FFECECEC" RenderingBias="Quality" ShadowDepth="1"/>
+                </Grid.Effect>
+               
+            </Grid>
+            <TextBlock x:Name="TextBlockCONFIRMED"    
+                            Style="{StaticResource TitleTextBlockStyle}"    
+                             
+                            Text="Welcome to your Store "  Margin="20 30" TextWrapping="Wrap" />
+
+            </Grid>
+        <Calendar Margin="45 10" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4"/>
+        
+
     </Grid>
     
 </UserControl>

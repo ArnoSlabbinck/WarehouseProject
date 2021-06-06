@@ -22,6 +22,7 @@ namespace WarehouseProject.Views
         public ErrorView()
         {
             InitializeComponent();
+            
         }
     }
 }

@@ -17,12 +17,16 @@ namespace WarehouseProject.Commands
         private CustomerViewModel customer;
         private EmployeeViewModel register;
         private AccountViewModel account;
-        public SwitchViewCommand(MainWindowViewModel mainWindow,EmployeeViewModel registerView, AccountViewModel accountView)
+        private DashboardViewModel dashboard;
+        public SwitchViewCommand(IEventAggregator eventaggretor, MainWindowViewModel mainWindow,
+            EmployeeViewModel registerView,
+            AccountViewModel accountView)
         {
             main = mainWindow;
             register = registerView;
             account = accountView;
             customer = new CustomerViewModel(new CustomerDataService());
+            dashboard = new DashboardViewModel(eventaggretor);
         }
         public bool CanExecute(object parameter)
         {
@@ -42,6 +46,7 @@ namespace WarehouseProject.Commands
                     main.SelectedViewModel = register;
                     break;
                 case "Dashboard":
+                    main.SelectedViewModel = dashboard; 
                     break;
                 case "Orders":
                     break;
