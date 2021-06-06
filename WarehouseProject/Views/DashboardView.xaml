@@ -28,23 +28,38 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Rectangle Height="140" Margin="20" Fill="Azure" RadiusY="10" RadiusX="10" Grid.RowSpan="2" Grid.Row="0" Grid.ColumnSpan="1" >
-            <Rectangle.Effect>
-                <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
-            </Rectangle.Effect>
-        </Rectangle>
-        <Grid Height="200" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="2">
+        <Border Width="200" Grid.Row="0" 
+                Grid.RowSpan="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Height="200"
+                CornerRadius="10"
+                Margin="45,0,0,0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#5bc3ff" Offset="0.2"/>
+                    <GradientStop Color="#3aa0ff" Offset="0.8"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            
+        </Border>
+        <Grid Height="200"
+              Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2">
             <Grid Width="35" Height="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 0">
                 <Grid.Effect>
                     <DropShadowEffect BlurRadius="20" Color="#FFECECEC" RenderingBias="Quality" ShadowDepth="1"/>
                 </Grid.Effect>
                
             </Grid>
-            <TextBlock x:Name="TextBlockCONFIRMED"    
+            <materialDesign:PackIcon Kind="Warehouse" Margin="150 50"  />
+            <TextBlock x:Name="Welcome"    
                             Style="{StaticResource TitleTextBlockStyle}"    
                              
-                            Text="Welcome to your Store "  Margin="20 30" TextWrapping="Wrap" />
+                            Text="{Binding Path=Welcome}" FontWeight="DemiBold" Foreground="#fff"  Margin="100 50" TextWrapping="Wrap" />
+            <TextBlock x:Name="Dashboard"    
+                            Style="{StaticResource TitleTextBlockStyle}"    
 
+                            Text="Get familiar with the dashboard, here are some ways to get started"  Foreground="#fff"  Margin="100,111,100,0" TextWrapping="Wrap" />
             </Grid>
         <Calendar Margin="45 10" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4"/>
         

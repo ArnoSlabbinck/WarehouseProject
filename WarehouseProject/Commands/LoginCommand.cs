@@ -44,7 +44,7 @@ namespace WarehouseProject.Commands
             if (loggedIn == true)
             {
                 var username = parameter as string;
-                login.PublishMessageAdmin(username);
+                login.PublishMessageAdminOrUser(username);
                 windowManager.ShowDialog(new MainWindowViewModel(events, register, account));
 
             }

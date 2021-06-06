@@ -27,7 +27,7 @@ namespace WarehouseProject.ViewModels
 
        
         private readonly AuthenticationService authentication = new AuthenticationService();
-        private readonly User user = new User(); 
+        private  User user = new User(); 
         private readonly Admin admin = new Admin();
         private readonly WindowManager windowManager = new WindowManager();
         private readonly MainWindowViewModel mainWindow;
@@ -173,7 +173,7 @@ namespace WarehouseProject.ViewModels
                     
                     
               
-                User user = authentication.Login(username, password);
+                user = authentication.Login(username, password);
                 if (user.IsAuthenticated == false)
                 {
                     return null;
@@ -270,17 +270,17 @@ namespace WarehouseProject.ViewModels
             
         }
 
-        public bool CheckRegistration(string data, AuthenticationService authentication)
-        {
-            throw new NotImplementedException();
-        }
+        
 
-
-
-        public void PublishMessageAdmin(string username)
+        /// <summary>
+        /// Sent a admin or user instance to the main application after they
+        /// have succesfully logged in
+        /// </summary>
+        /// <param name="username"></param>
+        public  void PublishMessageAdminOrUser(string username)
         {
             if(username == admin.Username)
-                Task.Run(() => events.PublishOnUIThreadAsync(new UserLoginEvent(admin)));
+                Task.Run(() =>  events.PublishOnUIThreadAsync(new UserLoginEvent(admin)));
             else
                 Task.Run(() => events.PublishOnUIThreadAsync(new UserLoginEvent(user)));
         }
