@@ -72,9 +72,27 @@ namespace WarehouseProject.Data
         }
     
 
-        public void Delete()
+        public async Task<bool> Delete(Customers Customer)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var context = new WarehouseDataAccess.WarehouseDBContext())
+                {
+                    Customers DeleteCustomer = context.Customers.Find(Customer.Id);
+                    context.Customers.Remove(DeleteCustomer);
+                    await context.SaveChangesAsync();
+                    return true;
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"{e.InnerException} => {e.Message}: {e.Data}");
+                return false;
+            }
+            
+            
         }
 
         public IEnumerable<Customers> GetAllCustomers()
@@ -107,15 +125,43 @@ namespace WarehouseProject.Data
             throw new NotImplementedException();
         }
 
-        public void Update()
+        public async Task<bool> Update(Customers customer)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                // We only need to update the parts of the customer 
+                // that are different from the customer in the database
+                // Get the Customer from the database 
+                using(var context = new WarehouseDataAccess.WarehouseDBContext())
+                {
+                    Customers customerDatabase = context.Customers.Find(customer.Id);
+                    //I need to detect whenever there's a change in one of the Customer 
+                    string[] selectedCustomerData = CustomerData(customer);
+                    string[] customerDatabaseData = CustomerData(customerDatabase);
 
+                }
+
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// Set the first letter of the string to a capital letter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         private string NameWithACapitalLetter(string name)
         {
             return name.Substring(0,1).ToUpper()
                         + name.Substring(1, name.Length - 1).ToLower();
+        }
+
+        private string[] CustomerData(Customers customers)
+        {
+            throw new NotImplementedException();
         }
     }
 

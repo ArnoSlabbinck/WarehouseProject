@@ -16,8 +16,8 @@ namespace WarehouseProject.Data
 
         Task<bool> Add(string[] customerParas);
 
-        void Delete();
-        void Update();
+        Task<bool> Delete(Customers customer);
+        Task<bool> Update(Customers customer);
     }
 
     

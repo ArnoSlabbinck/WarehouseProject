@@ -24,7 +24,11 @@ namespace WarehouseProject.ViewModels
         public Customers SelectedCustomer
         {
             get { return _selectedCustomer; }
-            set { _selectedCustomer = value; }
+            set 
+            { 
+                _selectedCustomer = value;
+                OnPropertyChanged(nameof(SelectedCustomer));
+            }
         }
 
         private string errors;
@@ -199,8 +203,17 @@ namespace WarehouseProject.ViewModels
         /// Deletes the Customer from a database
         /// </summary>
         public async void Delete()
-        { 
-        
+        {
+           bool DeletedCustomer = await _customerDataService.Delete(SelectedCustomer);
+           if (DeletedCustomer == true)
+           {
+                Errors = "Customer has been deleted";
+           }
+           else
+           {
+                Errors = "Something went wrong." +
+                    "Contact the supervisor";
+           }
         }
       
         /// <summary>
@@ -208,8 +221,6 @@ namespace WarehouseProject.ViewModels
         /// </summary>
         public void OnShowDialog()
         {
-            
-            
             IsDialogOpen = true;
         }
 

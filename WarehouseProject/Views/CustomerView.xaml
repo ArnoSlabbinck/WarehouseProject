@@ -121,7 +121,7 @@
                 </Border>
             </StackPanel>
 
-            <DataGrid x:Name="Customers"  Focusable="False"  ItemsSource="{Binding Customers}"
+            <DataGrid x:Name="Customers"  Focusable="False"  ItemsSource="{Binding Customers}" SelectedItem="{Binding Path=SelectedCustomer,  Mode=TwoWay}"
                         CanUserSortColumns="True" materialDesign:DataGridAssist.CellPadding="40 40 40 40 " 
                         materialDesign:DataGridAssist.ColumnHeaderPadding="8" Grid.Row="5" Grid.RowSpan="3" Grid.Column="0"  Grid.ColumnSpan="4" 
                          HeadersVisibility="Column" CanUserAddRows="False" BorderThickness="0,0,0,0"
@@ -134,8 +134,8 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
-                    <materialDesign:DataGridTextColumn x:Name="tempid" Binding="{Binding Path = Id}"
-                                                        Header="Id"  Width="50"
+                    <materialDesign:DataGridTextColumn x:Name="Id" Binding="{Binding Path = Id}"
+                                                        Header="Id"  Width="50" 
                                                         />
                     <materialDesign:DataGridTextColumn x:Name="tempname" Binding="{Binding Path = Fullname}"
                                                         Header="Name" 
@@ -175,18 +175,20 @@
                                 <Button
                             x:Name="btnEdit"
                             Width="75"
+                            Command="{Binding Path=DataContext.EditCustomerCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"                         
                             Height="Auto"
                             Margin="10"
                             Content="Edit" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Delete">
+                    <DataGridTemplateColumn  Header="Delete">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button
                             x:Name="btnDelete"
                             Width="75"
+                            Command="{Binding Path=DataContext.deleteCustomerCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"                         
                             Height="Auto"
                             Margin="10"
                             Content="Delete" />

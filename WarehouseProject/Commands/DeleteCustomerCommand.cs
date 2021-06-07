@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using WarehouseModels;
 using WarehouseProject.ViewModels;
 
 namespace WarehouseProject.Commands
 {
     public class DeleteCustomerCommand : ICommand
     {
+        private Customers Customer;
         public event EventHandler CanExecuteChanged;
         private CustomerViewModel CustomerView;
         public DeleteCustomerCommand(CustomerViewModel customerViewModel)
@@ -29,9 +31,8 @@ namespace WarehouseProject.Commands
         public void Execute(object parameter)
         {
             // get the Id Use that to find the customer in the database 
-            int id = (int)parameter;
-            Console.WriteLine(id);
-
+            CustomerView.Delete();
+            CustomerView.OnShowDialog();
         }
     }
 }
