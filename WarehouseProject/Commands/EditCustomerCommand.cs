@@ -24,7 +24,7 @@ namespace WarehouseProject.Commands
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            CustomerView.ShowEditDialog();
         }
     }
 }

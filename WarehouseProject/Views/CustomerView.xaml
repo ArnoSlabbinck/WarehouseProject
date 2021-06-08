@@ -38,6 +38,69 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+
+            <materialDesign:DialogHost  BorderBrush="{DynamicResource MaterialDesignDivider}" IsOpen="{Binding EditDialogOpen}">
+                <materialDesign:DialogHost.DialogContent>
+                    <Grid Height="705" Width="800" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <StackPanel  Margin="5" Grid.Row="0" Grid.ColumnSpan="2">
+                            <TextBlock Foreground="Gray" Width="200"   TextWrapping="Wrap" Text="{Binding Errors}" />
+                        </StackPanel>
+                        <StackPanel  Margin="5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                            <TextBlock Foreground="Gray" Width="200"   TextWrapping="Wrap" Text="Fullname" />
+                            <TextBox  Width="200" Foreground="Black" Height="30" Text="{Binding Path=Fullname}"/>
+                        </StackPanel>
+                        <StackPanel  Margin="5" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
+                            <TextBlock Foreground="Gray" Width="200" Margin="15 5" TextWrapping="Wrap" Text="Email" />
+                            <TextBox Foreground="Gray" Width="200" Text="{Binding Path=Email}"/>
+                        </StackPanel>
+                        <StackPanel  Margin="5" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                            <TextBlock Foreground="Gray" Width="200" Margin="15 5" TextWrapping="Wrap" Text="Phone" />
+                            <TextBox Foreground="Gray" Width="200"  Text="{Binding Path=Phone}"/>
+                        </StackPanel>
+                        <StackPanel  Margin="5" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
+                            <TextBlock Foreground="Gray" Width="200" Margin="15 5" TextWrapping="Wrap" Text="City" />
+                            <TextBox Foreground="Gray" Width="200"  Text="{Binding Path=City}"/>
+                        </StackPanel>
+                        <StackPanel  Margin="5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                            <TextBlock Foreground="Gray" Width="200" Margin="15 5" TextWrapping="Wrap" Text="Country" />
+                            <TextBox Foreground="Gray" Width="200"  Text="{Binding Path=Country}"/>
+                        </StackPanel>
+                        <StackPanel  Margin="5" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2">
+                            <TextBlock Foreground="Gray" Width="200" Margin="15 5" TextWrapping="Wrap" Text="Street" />
+                            <TextBox Foreground="Gray" Width="200"  Text="{Binding Path=Street}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" Grid.Row="4" Grid.ColumnSpan="3" >
+                            <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatAccentBgButton}">
+                                Edit 
+                            </Button>
+
+                            <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatAccentBgButton}">
+                                Close
+                            </Button>
+                        </StackPanel>
+
+                    </Grid>
+                </materialDesign:DialogHost.DialogContent>
+            </materialDesign:DialogHost>
+
+
             <materialDesign:DialogHost  BorderBrush="{DynamicResource MaterialDesignDivider}" IsOpen="{Binding IsDialogOpen}">
                 <materialDesign:DialogHost.DialogContent>
                     <Grid Height="150" Width="300" HorizontalAlignment="Center">

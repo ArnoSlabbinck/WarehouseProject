@@ -55,6 +55,17 @@ namespace WarehouseProject.ViewModels
                 }
         }
 
+        private bool _editDialogOpen;
+        public bool EditDialogOpen
+        {
+            get { return _editDialogOpen; }
+            set
+            {
+                _editDialogOpen = value;
+                OnPropertyChanged(nameof(EditDialogOpen));
+
+            }
+        }
 
         private string fullname;
 
@@ -197,7 +208,7 @@ namespace WarehouseProject.ViewModels
         /// </summary>
         public async void Update()
         { 
-        
+
         }
         /// <summary>
         /// Deletes the Customer from a database
@@ -222,6 +233,11 @@ namespace WarehouseProject.ViewModels
         public void OnShowDialog()
         {
             IsDialogOpen = true;
+        }
+
+        public void ShowEditDialog()
+        {
+            EditDialogOpen = true;
         }
 
     }

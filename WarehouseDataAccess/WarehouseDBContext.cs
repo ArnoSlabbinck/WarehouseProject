@@ -37,6 +37,7 @@ namespace WarehouseDataAccess
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
     }
 
 }

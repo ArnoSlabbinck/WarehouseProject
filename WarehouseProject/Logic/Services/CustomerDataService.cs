@@ -80,6 +80,7 @@ namespace WarehouseProject.Data
                 {
                     Customers DeleteCustomer = context.Customers.Find(Customer.Id);
                     context.Customers.Remove(DeleteCustomer);
+                    //Update the Id's in the database 
                     await context.SaveChangesAsync();
                     return true;
 
@@ -163,6 +164,12 @@ namespace WarehouseProject.Data
         {
             throw new NotImplementedException();
         }
+        /// <summary>
+        /// Resets every customers id back to right id after deleted a customer
+        /// </summary>
+        /// <param name="customers"></param>
+        /// <returns></returns>
+        
     }
 
    
