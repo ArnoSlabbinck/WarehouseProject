@@ -16,7 +16,8 @@
     <Window.Resources>
         
     </Window.Resources>
-    
+
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -31,6 +32,23 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         
+        <materialDesign:DialogHost  BorderBrush="{DynamicResource MaterialDesignDivider}" IsOpen="{Binding IsDialogOpen}">
+            <materialDesign:DialogHost.DialogContent>
+                <Grid Height="150" Width="300" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Margin="15">
+                        <TextBlock Foreground="Gray" Width="200" Margin="15 5" TextWrapping="Wrap" Text="{Binding Path=Errors}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
+                        <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatAccentBgButton}">
+                            Okay
+                        </Button>
+                    </StackPanel>
+
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+
+
         <StackPanel Margin="20" Orientation="Vertical" Grid.Column="1" Grid.Row="1"  Grid.ColumnSpan="2">
             <TextBlock Text="Sign In" FontSize="25" Foreground="#fff"
                    HorizontalAlignment="Center" FontWeight="Bold" Style="{DynamicResource  MaterialDesignSubtitle1TextBlock}" />

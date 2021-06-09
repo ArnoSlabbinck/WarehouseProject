@@ -149,7 +149,7 @@
     <Compile Include="Commands\DeleteCustomerCommand.cs" />
     <Compile Include="Commands\EditCustomerCommand.cs" />
     <Compile Include="Commands\EmployeeCommand.cs" />
-    <Compile Include="Commands\ContactCommand.cs" />
+    <Compile Include="Commands\ErrorCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="Commands\ShowEmployeesCommand.cs" />
@@ -178,6 +178,7 @@
     <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="ViewModels\InvoiceGeneratorViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -217,6 +218,9 @@
     </Compile>
     <Compile Include="Logic\Services\CustomerDataService.cs" />
     <Compile Include="Logic\Interfaces\ICustomerDataService.cs" />
+    <Compile Include="Views\ProductView.xaml.cs">
+      <DependentUpon>ProductView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
@@ -260,6 +264,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProductView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

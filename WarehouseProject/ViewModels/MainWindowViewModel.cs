@@ -159,6 +159,10 @@ namespace WarehouseProject.ViewModels
             fullname = name;
                 
         }
+
+        /// <summary>
+        /// Runs 
+        /// </summary>
         private async void RunTask()
         {
             while (true)

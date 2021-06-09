@@ -40,13 +40,15 @@ namespace WarehouseProject.ViewModels
 
         private IEventAggregator events;
 
+        
+
         public LoginCommand LoginButton
         {
             get;
             set;
         }
             
-        public ContactCommand ErrorCommand
+        public ErrorCommand ErrorCommand
         {
             get;
             set;
@@ -54,8 +56,30 @@ namespace WarehouseProject.ViewModels
 
         #region Properties
         [Required(ErrorMessage = "Username can't be empty")]
-        
-        
+
+        private string errors;
+
+        public string Errors
+        {
+            get { return errors; }
+            set
+            {
+                errors = value;
+                OnPropertyChanged(nameof(Errors));
+            }
+        }
+
+        private bool _IsDialogOpen;
+        public bool IsDialogOpen
+        {
+            get { return _IsDialogOpen; }
+            set
+            {
+                _IsDialogOpen = value;
+                OnPropertyChanged(nameof(IsDialogOpen));
+
+            }
+        }
         public string Username {
             get 
             {
@@ -137,7 +161,7 @@ namespace WarehouseProject.ViewModels
             events = _events;
             events.Subscribe(this);
             LoginButton = new LoginCommand(this, events, windowManager, register, mainWindow, account);
-            ErrorCommand = new ContactCommand(error);
+            ErrorCommand = new ErrorCommand(this);
             
         }
         /// <summary>
@@ -270,7 +294,13 @@ namespace WarehouseProject.ViewModels
             
         }
 
-        
+        public void OnShowDialog()
+        {
+            Errors = "A message has been send to the supervisor. He will recreate your password";
+            IsDialogOpen = true;
+        }
+
+
 
         /// <summary>
         /// Sent a admin or user instance to the main application after they

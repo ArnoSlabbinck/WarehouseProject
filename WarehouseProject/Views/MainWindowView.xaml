@@ -32,7 +32,26 @@
         <DataTemplate x:Name="DashboardViewModel" DataType="{x:Type viewmodels:DashboardViewModel}">
             <views:DashboardView />
         </DataTemplate>
+        <DataTemplate x:Name="ProductViewModel" DataType="{x:Type viewmodels:ProductViewModel}">
+            <views:ProductView />
+        </DataTemplate>
 
+        <Style x:Key="VerticalSeparatorStyle" 
+       TargetType="{x:Type Separator}"
+       BasedOn="{StaticResource {x:Type Separator}}">
+            <Setter Property="Margin" Value="6,0,6,0"/>
+            <Setter Property="LayoutTransform">
+                <Setter.Value>
+                    <TransformGroup>
+                        <TransformGroup.Children>
+                            <TransformCollection>
+                                <RotateTransform Angle="90"/>
+                            </TransformCollection>
+                        </TransformGroup.Children>
+                    </TransformGroup>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     
@@ -55,6 +74,7 @@
         <materialDesign:DialogHost  BorderBrush="{DynamicResource MaterialDesignDivider}" IsOpen="{Binding IsDialogOpen}">
             <materialDesign:DialogHost.DialogContent>
                 <Grid Height="150" Width="300" HorizontalAlignment="Center">
+
                     <StackPanel Orientation="Horizontal" Margin="15">
                         <TextBlock Foreground="Gray" Width="200" Margin="15 5" TextWrapping="Wrap" Text="{Binding Path=InvalidAccess}" />
                     </StackPanel>
@@ -78,6 +98,19 @@
 
 
             <StackPanel x:Name="HeaderStackPanel"  >
+                <Button x:Name="MessageButton"    
+                       Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"    
+                       BorderBrush="{x:Null}"
+                       Background="{x:Null}"    
+                       Margin="0,0,50,0"
+                       HorizontalAlignment="Right"
+                       Foreground="White"    
+                       Height="35"
+
+                       Width="35" 
+                       Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"     >
+                    <materialDesign:PackIcon Kind="Message"/>
+                </Button>
                 <materialDesign:DialogHost CloseOnClickAway="True"  Identifier="DialogHost" HorizontalAlignment="Left" Width="1184">
                     <materialDesign:DialogHost.DialogContent>
                         <Grid Margin="20" Width="600" Height="400">
@@ -88,24 +121,31 @@
                             </Grid.RowDefinitions>
                             <WrapPanel Grid.Row="0"   Orientation="Horizontal">
                                 <TextBlock Text="Are you leaving the application"/>
-                                <Button Content="Yess" Command="{Binding Shutdown}" CommandParameter="{Binding ElementName=MainWindow}"/>
                             </WrapPanel>
+                            <StackPanel Grid.Row="2" >
+                                <Button Content="Yess" Command="{Binding Shutdown}" CommandParameter="{Binding ElementName=MainWindow}" Margin="15"  />
+                                <Button Content="No" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"  Margin="15" />
+                            </StackPanel>
+                            
+                            
                         </Grid>
-
+                        
                     </materialDesign:DialogHost.DialogContent>
+                    
                     <Button x:Name="ButtonExit"    
                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"    
                        BorderBrush="{x:Null}"
                        Background="{x:Null}"    
                        HorizontalAlignment="Right"
-                       Foreground="White"    
+                       Margin="0,-40,0,0"
+                            Foreground="White"    
                        Height="35"
 
                        Width="35" 
-                       Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"     >
+                       Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
                         <materialDesign:PackIcon Kind="Power"/>
                     </Button>
-
+                    
                 </materialDesign:DialogHost>
 
                 <TextBlock Text="{Binding Path=Function}" />
@@ -116,12 +156,12 @@
                           Margin="600,-0,0,0"/>
 
                 <TextBlock Text="{Binding Path=Today}"
-                           FontSize="16" Margin="1100,0,0,0"   
+                           FontSize="16" Margin="1100,-25,0,0"   
                           FontFamily="WS Simple Gallifreyan"    
                           Foreground="#fff"/>
             </StackPanel>
         </Grid>
-
+        <Separator Grid.ColumnSpan="5" Margin="0,100,0,0"></Separator>
         <DockPanel Grid.Row="0" Grid.Column="0" 
                     Grid.RowSpan="5" Background="#272537"   >
             <StackPanel Orientation="Vertical" >
@@ -136,7 +176,7 @@
                     </TextBlock>
                 </Grid>
                 <Button x:Name="ButtonWarehouseDashBoard"     
-                   Margin="10" Background="#272537" Command="{Binding Path=switchView}" CommandParameter="Dashboard">
+                   Margin="10,110,10,0" Background="#272537" Command="{Binding Path=switchView}" CommandParameter="Dashboard">
                     <Grid x:Name="WareHoudeDashBoard"    
                           
                      Height="20"    
@@ -202,9 +242,9 @@
 
         </DockPanel>
 
+        <Separator Style="{DynamicResource VerticalSeparatorStyle}" Grid.RowSpan="4" Grid.Row="1" HorizontalAlignment="Right"/>
 
-
-        <ContentControl Grid.ColumnSpan="5" Grid.RowSpan="5" Content="{Binding SelectedViewModel}" Margin="239,122,-0.4,2"/>
+        <ContentControl Grid.ColumnSpan="5" Grid.RowSpan="5" Content="{Binding SelectedViewModel}" Margin="235,120,3.6,4"/>
 
     </Grid>
 

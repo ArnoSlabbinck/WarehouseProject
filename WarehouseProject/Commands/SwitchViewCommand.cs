@@ -20,15 +20,18 @@ namespace WarehouseProject.Commands
         private CustomerViewModel customer;
         private EmployeeViewModel register;
         private AccountViewModel account;
+        private ProductViewModel products;
         private DashboardViewModel dashboard;
         private IEventAggregator ea;
         public SwitchViewCommand(IEventAggregator eventaggretor, MainWindowViewModel mainWindow,
             EmployeeViewModel registerView,
-            AccountViewModel accountView)
+            AccountViewModel accountView
+            )
         {
             main = mainWindow;
             register = registerView;
             account = accountView;
+            products = new ProductViewModel();
             customer = new CustomerViewModel(new CustomerDataService());
             dashboard = new DashboardViewModel(eventaggretor);
             ea = eventaggretor;
@@ -73,7 +76,7 @@ namespace WarehouseProject.Commands
                     break;
                 case "Products":
                     if (!Role.StartsWith("s"))
-                        Console.WriteLine();
+                        main.SelectedViewModel = products;
                     else
                     {
                         main.InvalidAccess = "Invalid access to Products as a Salesperson";

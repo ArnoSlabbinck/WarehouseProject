@@ -8,14 +8,14 @@ using WarehouseProject.ViewModels;
 
 namespace WarehouseProject.Commands
 {
-    public class ContactCommand : ICommand
+    public class ErrorCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
-        private ContactViewModel contactView;
+        private LoginViewModel login;
 
-        public ContactCommand(ContactViewModel error)
+        public ErrorCommand(LoginViewModel loginView)
         {
-            contactView = error;
+            login = loginView; 
         }
 
         public bool CanExecute(object parameter)
@@ -25,8 +25,7 @@ namespace WarehouseProject.Commands
 
         public void Execute(object parameter)
         {
-            // Need to display the error view withouth opening a new Window
-            // Use an
+            login.OnShowDialog(); 
         }
     }
 }
