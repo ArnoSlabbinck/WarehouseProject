@@ -207,7 +207,17 @@ namespace WarehouseProject.ViewModels
         /// Adds the Inputs from customerview to database
         /// </summary>
         public async void Update()
-        { 
+        {
+            bool EditCustomer = await _customerDataService.Update(SelectedCustomer);
+            if (EditCustomer == true)
+            {
+                Errors = "Customer has been edited";
+            }
+            else
+            {
+                Errors = "Something went wrong." +
+                    "Contact the supervisor";
+            }
 
         }
         /// <summary>
@@ -237,6 +247,7 @@ namespace WarehouseProject.ViewModels
 
         public void ShowEditDialog()
         {
+            Errors = $"Edit from {SelectedCustomer.Fullname}";
             EditDialogOpen = true;
         }
 

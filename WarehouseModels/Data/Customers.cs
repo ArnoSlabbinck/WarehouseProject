@@ -49,6 +49,7 @@ namespace WarehouseModels
         public string Fullname 
         {
             get { return $"{FirstName} {LastName}"; }
+            
 
         }
 

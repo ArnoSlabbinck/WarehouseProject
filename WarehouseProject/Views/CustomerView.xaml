@@ -64,34 +64,34 @@
                         </StackPanel>
                         <StackPanel  Margin="5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
                             <TextBlock Foreground="Gray" Width="200"   TextWrapping="Wrap" Text="Fullname" />
-                            <TextBox  Width="200" Foreground="Black" Height="30" Text="{Binding Path=Fullname}"/>
+                            <TextBox x:Name="name" Width="200" Foreground="Black" Height="30" Text="{Binding Path=Fullname}"/>
                         </StackPanel>
                         <StackPanel  Margin="5" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
                             <TextBlock Foreground="Gray" Width="200" Margin="15 5" TextWrapping="Wrap" Text="Email" />
-                            <TextBox Foreground="Gray" Width="200" Text="{Binding Path=Email}"/>
+                            <TextBox x:Name="email"  Foreground="Gray" Width="200" Text="{Binding Path=Email}"/>
                         </StackPanel>
                         <StackPanel  Margin="5" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
                             <TextBlock Foreground="Gray" Width="200" Margin="15 5" TextWrapping="Wrap" Text="Phone" />
-                            <TextBox Foreground="Gray" Width="200"  Text="{Binding Path=Phone}"/>
+                            <TextBox x:Name="phone"  Foreground="Gray" Width="200"  Text="{Binding Path=Phone}"/>
                         </StackPanel>
                         <StackPanel  Margin="5" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
                             <TextBlock Foreground="Gray" Width="200" Margin="15 5" TextWrapping="Wrap" Text="City" />
-                            <TextBox Foreground="Gray" Width="200"  Text="{Binding Path=City}"/>
+                            <TextBox x:Name="city" Foreground="Gray" Width="200"  Text="{Binding Path=City}"/>
                         </StackPanel>
                         <StackPanel  Margin="5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
                             <TextBlock Foreground="Gray" Width="200" Margin="15 5" TextWrapping="Wrap" Text="Country" />
-                            <TextBox Foreground="Gray" Width="200"  Text="{Binding Path=Country}"/>
+                            <TextBox x:Name="country" Foreground="Gray" Width="200"  Text="{Binding Path=Country}"/>
                         </StackPanel>
                         <StackPanel  Margin="5" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2">
                             <TextBlock Foreground="Gray" Width="200" Margin="15 5" TextWrapping="Wrap" Text="Street" />
-                            <TextBox Foreground="Gray" Width="200"  Text="{Binding Path=Street}"/>
+                            <TextBox x:Name="street" Foreground="Gray" Width="200"  Text="{Binding Path=Street}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" Grid.Row="4" Grid.ColumnSpan="3" >
-                            <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatAccentBgButton}">
-                                Edit 
+                            <Button Command="{Binding Path=EditCustomerCommand}" CommandParameter="NewCustomer"  Style="{DynamicResource MaterialDesignFlatAccentBgButton}"  Margin="10,0,0,0">Edit
+                                
                             </Button>
 
-                            <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatAccentBgButton}">
+                            <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatAccentBgButton}" Margin="10,0,0,0">
                                 Close
                             </Button>
                         </StackPanel>
@@ -129,14 +129,14 @@
                         <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
                             <TextBox x:Name="Fullname" Foreground="Black"    materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
                                materialDesign:TextFieldAssist.LeadingIcon="Ocarina" 
-                               Text="{Binding Path=Fullname}" Height="30" Margin="10,0,205,0"
+                               Text="{Binding Path=Fullname, Mode=OneWayToSource}" Height="30" Margin="10,0,205,0"
                                Width="100"/>
                             <TextBox x:Name="Email" Foreground="Black"    materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
                                materialDesign:TextFieldAssist.LeadingIcon="Mail" 
-                               Text="{Binding Path=Email}" Height="30" Margin="10,0,180,0" Width="100"/>
+                               Text="{Binding Path=Email, Mode=OneWayToSource}" Height="30" Margin="10,0,180,0" Width="100"/>
                             <TextBox x:Name="Phone" Foreground="Black"    materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
                                materialDesign:TextFieldAssist.LeadingIcon="Phone" 
-                               Text="{Binding Path=Phone}" Height="30"  Width="100"/>
+                               Text="{Binding Path=Phone, Mode=OneWayToSource}" Height="30"  Width="100"/>
 
 
                         </StackPanel>
@@ -149,17 +149,17 @@
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
                             <TextBox x:Name="Country" Foreground="Black"  materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
                                materialDesign:TextFieldAssist.LeadingIcon="Location" 
-                               Text="{Binding Path=Country}" Height="30" Margin="10,0,205,0" Width="100"/>
+                               Text="{Binding Path=Country, Mode=OneWayToSource}" Height="30" Margin="10,0,205,0" Width="100"/>
 
 
                             <TextBox x:Name="City" Foreground="Black"   materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
                                materialDesign:TextFieldAssist.LeadingIcon="LegoLocation" 
-                               Text="{Binding Path=City}" Height="30" Margin="10,0,180,0" Width="100"/>
+                               Text="{Binding Path=City, Mode=OneWayToSource}" Height="30" Margin="10,0,180,0" Width="100"/>
 
 
                             <TextBox x:Name="Street" Foreground="Black"   materialDesign:TextFieldAssist.HasLeadingIcon="True" FontSize="20"
                                materialDesign:TextFieldAssist.LeadingIcon="GoogleStreetView" 
-                               Text="{Binding Path=Street}" Height="30" Width="100" />
+                               Text="{Binding Path=Street, Mode=OneWayToSource}" Height="30" Width="100" />
 
                         </StackPanel>
 

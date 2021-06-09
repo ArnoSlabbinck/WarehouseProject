@@ -111,20 +111,7 @@ namespace WarehouseProject.Data
 
         }
 
-        public IEnumerable<Customers> GetCustomersByCity()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Customers> GetCustomersByCountry()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Customers> GetCustomersByName()
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public async Task<bool> Update(Customers customer)
         {
@@ -136,13 +123,15 @@ namespace WarehouseProject.Data
                 using(var context = new WarehouseDataAccess.WarehouseDBContext())
                 {
                     Customers customerDatabase = context.Customers.Find(customer.Id);
-                    //I need to detect whenever there's a change in one of the Customer 
-                    string[] selectedCustomerData = CustomerData(customer);
-                    string[] customerDatabaseData = CustomerData(customerDatabase);
+                    if (customerDatabase == null)
+                        return false;
+                    context.Entry(customerDatabase).CurrentValues.SetValues(customer);
+                    await context.SaveChangesAsync();
+                    return true;
 
                 }
 
-                return true;
+                
             }
             catch(Exception e)
             {
@@ -169,8 +158,25 @@ namespace WarehouseProject.Data
         /// </summary>
         /// <param name="customers"></param>
         /// <returns></returns>
-        
+        public IEnumerable<Customers> GetCustomersByCity()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Customers> GetCustomersByCountry()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Customers> GetCustomersByName()
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
+
+
 
    
 }

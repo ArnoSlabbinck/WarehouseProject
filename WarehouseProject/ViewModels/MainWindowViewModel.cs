@@ -116,7 +116,7 @@ namespace WarehouseProject.ViewModels
 
        
 
-        public  MainWindowViewModel(IEventAggregator eventaggretor,
+        public   MainWindowViewModel(IEventAggregator eventaggretor,
             EmployeeViewModel registerView,
             AccountViewModel accountView)
         {
@@ -128,14 +128,15 @@ namespace WarehouseProject.ViewModels
             selectedViewModel = new DashboardViewModel(ea);
             //Get the user 
             ea.Subscribe(this);
+            RunTask();
             
             
             
         }
 
         public void Handle(UserLoginEvent message)
-        {
-try
+        {   
+            try
             {
                 Admin user = (Admin)message.newObj;
                 Fullname = user.Name;
@@ -158,24 +159,34 @@ try
             fullname = name;
                 
         }
+        private async void RunTask()
+        {
+            while (true)
+            {
+                await Task.Factory.StartNew(() =>
+                {
+                    Thread.Sleep(TimeSpan.FromSeconds(1));
+                    SetTime();
+
+                });
+            }
+
+        }
 
         /// <summary>
         /// Set up a Timer to display the date and 
         /// </summary>
-        public async Task setTimer()
+        private void SetTime()
         {
             // Get the date and the time of 
             // Use a while loop to continue ticking
-            await System.Windows.Application.
+                System.Windows.Application.
                 Current.Dispatcher.BeginInvoke(new System.Action(() =>
                 {
                     DateTime dateTime = DateTime.Now;
-                    var time = dateTime.TimeOfDay;
-
-                    Today = time;
-                    Thread.Sleep(TimeSpan.FromSeconds(60));
-
-
+                    var time = dateTime.ToString("HH:mm:ss");
+                    Today = Convert.ToDateTime(time).TimeOfDay;
+                    
 
                 }));
 
@@ -189,6 +200,8 @@ try
             IsDialogOpen = true;
         }
 
+
+        
 
     }
 
