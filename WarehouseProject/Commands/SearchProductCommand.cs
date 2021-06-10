@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace WarehouseProject.Commands
 {
-    public class EditProductCommand : ICommand
+    public class SearchProductCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 

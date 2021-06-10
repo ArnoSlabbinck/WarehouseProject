@@ -147,11 +147,14 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Commands\AddCustomerCommand.cs" />
     <Compile Include="Commands\DeleteCustomerCommand.cs" />
+    <Compile Include="Commands\DeleteProductCommand.cs" />
     <Compile Include="Commands\EditCustomerCommand.cs" />
+    <Compile Include="Commands\EditProductCommand.cs" />
     <Compile Include="Commands\EmployeeCommand.cs" />
     <Compile Include="Commands\ErrorCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
+    <Compile Include="Commands\SearchProductCommand.cs" />
     <Compile Include="Commands\ShowEmployeesCommand.cs" />
     <Compile Include="Commands\ShutdownCommand.cs" />
     <Compile Include="Commands\SwitchViewCommand.cs" />

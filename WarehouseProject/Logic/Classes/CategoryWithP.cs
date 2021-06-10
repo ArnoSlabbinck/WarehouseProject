@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WarehouseProject.Logic.Classes
 {
-    class CategoryWithP
+    public class CategoryWithProducts
     {
     }
 }
