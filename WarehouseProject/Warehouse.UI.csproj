@@ -159,6 +159,7 @@
       <DependentUpon>BindablePassWord.xaml</DependentUpon>
     </Compile>
     <Compile Include="Logic\Classes\Admin.cs" />
+    <Compile Include="Logic\Classes\CategoryWithP.cs" />
     <Compile Include="Logic\Classes\DispatcherContext.cs" />
     <Compile Include="Logic\Interfaces\IContext.cs" />
     <Compile Include="Logic\Services\AuthenticationService.cs" />

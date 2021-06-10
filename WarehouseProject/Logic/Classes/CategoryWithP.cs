@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WarehouseProject.ViewModels
+namespace WarehouseProject.Logic.Classes
 {
-    public class ProductViewModel : BaseViewModel
+    class CategoryWithP
     {
-
     }
 }
