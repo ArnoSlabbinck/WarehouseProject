@@ -7,7 +7,7 @@ using WarehouseProject.Logic.Interfaces;
 
 namespace WarehouseProject.Logic.Classes
 {
-    public class DispatcherContext : IContext
+    public class DispatcherContext 
     {
         public bool IsSynchronized => throw new NotImplementedException();
 

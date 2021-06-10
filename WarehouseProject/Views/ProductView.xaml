@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WarehouseProject.Views"
+              xmlns:viewmodels="clr-namespace:WarehouseProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ProductViewModel}"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
               TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -95,7 +96,7 @@
 
             <StackPanel Orientation="Horizontal" Grid.Row="1"  Grid.ColumnSpan="4">
                 <TextBlock Text="Category" Foreground="Black" FontSize="15" Margin="45,10,0,0"  />
-                <ComboBox Margin="-60,25,0,0" Width="250" Height="30">
+                <ComboBox Margin="-60,25,0,0" Width="250" Height="30" ItemsSource="{Binding Path=categoryWithProducts}">
 
                 </ComboBox>
             </StackPanel>
@@ -104,10 +105,10 @@
                                materialDesign:TextFieldAssist.LeadingIcon="Search" 
                                Text="{Binding Path=Fullname, Mode=OneWayToSource}" Height="30" Margin="45,0,205,0"
                                Width="250"/>
-                <Button Margin="-150,0,400,0" Command="{Binding}" Style="{DynamicResource MaterialDesignFlatAccentBgButton}">
+                <Button Margin="-150,0,400,0" Command="{Binding SearchProductCommand}" Style="{DynamicResource MaterialDesignFlatAccentBgButton}">
                  Search
                 </Button>
-                <Button Margin="-380,0,400,0" Command="{Binding}" Style="{DynamicResource  MaterialDesignFlatLightBgButton }">
+                <Button Margin="-380,0,400,0" Command="{Binding }" Style="{DynamicResource  MaterialDesignFlatLightBgButton }">
                     Cancel
                 </Button>
                 <Button Width="50"  Content="Invoice"   
@@ -143,7 +144,7 @@
             </StackPanel>
 
 
-            <DataGrid x:Name="Customers"  Focusable="False"  ItemsSource="{Binding Customers}" SelectedItem="{Binding Path=SelectedCustomer,  Mode=TwoWay}"
+            <DataGrid x:Name="Products"  Focusable="False"  ItemsSource="{Binding categoryWithProducts}" SelectedItem="{Binding Path=SelectedProduct,  Mode=TwoWay}"
                         CanUserSortColumns="True" materialDesign:DataGridAssist.CellPadding="40 40 40 40 " 
                         materialDesign:DataGridAssist.ColumnHeaderPadding="8" Grid.Row="4" Grid.RowSpan="3" Grid.Column="0"  Grid.ColumnSpan="4" 
                          HeadersVisibility="Column" CanUserAddRows="False" BorderThickness="0,0,0,0"

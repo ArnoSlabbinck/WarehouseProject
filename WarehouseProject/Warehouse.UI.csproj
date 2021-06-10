@@ -164,7 +164,8 @@
     <Compile Include="Logic\Classes\Admin.cs" />
     <Compile Include="Logic\Classes\CategoryWithP.cs" />
     <Compile Include="Logic\Classes\DispatcherContext.cs" />
-    <Compile Include="Logic\Interfaces\IContext.cs" />
+    <Compile Include="Logic\Classes\ProductDataService.cs" />
+    <Compile Include="Logic\Interfaces\IDataSerivce.cs" />
     <Compile Include="Logic\Services\AuthenticationService.cs" />
     <Compile Include="Logic\Classes\DataPropertyChanged.cs" />
     <Compile Include="Logic\Services\DataValidationService.cs" />
