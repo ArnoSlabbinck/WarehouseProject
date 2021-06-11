@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WarehouseModels;
 using WarehouseProject.Logic.Classes;
 
 namespace WarehouseProject.Logic.Interfaces
@@ -24,28 +25,21 @@ namespace WarehouseProject.Logic.Interfaces
             throw new NotImplementedException();
         }
 
-        public List<CategoryWithProducts> CategoryWithProducts()
+        public IEnumerable<Products> CategoryWithProducts()
         {
+            List<Products> customers = new List<Products>();
             using (var context = new WarehouseDataAccess.WarehouseDBContext())
             {
-                var data = context.Products.Join(context.Categories,
-                    p => p.CategoryId,
-                    c => c.Id,
-                    (p, c) => new CategoryWithProducts
-                    {
-                        CategoryName = c.CategoryName,
-                        CategoryDescription = c.Description,
-                        MadeIn = p.MadeIn,
-                        ModelYear = p.ModelYear,
-                        Price = p.UnitPrice,
-                        ProductName = p.ProductName,
-                        UnitsOnOrder = p.UnitsOnOrder
+                foreach (var customer in context.Products)
+                {
+                    customers.Add(customer);
+                }
 
-                    }).ToList();
-
-                return data;
+                return customers;
             }
-        
+
+
+
         }
     }
 }

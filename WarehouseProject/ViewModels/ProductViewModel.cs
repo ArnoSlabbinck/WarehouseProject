@@ -43,22 +43,21 @@ namespace WarehouseProject.ViewModels
             get;
             set;
         }
-        public ProductViewModel()
+        public ProductViewModel(ProductDataService productDataService, IEventAggregator eventAggregator)
         {
-            productDataService = new ProductDataService();
+            this.productDataService = productDataService;
             SearchProductCommand = new SearchProductCommand(this);
             DeleteProductCommand = new DeleteProductCommand(this);
             EditProductCommand = new EditProductCommand(this);
+            
+
         }
 
-        public void GetCategoryWithProducts()
+        public  void GetCategoryWithProducts()
         {
-            var result = productDataService.CategoryWithProducts();
+            productDataService.CategoryWithProducts();
 
-            foreach (var data in result)
-            {
-                categoryWithProducts.Add(data);
-            }
+            
         }
 
     

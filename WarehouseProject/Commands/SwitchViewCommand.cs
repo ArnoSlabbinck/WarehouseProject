@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using WarehouseProject.Data;
 using WarehouseProject.EventModels;
+using WarehouseProject.Logic.Interfaces;
 using WarehouseProject.ViewModels;
 
 namespace WarehouseProject.Commands
@@ -31,7 +32,7 @@ namespace WarehouseProject.Commands
             main = mainWindow;
             register = registerView;
             account = accountView;
-            products = new ProductViewModel();
+            products = new ProductViewModel(new ProductDataService(), eventaggretor);
             customer = new CustomerViewModel(new CustomerDataService());
             dashboard = new DashboardViewModel(eventaggretor);
             ea = eventaggretor;
