@@ -7,6 +7,12 @@ namespace WarehouseModels
 {
     public class Products
     {
+        public Products()
+        {
+            OrderItems = new List<OrderItems>();
+        }
+
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Display(Name = "Product_Id")]

@@ -28,10 +28,10 @@ namespace WarehouseProject.Logic.Interfaces
         {
             using (var context = new WarehouseDataAccess.WarehouseDBContext())
             {
-                var data = context.Categories.Join(context.Products,
-                    c => c.Id,
+                var data = context.Products.Join(context.Categories,
                     p => p.CategoryId,
-                    (c, p) => new CategoryWithProducts
+                    c => c.Id,
+                    (p, c) => new CategoryWithProducts
                     {
                         CategoryName = c.CategoryName,
                         CategoryDescription = c.Description,
